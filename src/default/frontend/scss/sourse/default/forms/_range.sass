@@ -1,0 +1,58 @@
+/* range-sliders */
+.horizontal-slider
+  position: relative
+  height: 6px
+  margin: 16px 0 0
+
+  .range-track
+    background-color: $grayColorSecond
+    border-radius: 4px
+    height: 2px
+  .range-track-1
+    background-color: $blueColor
+  .range-thumb
+    color: $blackColor
+    padding-top: 16px
+    font-weight: 700
+    cursor: pointer
+
+    &:focus
+      outline: 0
+    &:before
+      content: ""
+      @include positionElement(20px,20px,0,-9px)
+      border-radius: 100%
+      background-color: $blueColor
+      box-shadow: 0 1px 3px rgba($blackColor, 0.3)
+/*.irs--round .irs-line*/
+.irs--round .irs-line
+  top: 18px
+.irs--round .irs-bar
+  top: 18px
+.irs--round .irs-handle
+  top: 11px
+.irs-from, .irs-to, .irs-single
+  top: 30px
+.irs--round .irs-min, .irs--round .irs-max
+  top: 36px
+
+.irs--round .irs-bar,
+.irs--round .irs-single
+  background-color: $blueColor
+.irs--round .irs-from,
+.irs--round .irs-to
+  background: none
+  color: $blueColor
+  font-weight: 700
+  &::before
+    display: none
+.irs--round .irs-handle
+  border-color: $blueColor
+  width: 19px
+  height: 19px
+  background-color: $blueColor
+  cursor: pointer
+.irs--round .irs-min, .irs--round .irs-max
+  display: none
+.irs--round
+  height: auto

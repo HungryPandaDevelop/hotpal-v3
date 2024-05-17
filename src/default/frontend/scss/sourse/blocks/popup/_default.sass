@@ -1,0 +1,82 @@
+
+.popup
+  @include positionElement(100%, 100%, 0, 0, left, top, 4, fixed, flex)
+  transition: ease-out 0.5s
+
+  visibility: hidden
+  opacity: 0
+  .popup-hint
+    margin-bottom: 30px
+  &.show
+    visibility: visible
+    opacity: 1
+    padding: 15px
+  h3,h4
+    color: $blackColor
+    text-align: center
+  h3,
+  h3.popup-topic
+    margin: 0 0 15px
+    line-height: 41px
+    font-size: 36px
+  h4
+    font-size: $standartSize
+    font-weight: 500
+    color: $blueColorSecond
+  .btn
+    width: 100%
+  .popup-text
+    text-align: center
+    a
+      text-decoration: none
+      color: $blueColor
+      font-weight: 700
+  .main-grid,
+  .main-full
+    padding: 0
+
+  // .btn
+  //   color: $blueColorSecond
+
+.popup-overlay
+  @include positionElement(100%, 100%, 0, 0)
+  background-color: $whiteColor
+  opacity: 0.3
+
+.close-btn--popup
+  position: absolute
+  right: 0
+  top: 0
+  margin: 15px
+
+.popup-container
+  position: relative
+  background-color: $whiteColor
+  max-width: 600px
+  width: 100%
+  height: auto
+  margin: auto
+  padding: 45px
+
+  overflow-y: auto
+  max-height: 100%
+  border-radius: 20px
+  box-shadow: 0 0 30px rgba($blackColor , 0.3)
+  .tiny-account
+    margin: 0
+  .tiny-account-stub
+    height: 100px
+    span
+      max-width: 160px
+      margin: 0px auto 15px
+    i
+      width: 100px
+      height: calc(100% - 40px)
+@media (max-width: 576px)
+  .popup-container
+    padding: 45px 15px
+
+  .popup
+    h3
+      font-size: 24px
+      line-height: 29px

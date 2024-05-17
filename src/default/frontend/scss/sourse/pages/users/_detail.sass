@@ -1,0 +1,106 @@
+.user-top-info--view
+	display: flex
+	justify-content: space-between
+	h2
+		color: $blackColor
+		width: calc(100% - 200px)
+		&::first-letter
+			text-transform: uppercase
+.user-info-gender
+	padding: 15px 0
+	font-size: 20px
+	display: flex
+	div
+		margin: auto 0
+
+	b
+		display: inline-block
+		margin: 0 9px
+	*
+		vertical-align: middle
+.user-middle-info
+	display: flex
+	.tags-container
+		width: calc( 100% - 220px )
+	.btn-container
+	.btn-container
+		padding-top: 10px
+		text-align: right
+	.btn-ico
+		border: 2px solid $blueColor
+		margin-left: 15px
+
+.personal-info-el
+	padding: 8px 15px
+
+.user-description
+	h3
+		margin-bottom: 8px
+	ul
+		list-style: none
+		padding: 0
+		margin: 0
+.special-tags
+	.tag
+		background-color: $blueColorSecond
+		font-weight: 700
+		color: $whiteColor
+.user-photo
+	position: relative
+	overflow: hidden
+	border-radius: 15px
+	font-size: 0
+	img
+		width: 100%
+		height: 400px
+		object-fit: cover
+.ymaps-2-1-79-ground-pane
+	filter: grayscale(100%) brightness(80%)
+	// transition: 1s
+.photos-mobile
+	display: none
+
+@media (max-width: 820px)
+	.user-top-info--view
+		display: block
+		h2
+			width: 100%
+	.user-middle-info
+		display: block
+		.tags-container
+			width: 100%
+		.btn-container
+			padding-bottom: 30px
+			text-align: left
+			padding-top: 0
+		.btn-ico
+			margin-left: 0
+			margin-right: 15px
+	.user-photo img
+		height: 300px
+	// .travel-user
+	// 	width: 200%
+@media (max-width: 576px)
+	.border-container-user
+		border: 0
+		padding: 0
+	.user-top-info--view
+		h2
+			width: 50%
+	.photos-mobile
+		display: block
+		margin-bottom: 15px
+	.user-middle-info
+		display: block
+		.tags-container,
+		.btn-container
+			width: 100%
+		.btn-container
+			text-align: left
+			padding: 15px 0 30px
+			margin: 0
+
+	.user-info-gender
+		padding: 7px 0
+	.border-delimetr.border-account
+		margin-bottom: 30px

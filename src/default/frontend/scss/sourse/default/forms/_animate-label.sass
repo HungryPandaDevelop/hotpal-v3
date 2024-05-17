@@ -1,0 +1,27 @@
+.input-animate
+	position: relative
+	padding-top: 30px
+	margin: 0 0 30px
+	// outline: 1px solid red
+
+	label
+		position: absolute
+		transition: all 0.3s ease
+		top: 39px
+		left: 0px
+		cursor: pointer
+
+	.input-decorate
+		border: 0
+		border-bottom: 1px solid $blackColor
+		padding-left: 0
+		padding-right: 0
+		&::placeholder
+			visibility: hidden
+
+	textarea:focus + label,
+	textarea.input-empty + label,
+	input:focus + label,
+	input.input-empty + label
+		top: 0px
+		opacity: 0.5

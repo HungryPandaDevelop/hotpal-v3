@@ -1,0 +1,110 @@
+
+.stub
+  height: 120px
+
+header
+  @include positionElement(100%, auto, 0, auto, left, top, 3, absolute )
+  color: $blueColor
+  background-color: $whiteColor
+  min-width: 320px
+  a
+    text-decoration: none
+
+    &:hover
+      color: $goldColor
+  .logo-container
+    text-align: center
+  .btn
+    padding: 2px 5px
+    font-size: inherit
+    margin: 0 8px
+  .btn-container
+    margin-left: auto
+
+  .mobile-container
+    display: none
+
+  &.main-page-header
+    // background-color: $blueColor
+    background: none
+    color: $whiteColor
+    .btn-in
+      background-color: $whiteColor
+      border-color: $whiteColor
+      color: $blackColor
+      &:hover
+        background-color: $blackColor
+        border-color: $blackColor
+        color: $whiteColor
+    .btn--exit
+      background-color: $blueColor
+      border-color: $blueColor
+      color: $whiteColor
+    .nav-header a
+      color: $blackColor
+      &:hover
+
+        color: $whiteColor
+    .btn-hamburger
+      background-image: url("../images/icons/hamburger-white.svg")
+.logo
+  img
+    width: 170px
+    top: 21px
+    position: relative
+.change-style
+  @include positionElement(137px, 137px, 0, 0, left, top, 6)
+  @include bgImageEl("../images/icons-app/change-style.png", cover)
+  cursor: pointer
+  &.active
+    @include bgImageEl("../images/icons-app/change-style-white.png", cover)
+.nav-header
+  width: 100%
+  ul
+    display: flex
+    justify-content: space-around
+    width: 100%
+    font-weight: 600
+    list-style: none
+    padding: 0
+  li
+    position: relative
+
+  a
+    position: relative
+
+    text-decoration: none
+    color: $blueColorSecond
+    &:hover
+      color: $blueColor
+.feedback-header
+  margin-left: auto
+  gap: 30px
+@media (max-width: 992px)
+  .logo
+    img
+      top: 15px
+      width: 120px
+  .stub
+    height: 80px
+  .change-style
+    height: 60px
+    width: 60px
+  header
+    .btn
+      width: 130px
+@media (max-width: 576px)
+  .logo
+    img
+      width: 120px
+      top: 15px
+  header
+    .main-grid
+      gap: 0
+    .mobile-container
+      display: flex
+      text-align: right
+    .btn-hamburger
+      margin-left: auto
+  .stub
+    height: 100px

@@ -1,0 +1,99 @@
+
+//(PE-- W, H, L, T, LR, TB, Z, D, P)
+@mixin positionElement($w:100%, $h:false, $LrPos:0, $TbPos:0, $LeftRight:left, $TopBottom:top, $z:false, $pos: absolute, $display:false)
+  width: $w
+  position: $pos
+
+  @if $display
+    display: $display
+  @if $h
+    height: $h
+  @if $z
+    z-index: $z
+
+  @if $LeftRight==left
+    left: $LrPos
+  @else
+    right: $LrPos
+
+  @if $TopBottom==top
+    top: $TbPos
+  @else
+    bottom: $TbPos
+
+@mixin bgImageEl($img:none, $s:contain, $p:center, $r:no-repeat)
+  background-position: $p
+  background-repeat: $r
+  background-size: $s
+  background-image: url($img)
+
+@mixin icoEl($width, $height, $img:none, $va:middle, $s:contain, $p:center, $r:no-repeat)
+  display: inline-block
+  vertical-align: $va
+  width: $width
+  height: $height
+  background-position: $p
+  background-repeat: $r
+  background-size: $s
+  background-image: url($img)
+
+$points: 1920,1680,1440,1280,992,820,576
+
+@mixin changeFontSize($mediaSize)
+  @each $point in $points
+    @media screen and (max-width: #{$point}px)
+      font-size: map-get($mediaSize, $point)
+
+@mixin setFullGrid($gridName)
+  @each $point in $points
+    @if map-get($gridName,$point)
+      @if $point == 1920
+        @for $i from 1 through 12
+          .col-#{$i}
+            grid-column-end: span $i
+      @else
+        @media (max-width: #{$point}px)
+          @for $i from 1 through 12
+            .col-#{map-get($gridName,$point)}-#{$i}
+              grid-column-end: span $i
+
+@mixin setFullGridOffset($gridName)
+  @each $point in $points
+    @if map-get($gridName,$point)
+      @if $point == 1920
+        @for $i from 1 through 12
+          .col-offset-#{$i}
+            grid-column-start: $i
+      @else
+        @media (max-width: #{$point}px)
+          @for $i from 1 through 12
+            .col-offset-#{map-get($gridName,$point)}-#{$i}
+              grid-column-start: $i
+
+@mixin response
+  @media screen and (max-width: $size)
+    @content
+
+$size: 414px
+$block: comments-all
+
+@include response
+
+  /*---#{$block start}---*/
+  .box2
+    background: red
+
+  /*---#{$block end}---*/
+
+@mixin styleScroll
+  &::-webkit-scrollbar
+    height: 12px
+    width: 8px
+    background: $grayColorSecond
+
+  &::-webkit-scrollbar-thumb
+    background: $grayColor
+    border-radius: 1ex
+
+  &::-webkit-scrollbar-corner
+    background: $grayColor

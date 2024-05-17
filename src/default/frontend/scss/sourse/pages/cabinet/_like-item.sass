@@ -1,0 +1,108 @@
+
+.like-item
+  display: inline-block
+  text-align: center
+  position: relative
+  text-decoration: none
+  min-width: 120px
+  margin: 0 15px 30px
+  vertical-align: top
+
+  h3
+    text-align: center
+    font-size: $standartSize
+    color: $blackColor
+    margin: 0 0 8px
+  .btn-container
+    // margin-top: 15px
+  a
+    text-decoration: none
+    display: block
+// .account-main
+//   .like-item
+//     width: 49%
+//     display: inline-block
+.like-img
+  width: 100px
+  height: 100px
+  position: relative
+  overflow: hidden
+  border-radius: 100%
+  display: inline-block
+  .img-cover
+    @include positionElement(100%,100%)
+.status-like
+  padding: 7px 6px
+  background-color: $grayColor
+  border-radius: 30px
+  display: inline-block
+  color: $whiteColor
+  vertical-align: middle
+  max-width: 160px
+  display: block
+  margin: 0 auto 8px
+  border: 1px solid
+.status--see
+  background-color: $whiteColor
+  border: 1px solid $blackColor
+  color: $blackColor
+.status--agree
+  background-color: $blueColor
+  // border: 1px solid $blackColor
+  color: $whiteColor
+.status--disagree
+  background-color: $blackColor
+  color: $whiteColor
+.like-status-btn
+  display: inline-block
+  background-color: $whiteColor
+  width: 30px
+  height: 30px
+  border: 1px solid $blueColor
+  border-radius: 100%
+  cursor: pointer
+  vertical-align: middle
+  margin: 0 5px
+  &:hover,
+  &.active
+    background-color: $blueColor
+.see-like-btn
+  @include bgImageEl("../images/icons/view-blue.svg")
+  &:hover,
+  &.active
+    background-image: url("../images/icons/view-fill-white.svg")
+.agree-like-btn
+  @include bgImageEl("../images/icons-app/like-blue.svg")
+  background-size: 18px
+  &:hover,
+  &.active
+    background-image: url("../images/icons-app/like-fill-white.svg")
+.disagree-like-btn
+  @include bgImageEl("../images/icons-app/dislike-blue.svg", 24px)
+  &:hover,
+  &.active
+    background-image: url("../images/icons-app/dislike-fill-white.svg")
+.trash-like-btn
+  @include bgImageEl("../images/icons/trash-blue.svg", 24px)
+  background-color: $whiteColor
+  &:hover
+    background-image: url("../images/icons/trash-white.svg")
+    background-color: $blueColor
+.like-hint
+  font-size: $smallSize
+  color: $grayColor
+  margin-top: -4px
+  margin-bottom: 6px
+  // margin: 0 0 7px
+.status-new
+  @include positionElement(20px,20px, 0px,0, right,top,2)
+  background-color: $blueColor
+  // font-weight: 700
+  font-size: 0
+
+  // padding: 2px 12px 
+  border-radius: 100%
+  // font-size: $smallSize
+@media (max-width: 576px)
+  .like-item
+    margin-bottom: 30px

@@ -1,0 +1,108 @@
+.travel-user
+  display: flex
+  gap: 30px
+.travel-current
+  width: calc(50% - 60px)
+.travel-current-line
+  margin-bottom: 15px
+  padding-left: 30px
+  position: relative
+  i
+    position: absolute
+    left: 0
+    top: 0
+.travel-current-detail
+  color: $blueColor
+  font-weight: 700
+.travel-current-empty
+  color: $blackColor
+  font-weight: 400
+.travel-story
+  width: 50%
+  border-left: 1px solid $blueColorSecond
+  padding-left: 30px
+  margin-left: 0px
+.travel-story
+  .btn-container-bottom
+    padding-top: 15px
+.travel-add-panel-container
+  // max-width: 740px
+  margin: 0 auto
+.travel-add-panel
+  background-color: $blueColor
+  color: $whiteColor
+  margin-bottom: 30px
+  border-color: $blueColor
+  label
+    margin: 0
+    padding-top: 8px
+    display: inline-block
+    padding: 0
+  .input-box
+    // display: flex
+    margin: 0
+    label
+      // width: 30%
+  .data-input-container
+    width: 100%
+  h3,label
+    font-size: 20px
+    color: $whiteColor
+    margin-bottom: 1px
+    text-transform: initial
+  h3
+    font-size: 40px
+    margin-top: 2px
+  .btn-container
+    margin-top: 30px
+  .btn
+    width: 100%
+    margin: 0
+  .btn-container
+    text-align: center
+.travel-info-date
+  padding: 8px 15px 7px
+  border: 1px solid $whiteColor
+  border-radius: 30px
+  font-size: 14px
+  // margin-top: 7px
+.travel-info-panel
+  h3
+    margin: 0
+@media (max-width: 992px)
+  .travel-add-panel
+    padding: 15px
+
+@media (max-width: 576px)
+  .travel-add-panel
+    border-radius: 30px
+    .btn-container
+      padding: 0
+    .input-box
+      display: block
+    .data-input-container
+      width: 100%
+      padding: 0
+  .travel-user
+    display: block
+  .travel-current,
+  .travel-story
+    width: 100%
+  .travel-story
+    border: 0
+    padding: 0
+    // margin-top: -130px
+    .btn
+      width: 100%
+  .travel-add-panel
+    margin-top: 30px
+    h3
+      text-align: center
+      font-size: 21px
+      margin-bottom: 8px
+    label
+      text-align: center
+      width: 100%
+      font-size: 16px
+    .btn-container
+      margin-top: 15px

@@ -1,0 +1,45 @@
+.partners-home
+  position: relative
+  overflow: hidden
+  background-color: $blueColor
+  padding-bottom: 90px
+
+  .btn-container
+    text-align: center
+  .btn
+    width: 240px
+    // overflow: visible
+.partners-container
+  text-align: center
+  max-width: 920px
+  display: flex
+  justify-content: space-between
+.partners-item
+  display: inline-block
+  text-align: center
+  margin: 0 15px
+  font-size: 24px
+  color: $blackColor
+  img
+    width: 130px
+    height: 150px
+    object-fit: contain
+  b
+    display: block
+    font-size: 40px
+    line-height: 1
+@media (max-width: 576px)
+  .partners-home
+    padding-top: 30px
+    padding-bottom: 45px
+  .partners-container
+    display: block
+    img
+      width: 100px
+      height: 100px
+    b
+      font-size: 21px
+    span
+      font-size: 18px
+  .partners-item
+    margin-bottom: 15px

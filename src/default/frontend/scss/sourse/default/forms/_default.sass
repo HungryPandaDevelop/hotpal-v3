@@ -1,0 +1,79 @@
+
+input
+	-webkit-appearance: none
+	-webkit-border-radius: 0
+input:disabled
+	background-color: $grayColorSecond
+
+.input-decorate,
+.custom-select,
+.file-decorate
+
+	padding: 10px 15px
+	border: 0
+	border-radius: 30px
+	font-family: inherit
+	font-size: $smallSize
+	font-weight: 500
+	resize: none
+	width: 100%
+	background: none
+	color: $blackColor
+	border: 1px solid $grayColorThree
+	transition: ease-out 0.5s
+	background-color: $whiteColor
+	&:focus
+		outline: 0
+		border-color: $blueColor
+	&::placeholder
+		color: $blackColor
+
+.file-decorate-error span,
+.input-error
+	border-color: $redColor
+.mail-error
+	border-color: $orangeColor
+.error-hint,
+.input-error-text
+	color: $redColor
+	margin-top: 2px
+	font-size: 12px
+.input-box
+	// margin: 0 0 25px
+	position: relative
+	label
+		font-weight: 800
+		color: #3A506B
+		margin: 0px 0 3px
+		display: inline-block
+		text-transform: uppercase
+		position: relative
+		top: -5px
+
+.input-date
+	padding: 10px 15px
+
+.data-input-container
+	position: relative
+	&::after
+		content: ""
+		@include positionElement(38px, 38px,0,0, right)
+		@include bgImageEl("../images/icons/calendar-gray.svg", 21px, center)
+
+.preloader-input
+	@include positionElement(38px,38px,0px,0,right)
+	.preloader
+		width: 20px
+		height: 20px
+		margin-top: -10px
+		margin-left: -10px
+
+.geo-input-box
+	.ya-map
+		height: 280px
+		position: relative
+		overflow: hidden
+		border-radius: 30px
+@media (max-width: 1024px)
+	.input-box label
+		font-size: 14px

@@ -1,0 +1,29 @@
+
+// $gridPoints: (1920: "",1680: "xxl",1440: "xl",1280: "lg",1024:"md",820: "sm",480: "xs")
+$gridPoints: (1920: "",1680: "xxl",1440: "xl",1280: "lg",992:"md",820: "sm",576: "xs")
+
+@include setFullGrid($gridPoints)
+@include setFullGridOffset($gridPoints)
+
+.hidden
+  display: none
+
+@media (min-width: 1281px)
+  .hidden-xxl
+    display: none !important
+@media (min-width: 993px) and (max-width: 1280px)
+  .hidden-lg
+    display: none !important
+@media (min-width: 821px) and (max-width: 992px)
+  .hidden-md
+    display: none !important
+  .show-md
+    display: block !important
+@media (min-width: 576px) and (max-width: 820px)
+  .hidden-sm
+    display: none !important
+@media (max-width: 576px)
+  .hidden-xs
+    display: none !important
+  .col-xs-offset-1
+    grid-column-start: 1

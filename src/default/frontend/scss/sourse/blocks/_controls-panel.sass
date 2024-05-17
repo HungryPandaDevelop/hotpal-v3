@@ -1,0 +1,165 @@
+.controls-panel
+  @include positionElement(60px, 100%, 0,0, right, top, 4, fixed)
+  background-color: $grayColorSecond
+  padding-top: 155px
+.controls-chat
+  i
+    @include icoEl(40px,40px, '../images/icons-app/chat-black.svg')
+    background-size: 30px
+  &.active,
+  &:hover
+    i
+      background-image: url('../images/icons-app/chat-blue.svg')
+.controls-like
+  i
+    @include icoEl(40px,40px, '../images/icons-app/like-black.svg')
+    background-size: 28px
+  &.active,
+  &:hover
+    i
+      background-image: url('../images/icons-app/like-blue.svg')
+// .controls-invite
+//   i
+//     @include icoEl(30px,30px, '../images/icons-app/invite-black.svg', middle, 28px)
+//   &.active,
+//   &:hover
+//     i
+//       background-image: url('../images/icons-app/invite-blue.svg')
+.controls-search
+  i
+    @include icoEl(30px,30px, '../images/icons-app/loop-black.svg', middle, 24px)
+  &.active,
+  &:hover
+    i
+      background-image: url('../images/icons-app/loop-blue.svg')
+.controls-settings
+  i
+    @include icoEl(40px,40px, '../images/icons-app/settings-black.svg', middle, 28px)
+  &.active,
+  &:hover
+    i
+      background-image: url('../images/icons-app/settings-blue.svg')
+.controls-btn
+  padding: 10px 5px
+  width: 100%
+  cursor: pointer
+  text-align: center
+  position: relative
+  &.active,
+  &:hover
+    // background-color: $blueColor
+    span
+      // background-color: $whiteColor
+      // color: $blackColor
+  i
+    display: inline-block
+  span
+    @include positionElement(21px, 21px, 32px, 32px)
+    background-color: $blueColor
+    border-radius: 100%
+    color: $whiteColor
+    font-size: $smallSize
+    font-weight: 700
+.controls-panel-popup
+
+  @include positionElement(592px, 620px, 90px, 130px, right, top, 4, fixed)
+  background-color: $whiteColor
+  border-radius: 0 15px 15px 15px
+  box-shadow: 0px 0px 40px rgba(58, 80, 107, 0.50)
+  padding: 15px 15px 15px 15px
+  .btn-full
+    display: none
+  .panel-deg
+    @include positionElement(26px,26px,-13px, 40px, right)
+    background-color: $whiteColor
+    transform: rotate(45deg)
+    box-shadow: rgba(149, 157, 165, 0.1) 25px -5px 10px
+  .panel-deg--chat
+    top: 40px
+  .panel-deg--like
+    top: 100px
+  .panel-deg--invite
+    top: 155px
+  .chat-rooms
+    border-right: 0
+.controls-panel-head
+  background-color: $blueColor
+
+  color: $whiteColor
+
+  position: absolute
+  bottom: 100%
+  left: 0
+  padding: 9px 15px 7px
+  border-radius: 20px 20px 0 0
+  font-weight: 700
+  text-transform: uppercase
+  width: 290px
+  text-align: center
+.panel-close
+  @include bgImageEl("../images/icons/close-gray.svg", 12px)
+  @include positionElement(25px, 25px, 15px, 100%, right, bottom)
+  background-color: $whiteColor
+  cursor: pointer
+  border-radius: 10px 10px 0 0
+  border: 1px solid $grayColor
+
+.likes-popup
+  padding: 0
+  position: relative
+  overflow-y: auto
+  height: 100%
+  h3
+    color: $blackColor
+    font-size: 20px
+    text-align: center
+    margin-bottom: 15px
+.panel-close
+  display: none
+@media (max-width: 576px)
+  .controls-panel
+    width: 100%
+    // top: calc(100dvh - 60px)
+    top: auto
+    bottom: 0
+    height: 60px
+    padding: 0
+
+  .controls-btn
+    display: inline-flex
+    width: 24%
+    height: 100%
+    vertical-align: top
+    i
+      margin: auto
+  .controls-panel-head
+    font-size: 12px
+    padding: 7px 5px 5px
+    border-radius: 14px 14px 0 0
+    width: 220px
+    left: 20px
+
+  .controls-panel-popup
+    position: fixed
+    // top: 116px
+    bottom: 60px
+    text-align: left
+    width: 100%
+    right: 0
+    // height: calc(100dvh - 190px)
+    height: auto
+    border-radius: 0
+    box-shadow: none
+    padding: 0
+    border-top: 1px solid $grayColor
+
+    .panel-deg
+      display: none
+  .controls-btn
+    span
+      left: 56px
+      top: 6px
+  .panel-close
+    display: block
+  .likes-popup
+    padding: 15px

@@ -1,0 +1,55 @@
+/*-file-upload-*/
+.file-input-container
+	position: relative
+.file-input-item
+	position: relative
+	margin-top: 30px
+	&:first-child
+		margin-top: 0
+.input-file
+	opacity: 0
+	cursor: pointer
+	@include positionElement(100%,100%)
+
+.file-decorate
+	cursor: pointer
+	height: 50px
+	span
+		display: block
+		width: 100%
+		padding-left: 30px
+		&::before
+			content: ""
+			@include positionElement(24px, 24px, 8px, 15px)
+			@include bgImageEl("../images/icons/download-black.svg", 20px)
+
+	i
+		@include positionElement(30px, 30px, 8px, 12px, right, top, 2)
+		display: none
+		@include bgImageEl("../images/icons/trash-black.svg", 24px)
+		border-radius: 100%
+		cursor: pointer
+		&:hover
+			background-color: $grayColor
+			background-image: url("../images/icons/trash-white.svg")
+.file-decorate-full i
+	display: block
+
+.hiddened-file
+	opacity: 0
+
+.notice-file
+	position: absolute
+	right: 0
+	top: -30px
+	display: none
+
+	em
+		font-style: normal
+
+	i
+		@include icoEl(24px, 24px, "../images/icons/warning-black.svg")
+		margin-left: 15px
+
+.notice-file--show
+	display: block

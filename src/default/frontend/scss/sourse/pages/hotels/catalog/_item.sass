@@ -1,0 +1,129 @@
+.hotels-item
+  text-decoration: none
+  display: block
+  width: 100%
+  margin: 0 0 30px
+  .hotels-stars
+    padding: 0
+  .btn
+    font-weight: 400
+    padding: 2px 12px
+    width: 160px
+.hotels-img
+  @include bgImageEl("../images/stub-ico.svg", cover)
+  @include positionElement(100%,100%,0,0)
+  background-color: $blueColor
+.hotels-gradient
+  @include bgImageEl("../images/gradient.svg", cover)
+  @include positionElement(100%,100%,0,0)
+  opacity: 0.7
+.hotels-img-container
+  position: relative
+  border-radius: 30px
+  height: 300px
+  overflow: hidden
+  margin: 0 0 15px
+  display: flex
+
+.hotels-raiting-container
+  margin-top: auto
+  width: 100%
+  position: relative
+  padding: 15px 30px 30px
+  display: flex
+  justify-content: space-between
+  .btn-container
+    margin-top: auto
+.hotels-raiting-num
+  font-size: $largeSize
+  color: $whiteColor
+  font-weight: 700
+  background-color: $blueColor
+  border-radius: 8px
+  width: 50px
+  height: 50px
+  text-align: center
+  line-height: 50px
+.hotels-name-container
+
+.hotels-name
+  color: $blackColor
+  font-size: 20px
+  font-weight: 700
+  line-height: 1.1
+.hotels-info
+  display: flex
+.hotels-name-container,
+.hotels-price-container
+  width: 50%
+
+.hotels-price-container
+  text-align: right
+  .btn
+
+    width: 190px
+.hotels-stars
+  text-align: left
+  width: 100%
+  margin-top: auto
+  padding-left: 15px
+  .star
+    margin: 0 1px
+    @include icoEl(20px,20px, '../images/icons/star-fill-gray.svg')
+    &.active
+      background-image: url('../images/icons/star-fill-yellow.svg')
+.hotels-goals
+  h3
+    font-size: $standartSize
+    font-weight: 500
+    color: $blackColor
+    margin: 0 0 8px
+  .goals-ico
+    margin-right: 8px
+.hotels-guest
+  font-size: 24px
+  font-weight: 700
+  color: $blueColor
+
+  margin: -11px 0 0
+  span
+    font-size: 40px
+.hotels-price
+  margin-top: 15px
+@media (max-width: 992px)
+  .hotels-name
+    font-size: 16px
+
+@media (max-width: 576px)
+  .hotels-item
+    margin: 0
+    .hotels-info
+      display: block
+  .hotels-name-container,
+  .hotels-price-container
+    width: 100%
+  .hotels-raiting-container
+    padding: 15px
+  .hotels-stars .star
+    width: 10px
+    height: 10px
+  .hotels-name
+    font-size: 16px
+    margin-bottom: 15px
+  .hotels-price
+    margin-top: 10px
+
+  .hotels-guest
+    display: inline-block
+    width: 37%
+    font-size: 16px
+    margin: -5px 0 8px
+    text-align: left
+    span
+      font-size: 20px
+  .hotels-goals
+    .goals-ico
+      margin-right: 8px
+  .hotels-price-container
+    .btn
+      padding: 5px

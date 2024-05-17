@@ -1,0 +1,109 @@
+
+$gridCount: 12
+$indent: 15px
+$maxWidth: 1280px
+$gap: 30px
+
+.main-grid
+	display: grid
+	grid-template-columns: repeat($gridCount, 1fr)
+	gap: $gap
+	padding: 0 $indent
+	max-width: $maxWidth
+	margin: 0 auto
+	position: relative
+
+.main-full
+	padding: 0 $indent
+	max-width: $maxWidth
+	margin: 0 auto
+
+section
+	padding: 75px 0 0px
+	position: relative
+	overflow: hidden
+
+.stub-section
+	height: 90px
+
+.head-section
+	margin-bottom: 30px
+
+	h3
+		font-size: $mediumSize
+		font-weight: 500
+		a
+			color: $goldColor
+			text-decoration: none
+			&:hover
+				text-decoration: underline
+
+.btn-container-section
+	padding: 40px 0 0px
+	text-align: center
+	.btn
+		width: 260px
+
+.breadcrumbs
+	font-size: $smallSize
+	margin: 15px 0 10px
+	padding: 0 8px
+	color: $grayColor
+	position: relative
+	z-index: 2
+	background-color: $whiteColor
+	border-radius: 15px
+	display: inline-block
+	em
+		font-size: 0
+		margin-left: 5px
+		@include icoEl(20px, 20px, "../images/arrows/carret-right-gray.svg", middle, 130%)
+		vertical-align: middle
+	a
+		text-decoration: none
+		color: $blackColor
+		vertical-align: middle
+		&:hover
+			text-decoration: underline
+	span
+		vertical-align: middle
+		margin: 0 5px
+		&:first-child
+			margin-left: 0
+
+.content-main
+	position: relative
+	min-height: calc(100vh - 130px)
+.content
+	position: relative
+	min-height: calc(100vh - 130px)
+	h1
+		padding: 10px 0 30px
+		color: $blueColor
+
+.table-base
+	// background: red
+	table
+		width: 3000px
+		border: 1px solid $blackColor
+		th,td
+			width: 200px
+.page-preloader
+	@include positionElement(100%,100%,0,0,left,top,7,fixed)
+	background-color: $whiteColor
+	text-align: center
+	padding-top: 25vh
+
+@media (max-width: 1400px)
+	.content
+		padding-right: 50px
+
+@media (max-width: 768px)
+
+@media (max-width: 576px)
+	.main-grid
+		gap: 0
+	.content
+		padding-right: 0px
+	.catalog-grid
+		gap: 15px 0

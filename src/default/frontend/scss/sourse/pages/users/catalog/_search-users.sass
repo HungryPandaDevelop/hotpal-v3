@@ -1,0 +1,41 @@
+.btn-filter-user
+	background-color: $whiteColor
+	max-width: 200px
+	margin: 0 auto
+	width: 40px
+	height: 40px
+	display: inline-block
+	border-radius: 100%
+	border: 1px solid $blueColorSecond
+	cursor: pointer
+	display: none
+	position: absolute
+	right: 15px
+	top: 0
+.btn-filter-user--show
+	@include bgImageEl("../images/icons-app/filter.svg", 24px)
+.btn-filter-user--close
+	@include bgImageEl("../images/icons/close-blueSecond.svg", 12px)
+
+.search-users-panel
+	.btn-container
+		text-align: center
+		.btn
+			margin: 0 15px
+
+@media (max-width: 576px)
+	.btn-filter-user
+		display: block
+	.search-users-parts
+		display: none
+	.search-users-panel
+		position: relative
+		.border-tabs-container
+			padding-right: 50px
+		&.active
+			.search-users-parts
+				display: block
+		.btn-container
+			display: flex
+		.box-range
+			padding-right: 15px

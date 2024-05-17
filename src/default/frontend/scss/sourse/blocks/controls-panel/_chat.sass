@@ -1,0 +1,125 @@
+.popup-chat
+  height: 100%
+  .messages-container
+    border: 0
+    padding: 0
+    max-height: 345px
+  .form-container
+    margin-bottom: 15px
+  .rooms-item
+    padding-left: 0
+    padding-right: 0
+.controls-panel-popup
+  .chat-form
+    .main-grid
+      padding: 0
+      gap: 15px
+    .btn-container
+      margin-top: 12px
+  .messages-container
+    height: 350px
+  .chat-invite-container
+    margin: 14px 0 15px
+  .invite-ico
+    width: 40px
+    height: 40px
+    i
+      width: 25px
+      height: 25px
+  .chat-form
+    .file-input-container
+      background-color: $whiteColor
+      border-radius: 8px
+      margin: 0
+      padding: 0
+    .delete-img-dragdrop
+      right: 10px
+    .dragdrop-file-item
+      width: 90px
+      height: 60px
+      margin: 8px
+      position: relative
+      img
+        width: 100%
+.popup-chat-rooms
+  position: relative
+  background-color: $whiteColor
+  border-radius: 8px
+  overflow: hidden
+  height: 100%
+.chat-popup-header
+  border-bottom: 1px solid $grayColorSecond
+  padding-bottom: 8px
+  margin-bottom: 8px
+.chat-popup-face
+  width: 60px
+  height: 60px
+  border-radius: 100%
+  display: inline-block
+  vertical-align: middle
+  margin-right: 15px
+
+.chat-popup-info
+  width: calc( 100% - 135px )
+  vertical-align: middle
+  font-size: $smallSize
+  display: inline-flex
+  .btn-full
+    margin-left: auto
+    margin-top: 8px
+.chat-popup-name
+  font-weight: 700
+.chat-popup-date
+.chat-popup-online
+  font-weight: 700
+  color: $blueColor
+
+@media (max-width: 576px)
+  .controls-panel-popup
+    .messages-container
+      height: calc(100dvh - 410px)
+      // height: 58%
+      padding: 15px
+
+    .chat-form
+      padding: 15px
+      .main-grid
+        gap: 0
+      textarea
+        padding-left: 50px
+        height: 41px
+      .btn-container
+        margin: 0
+        margin-left: auto
+        margin-right: 6px
+        position: relative
+        top: -35px
+      .btn
+        width: 30px
+        height: 30px
+        font-size: 0
+        background-color: $blueColor
+        @include bgImageEl("../images/arrows/arrow-right-white.svg", 30px)
+      .chat-btns-outer
+        display: flex
+      .file-decorate
+        top: -36px
+        left: 0
+        right: auto
+
+    .chat-invite-container
+      margin: auto 0
+      display: flex
+      justify-content: space-between
+      // width: calc(100% - 70px)
+      margin: 15px auto 0
+      width: 100%
+      h3
+        margin: 0
+        padding: 7px 0 0
+      .invite-ico
+        span
+          display: none
+
+  .chat-popup-header
+    padding: 10px 0 15px

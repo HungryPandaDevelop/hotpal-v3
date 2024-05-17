@@ -1,0 +1,36 @@
+/*-dragdrop-upload-*/
+
+.dragdrop-container
+	position: relative
+	margin: 15px 0 15px 0px
+	width: 100%
+	padding: 11px
+	min-height: 90px
+	border: 1px dashed $blueColorSecond
+	background: $grayColorSecond
+	color: $blueColorSecond
+	display: flex
+	border-radius: 4px
+	cursor: pointer
+	span
+		display: inline-block
+		margin: auto
+		max-width: 80%
+		text-align: center
+	.preloader:after
+		background-color: #edeffb
+	&.dragged
+		opacity: 0.8
+
+.delete-img-dragdrop
+	@include bgImageEl("../images/icons/trash-white.svg", 24px)
+	@include positionElement(30px, 30px, 30px, 0, right, top, 2)
+	background-color: $blueColor
+	border-radius: 100%
+	cursor: pointer
+	margin: -15px
+	&:hover
+		background-image: url("../images/icons/trash-black.svg")
+		background-color: $whiteColor
+
+/*-dragdrop-upload-*/

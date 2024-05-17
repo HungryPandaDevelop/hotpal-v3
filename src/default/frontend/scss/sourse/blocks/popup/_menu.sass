@@ -1,0 +1,60 @@
+.menu-hamburger
+	visibility: visible
+	opacity: 1
+	.popup-container
+		padding: 30px 15px
+.popup-nav
+
+	a
+		font-size: $largeSize
+		color: $blackColor
+		text-decoration: none
+		&:hover
+			color: $blueColor
+
+	a,.btn
+		font-size: 16px
+		padding: 0
+		bottom: 0
+		text-align: left
+		color: $blueColorSecond
+		display: block
+		margin: 0 0 15px
+		font-weight: 700
+
+@media (max-width: 576px)
+	.change-style
+		display: none
+	.menu-hamburger
+		padding-right: 15px
+
+		.popup-nav
+			a,
+			.btn
+				text-align: right
+				font-size: 20px
+				font-weight: 700
+				background: none
+				border: 0
+		.popup-container
+			margin-top: 60px
+			padding: 25px 25px 0
+			width: 260px
+			margin-left: auto
+			margin-right: 0
+			height: auto
+			min-height: auto
+		.change-style
+			display: block
+			width: 50px
+			height: 50px
+		.change-style
+			background-image: url("../images/icons-app/change-style-darkblue.png")
+
+		.change-style.active
+			background-image: url("../images/icons-app/change-style-blue.png")
+	.dark-theme
+		.menu-hamburger
+			.btn--white
+				background: none
+				color: $blueColorSecond

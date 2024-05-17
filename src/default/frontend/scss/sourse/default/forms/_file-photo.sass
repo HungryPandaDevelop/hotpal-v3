@@ -1,0 +1,34 @@
+/*-photo-upload-*/
+
+.input-photo
+	width: 100%
+	height: 340px
+	position: relative
+	cursor: pointer
+	position: relative
+	overflow: hidden
+	border-radius: 30px
+	.input-photo-file
+		@include positionElement(100%,100%,0,0)
+		object-fit: cover
+	.input-file-container,
+	.file-input-item,
+	.file-decorate
+		height: 100%
+	.file-decorate
+		span
+			top: 50%
+
+			position: relative
+			z-index: 1
+			color: $whiteColor
+			&::before
+				left: 50%
+				transform: translateX(-50%)
+				top: 24px
+				display: inline-block
+				@include bgImageEl("../images/icons/plus-white.svg")
+
+	.file-decorate
+		@include positionElement(100%, 100%, 0, 0%)
+		@include bgImageEl("../images/icons-app/avatar-face.svg")

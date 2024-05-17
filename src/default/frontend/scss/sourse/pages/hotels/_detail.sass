@@ -1,0 +1,90 @@
+.rooms-search-panel
+  margin-top: 30px
+  .btn
+    width: 100%
+
+.hotel-detail
+  // margin-top: 30px
+  h3
+    margin-bottom: 15px
+    font-size: $largeSize
+  h3,h4
+    color: $blueColorSecond
+  p
+    margin-top: 0
+    margin-bottom: 15px
+.rooms-services
+  img
+    width: 30px
+    margin-right: 15px
+    vertical-align: top
+.rooms-services-text
+  display: inline-block
+  width: calc(100% - 50px)
+  vertical-align: top
+
+.hotel-warning-item
+  display: flex
+  border: 1px solid $grayColorSecond
+  margin-top: -1px
+  h4
+    width: 25%
+    padding: 15px
+    border-right: 1px solid $grayColorSecond
+  .hotel-warning-info
+    width: 75%
+    padding: 15px
+
+.hotel-rewievs-item
+  border-bottom: 1px solid $grayColor
+  margin-bottom: 15px
+.hotel-rewievs-name
+  color: $blueColor
+  font-weight: 700
+.hotel-rewievs-date
+  font-size: $smallSize
+.hotel-rewievs-good
+
+.hotel-rewievs-good,
+.hotel-rewievs-bad
+  position: relative
+  margin-bottom: 15px
+  padding-left: 45px
+  &::before
+    content: ''
+    @include positionElement(20px,20px,0,0)
+    border: 2px solid $blueColor
+    border-radius: 100%
+
+.hotel-rewievs-good
+  &::before
+    @include bgImageEl('../images/icons/agree-lite-blue.svg')
+.hotel-rewievs-bad
+  &::before
+    @include bgImageEl('../images/icons/close-red.svg')
+.hotel-place
+  margin-top: 45px
+.hotel-place-map
+  .user-location-map
+    margin: 0
+  // border: 1px solid $grayColor
+  // height: 300px
+  // border-radius: 30px
+
+  // display: flex
+@media (max-width: 576px)
+  .hotel-warning-item
+    display: block
+    h4
+      width: 100%
+      padding-bottom: 0
+    .hotel-warning-info
+      width: 100%
+  .border-users-mini
+    .box-range
+      margin: 0
+  .border-users-mini
+    .main-grid
+      gap: 0
+    .btn-container
+      margin-top: 0

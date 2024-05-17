@@ -1,0 +1,59 @@
+.slider-owl
+
+  .item-content
+    position: relative
+
+  .owl-item,
+  .item
+    height: 100%
+.tns-controls
+  @include positionElement(calc(50% - 50px), 1px, calc(50% + 25px),15px,left,bottom,3)
+
+[data-controls="prev"],
+[data-controls="next"]
+  @include positionElement(48px, 48px, auto, 0%)
+  background-color: $whiteColor
+  font-size: 0
+  border: 1px solid $grayColor
+  border-radius: 100%
+  &:hover
+    background-color: $blackColor
+    border-color: $blackColor
+button[data-controls="prev"]
+  left: 0
+  @include bgImageEl("../images/arrows/carret-left-gray.svg")
+  &:hover
+    background-image: url("../images/arrows/carret-left-white.svg")
+button[data-controls="next"]
+  right: 0
+  @include bgImageEl("../images/arrows/carret-right-gray.svg")
+  &:hover
+    background-image: url("../images/arrows/carret-right-white.svg")
+
+.tns-nav
+  @include positionElement(100%, auto, 0, 30px, left, bottom)
+  text-align: center
+  font-size: 0
+  z-index: 2
+  [type="button"]
+    border: 0
+    width: 27px
+    height: 27px
+    display: inline-block
+    border-radius: 100%
+    margin: 0 10px
+    cursor: pointer
+    position: relative
+    transition: ease-out 0.5s
+    background: none
+    &::after
+      content: ""
+      @include positionElement(10px, 10px, 50%, 50%)
+      border-radius: 100%
+      background-color: $whiteColor
+      transform: translateX(-50%) translateY(-50%)
+    &.tns-nav-active,
+    &:hover
+      border-color: rgba($blueColor, 1)
+      &::after
+        background-color: $blueColor

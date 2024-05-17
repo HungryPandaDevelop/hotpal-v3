@@ -1,0 +1,71 @@
+
+footer
+  padding: 45px 0 15px
+  position: relative
+  overflow: hidden
+  background-color: $whiteColor
+  color: $blackColor
+  font-size: $smallSize
+  ul,li
+    list-style: none
+    padding: 0
+    margin: 0
+  a
+    text-decoration: none
+    &:hover
+      color: $blueColor
+  h3
+    font-size: 20px
+    margin: 0 0 15px
+    color: $blackColor
+  .nav
+    font-size: $standartSize
+    margin-bottom: 50px
+    li
+      margin-bottom: 12px
+.footer-text
+  p
+    margin: 0 0 30px
+.footer-bottom
+  margin-top: 30px
+  ul
+    display: flex
+    justify-content: space-between
+    gap: 15px
+  li
+    display: inline-block
+.footer-copyright
+  text-align: right
+.footer-mobile-text
+  display: none
+
+.age-plus
+  border: 2px solid $blackColor
+  width: 36px
+  height: 36px
+  line-height: 34px
+  border-radius: 100%
+  text-align: center
+  font-weight: 700
+  margin-bottom: 15px
+
+@media (max-width: 576px)
+  footer
+    padding-bottom: 75px
+    h3
+      font-size: 18px
+    li
+      font-size: 16px
+
+    .nav
+      margin: 0
+  .footer-mobile-text
+    display: block
+  .footer-bottom
+    ul
+      display: block
+    li
+      display: block
+      margin-bottom: 8px
+  .footer-copyright
+    text-align: left

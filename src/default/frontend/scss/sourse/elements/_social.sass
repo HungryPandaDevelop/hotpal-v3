@@ -1,0 +1,31 @@
+.social
+  display: inline-block
+  vertical-align: middle
+  a
+    display: inline-block
+    margin: 0 15px 0 0
+    position: relative
+    overflow: hidden
+    font-size: 0
+    border: 1px solid $blackColor
+    border-radius: 100%
+    padding: 7px
+    vertical-align: middle
+    img,
+    .ico-hover
+      object-fit: contain
+      width: 22px
+      height: 22px
+    &:hover
+      border-color: $goldColor
+      background-color: $goldColor
+      .ico-hover
+        opacity: 1
+        visibility: visible
+  .ico-hover
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+    opacity: 0
+    visibility: hidden

@@ -1,0 +1,140 @@
+.border-container
+  padding: 30px
+  border: 1px solid $grayColor
+  border-radius: 30px
+  background-color: $whiteColor
+  .main-grid
+    padding: 0
+    width: 100%
+  h3
+    color: $blackColor
+    font-size: $largeSize
+    margin-bottom: 15px
+
+  .btn
+    font-size: $smallSize
+.border-tab
+  text-transform: uppercase
+  padding: 8px 10px 7px
+  border: 1px solid $grayColor
+  background-color: $whiteColor
+  border-bottom: 0
+  border-radius: 20px 20px 0 0
+  display: inline-block
+  cursor: pointer
+  font-weight: 800
+  margin-right: 15px
+  text-decoration: none
+  color: $blueColorSecond
+  font-size: 12px
+  &:hover,
+  &.active
+    background-color: $blueColor
+    border-color: $blueColor
+    color: $whiteColor
+  &:last-child
+    margin-right: 0
+
+.border-null-left
+  border-top-left-radius: 0
+
+.border-null-top
+  border-top-left-radius: 0
+  border-top-right-radius: 0
+
+.btn-container-right
+  text-align: right
+
+.border-search-outer
+  top: 15px
+  z-index: 2
+
+.border-container-search
+  .btn-container
+    text-align: center
+  .btn
+    margin: 0 15px
+    font-size: 14px
+  .input-box
+    margin: 0
+  .btn-container--bottom
+    padding: 0
+  .tag--link
+    width: 187px
+
+.border-container-cabinet
+  .input-box
+    margin-bottom: 15px
+
+.show-filter-mobile-container
+  display: none
+
+.empty-message-box
+  border: 1px solid $grayColor
+  max-width: 540px
+  padding: 30px
+  text-align: center
+  font-weight: 700
+  font-size: 36px
+  margin: 30px auto
+  border-radius: 30px
+  background-color: $whiteColor
+  span
+    line-height: 1.1
+    display: inline-block
+    margin-bottom: 45px
+  i
+    @include icoEl(100px,100px,'../images/icons-app/plane.svg')
+
+.total-count
+  text-align: center
+  font-weight: 700
+  font-size: 20px
+  padding: 30px 0
+  color: $blackColor
+  span
+    color: $blueColor
+
+.total-count--catalog
+  text-align: right
+  padding: 0 0 10px
+
+//DARK
+
+@media (max-width: 992px)
+  .border-container
+    padding: 15px
+  .border-tab
+    font-size: 12px
+    padding: 8px 15px 7px
+    margin-right: 5px
+
+@media (max-width: 576px)
+  .total-count
+    padding: 15px 0
+    text-align: center
+  .border-container
+    border-radius: 0px 0px 30px 30px
+    .input-box
+      margin-bottom: 15px
+    .tag--link
+      width: 47%
+      text-align: center
+
+  .border-tabs-container
+    display: flex
+    gap: 4px
+
+  .border-tab
+    font-size: 10px
+    width: 33%
+    margin: 0
+    padding: 6px 2px 5px
+    text-align: center
+    border-radius: 14px 14px 0 0
+
+  .border-container-search
+    border-radius: 0
+    border: 0
+    border-top: 1px solid $grayColor
+    padding: 15px 0 0 0

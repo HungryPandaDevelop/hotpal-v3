@@ -1,0 +1,103 @@
+
+.users-item
+  width: 100%
+  // height: 300px
+  padding-bottom: 100%
+  display: block
+  position: relative
+  border-radius: 30px
+  overflow: hidden
+.users-item-img
+  @include positionElement(100%,100%,0,0)
+
+.users-item-bg
+  @include positionElement(100%,100%,0,0)
+  background: linear-gradient(0deg, $blackColor 0%, rgba(0,0,0,0) 75%)
+  opacity: 0.75
+.users-item-link
+  @include positionElement(100%,100%,0,0)
+.users-item-info
+  @include positionElement(100%,100%,0,0)
+  display: grid
+  grid-template-columns: repeat(8,1fr)
+  grid-template-rows: repeat(8,1fr)
+  padding: 30px
+
+  .hotels-users
+    grid-column: span 2
+    grid-row: span 2
+  .hotels-users-logo
+    width: 50px
+    height: 50px
+    background-color: $whiteColor
+    border-radius: 100%
+    display: flex
+    img
+      width: 60%
+      margin: auto
+
+  .goals-users
+    grid-column: 7/span 2
+    grid-row: span 4
+    text-align: right
+  .goals-users-tag
+    width: 30px
+    height: 30px
+    background-color: $whiteColor
+    position: relative
+    border-radius: 100%
+    display: inline-flex
+    margin-bottom: 15px
+    margin-left: auto
+    i
+      margin: auto
+  .name-users
+    grid-column: span 4
+    grid-row: 7/span 2
+    display: flex
+    h3
+      margin-top: auto
+      font-size: $largeSize
+      color: $whiteColor
+      line-height: 1.2
+      &::first-letter
+        text-transform: uppercase
+      &:hover
+        color: $blueColor
+  .btn-container
+    grid-column: 5/span 4
+    grid-row: 7/span 2
+    text-align: right
+    display: flex
+    position: relative
+    .btn-container-inner
+      margin-top: auto
+      width: 100%
+    .btn-ico
+      margin-left: 15px
+      display: inline-block
+.users-item-img--empty
+  @include positionElement(100%,100%,0,0)
+  background-color: $blueColor
+  @include bgImageEl("../images/logo.svg", 150px)
+.user-date-travel
+  @include positionElement(calc(100% - 90px),auto,0,0)
+  color: $whiteColor
+  padding: 15px 30px
+  font-weight: 700
+  font-size: 14px
+.user-catalog-entrance
+  position: absolute
+  padding: 2px 15px
+  border-radius: 15px
+  background-color: $whiteColor
+  font-size: 12px
+  font-weight: 700
+  margin: 15px
+@media (max-width: 1240px)
+  .users-item-info
+    padding: 15px
+    .btn-container .btn-ico
+      margin-left: 8px
+    .name-users h3
+      font-size: 16px

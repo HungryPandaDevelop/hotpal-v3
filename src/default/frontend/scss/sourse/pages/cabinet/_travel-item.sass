@@ -1,0 +1,66 @@
+.travel-item
+  position: relative
+  border-bottom: 1px solid $grayColor
+  i
+    position: absolute
+    left: 0
+    margin-right: 8px
+  .btn-container
+    text-align: right
+    width: 140px
+  .btn
+    width: 110px
+    padding: 1px 8px 2px
+    font-weight: 400
+    font-size: 14px
+    margin-top: -8px
+  .btn-trash
+    position: absolute
+    right: 0
+    top: 5px
+.travel-line
+  display: flex
+.travel-name,
+.travel-date
+  position: relative
+  padding-left: 30px
+  margin-bottom: 15px
+.travel-name
+  width: calc( 100% - 40px )
+.travel-date
+  width: calc( 100% - 40px )
+  margin-bottom: 15px
+  font-weight: 700
+.travel-guest
+  width: 140px
+  font-weight: 700
+  text-align: right
+  color: $blueColor
+@media (max-width: 576px)
+
+  .travel-item
+    padding-bottom: 15px
+    .btn-container
+      width: 100%
+    i
+      width: 18px
+      height: 18px
+  .travel-line
+    display: block
+  .travel-name
+    width: 100%
+    font-size: 14px
+    margin: 0
+  .travel-guest
+    width: 100%
+    text-align: left
+  .travel-date
+    font-size: 12px
+  .travel-date
+    width: 100%
+  .travel-name,
+  .travel-date,
+  .travel-guest
+    padding-left: 22px
+  .travel-story
+    width: 100%
