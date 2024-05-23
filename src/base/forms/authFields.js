@@ -23,7 +23,7 @@ export const authFields = {
     label: "Пароль",
     placeholder: "Пароль",
     type: "password",
-    validate: ['required', 'minLength', 'checkRus'],
+    validate: ['required', 'minLength'],
     wrapClass: "input-box  col-12",
   },
 };
@@ -57,18 +57,21 @@ export const settingsPassword = {
     label: "Введите пароль",
     type: "password",
     wrapClass: "col-12 input-box",
+    validate: ['required', 'minLength'],
   },
   changePassword: {
     name: "changePassword",
     type: "password",
     label: "Новый пароль",
     wrapClass: "col-12 input-box",
+    validate: ['required', 'minLength'],
   },
   checkChangePassword: {
     name: "checkChangePassword",
     type: "password",
     label: "Подтвердить пароль",
     wrapClass: "col-12 input-box",
+    validate: ['required', 'minLength'],
   },
 }
 

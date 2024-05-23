@@ -8,7 +8,7 @@ export const getByMailMysql = async (email) => {
         email: email,
       }
     });
-
+    console.log('get mail', response.data)
     return response.data;
   } catch (err) {
     console.error('Ошибка при выполнении запроса:', err);

@@ -23,12 +23,14 @@ const RegMail = ({ formData, ActionFn }) => {
 
     const stringifiedImgsAccount = JSON.stringify(imgsAccount);
     const generateId = uuidv4();
+    // console.log('otherValues', otherValues)
 
     const newUserData = {
       ...otherValues,
       uid: generateId,
-      // entranceDate: timestampCustomDayTime(),
+      verificationId: generateId,
       registerationDate: timestampCustomDayTime(),
+      dateBerth: dateBerth,
       age: calculateAge(dateBerth),
       imgsAccount: stringifiedImgsAccount,
     };
@@ -39,7 +41,6 @@ const RegMail = ({ formData, ActionFn }) => {
       console.log('Регистрация успешна');
 
       ActionFn('SET_INFO_ACCOUNT', newUserData);
-      localStorage.setItem('account', JSON.stringify(newUserData));
 
       navigate('/reg-end', {
         state:

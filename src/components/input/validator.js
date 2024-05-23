@@ -29,7 +29,7 @@ const mailCheck = (value) => {
   return 'Неправильно введена почта';
 }
 const minAge = (value) => {
-  console.log('min age', value, calculateAge(value))
+
   if (calculateAge(value) < 18) {
     return 'Вам нет 18 лет, регистрация невозможна!';
   }
@@ -47,7 +47,7 @@ const minAge = (value) => {
 
 export const createValidateArr = (validate) => {
 
-  if (!validate) { return false; }
+  if (!validate) { return null; }
 
   const validatorsMap = {
     'required': required,

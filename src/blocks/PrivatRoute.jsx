@@ -31,11 +31,11 @@ const PrivateRoute = ({ account }) => {
 
         <Header />
 
-        <ControlsPanel />
+        {/* <ControlsPanel /> */}
 
         <Outlet />
 
-        <BestPanel />
+        {/* <BestPanel /> */}
 
         <Footer />
       </div>

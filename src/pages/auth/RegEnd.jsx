@@ -17,16 +17,20 @@ const RegEnd = ({ account, ActionFn }) => {
   let [searchParams] = useSearchParams()
 
   useEffect(() => {
+    console.log('red end', account)
+    if (account.verificationSend !== '1') {
+      console.log('send verif', account);
 
-    // console.log('verificationIdUrl', account)
+      sendEmail(account, location).then((res) => {
 
-    if (account.email && account.verificationSend !== '1') {
-      console.log('send verif', account)
+        console.log('verif is', res)
+        updateUser({ ...account, verificationSend: '1' });
+        ActionFn('SET_INFO_ACCOUNT', { ...account, verificationSend: '1' });
 
-      sendEmail(account, location, ActionFn);
+      });
     }
     else if (account.verificationCheck !== '1') {
-
+      console.log('verification change')
       const verificationIdUrl = searchParams.get('verificationId');
       const verificationIdAccount = account.verificationId;
 
@@ -34,17 +38,17 @@ const RegEnd = ({ account, ActionFn }) => {
         if (verificationIdUrl === verificationIdAccount) {
           // saveListing({ verificationCheck: true }, account.uid, 'users');
 
-          updateUser({ uid: account.uid, verificationCheck: '1', registerationDate: account.registerationDate });
+          updateUser({ ...account, verificationCheck: '1' });
 
-          ActionFn('SET_INFO_ACCOUNT', { verificationCheck: '1' });
-          localStorage.setItem('account', JSON.stringify({ ...account, verificationCheck: '1' }))
+          ActionFn('SET_INFO_ACCOUNT', { ...account, verificationCheck: '1' });
+
         }
       }
     }
 
 
 
-  }, [account]);
+  }, []);
 
 
   const renderMailSend = () => {

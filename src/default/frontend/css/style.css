@@ -1070,13 +1070,29 @@ section {
 .btn-ico--like:hover {
   background-image: url("../images/icons-app/like-white.svg");
 }
-.btn-ico--like.active {
+
+.btn-ico--time {
+  display: inline-block;
+  vertical-align: middle;
+  width: 54px;
+  height: 54px;
+  background-position: center 13px;
+  background-repeat: no-repeat;
+  background-size: 40px;
   background-image: url("../images/icons-app/time-blue.svg");
-  background-position: center;
-  font-size: 0;
+  background-size: 30px;
 }
-.btn-ico--like.active:hover {
+.btn-ico--time:hover {
   background-image: url("../images/icons-app/time-white.svg");
+  background-position: center;
+}
+.btn-ico--time.active {
+  background-image: url("../images/icons-app/like-fill-blue.svg");
+  background-position: center;
+}
+.btn-ico--time.active:hover {
+  background-image: url("../images/icons-app/like-fill-white.svg");
+  background-position: center;
 }
 
 .btn-ico--blacklist {
@@ -6800,7 +6816,7 @@ button[data-controls=next]:hover {
 }
 
 .chat-form {
-  padding: 15px 30px 0 0;
+  padding: 15px 30px 15px 0;
 }
 .chat-form textarea {
   height: 140px;

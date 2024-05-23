@@ -1,12 +1,14 @@
 
-import { deleteListing } from 'services/getListings';
+// import { deleteListing } from 'services/getListings';
 import { useNavigate } from 'react-router-dom';
 import EmptyRoom from 'pages/chat/EmptyRoom';
 
 import RoomItem from 'pages/chat/RoomItem';
 import { connect } from 'react-redux';
 
-import { deleteChat } from 'servicesMysql/changeChats';
+import axios from 'axios';
+
+// import { deleteChat } from 'servicesMysql/changeChats';
 
 const RoomList = ({
   uid,
@@ -21,19 +23,28 @@ const RoomList = ({
 
   const navigate = useNavigate();
 
-  const onDeleteRoom = (id) => {
-    deleteListing('rooms', id);
-    deleteChat(id);
+  const onDeleteRoom = async (id) => {
+    // deleteListing('rooms', id);
+    // deleteChat(id);
+
+    axios.post("http://hotpal.ru:5000/api/room/delete", {
+      "_id": id
+    }).then(res => {
+
+      console.log('delete chat', res.data);
+      navigate('/cabinet/chat', { replace: true });
+      // ActionFn('SET_ROOMS', { rooms: res.data })
+    });
 
 
-    navigate('/cabinet/chat', { replace: true });
+
   }
 
   return (
     <div className='chat-rooms'>
       {rooms.length ? rooms.map((room) => <RoomItem
         room={room}
-        key={room.id}
+        key={room._id}
         roomUrl={roomId}
         uid={uid}
         type={type}

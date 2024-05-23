@@ -26,7 +26,7 @@ const AuthMail = ({ formData, ActionFn }) => {
     } else if (response) {
       console.log('res', response);
       ActionFn('SET_INFO_ACCOUNT', response);
-      localStorage.setItem('account', JSON.stringify(response))
+      // localStorage.setItem('account', JSON.stringify(response))
     }
 
 

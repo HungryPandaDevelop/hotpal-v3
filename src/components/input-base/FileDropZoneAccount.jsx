@@ -36,7 +36,6 @@ const TemplateFile = (props) => {
   const {
     label,
     labelSecond,
-    minLength,
     minLengthText,
     wrapClass,
     setErrCheck,
@@ -71,7 +70,7 @@ const TemplateFile = (props) => {
       let toObj = [];
       if ('object' === typeof input.value) {
         toObj = input.value;
-        console.log('1')
+        // console.log('1')
       }
       else {
         toObj = JSON.parse(input.value);
@@ -87,7 +86,7 @@ const TemplateFile = (props) => {
   const onDrop = async (acceptedFiles) => {
     setLoadingFile(true);
 
-    console.log('acceptedFiles', acceptedFiles);
+    // console.log('acceptedFiles', acceptedFiles);
 
     const files = acceptedFiles;
 
@@ -106,7 +105,7 @@ const TemplateFile = (props) => {
             'Content-Type': 'multipart/form-data'
           }
         });
-        console.log('res', response)
+        // console.log('res', response)
 
         fileUrls.push({ url: response.data.imageURL, id: response.data.newFileName });
         // fileFull.push(response.data.newFileName);
@@ -139,7 +138,7 @@ const TemplateFile = (props) => {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       });
-      console.log('Результат удаления файла:', res);
+      // console.log('Результат удаления файла:', res);
 
       setNameFile(nameFile.filter(item => item.id !== deleteItem))
 
@@ -159,7 +158,7 @@ const TemplateFile = (props) => {
       return false
     }
 
-    console.log('files', typeof files)
+    // console.log('files', typeof files)
 
     // files = JSON.parse(files);
 

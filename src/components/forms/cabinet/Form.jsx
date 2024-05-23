@@ -81,7 +81,6 @@ const TemplateForm = (props) => {
                   checkErrorSubmit={checkErrorSubmit}
                 />
 
-                {newValue && calculateAge(newValue.values.dateBerth) < 18 && <span className='err-date-cabinet'>Вам нет 18 лет, Ваша анкета не участвует в поиске</span>}
 
               </div>
               <RenderInput

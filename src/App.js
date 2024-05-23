@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 import PrivatRoute from 'blocks/PrivatRoute';
 import GlobalRoute from 'blocks/GlobalRoute';
@@ -10,11 +10,7 @@ import GlobalRouteWhite from 'blocks/GlobalRouteWhite';
 
 import ScrollTop from 'components/ScrollTop'
 
-
-
-
-import CheckAuth from 'blocks/header/CheckAuth';
-
+// import CheckAuth from 'blocks/header/CheckAuth';
 
 import Main from 'pages/Main';
 
@@ -30,17 +26,9 @@ import ChangeForgotPassword from 'pages/auth/ChangeForgotPassword';
 import AuthStart from 'pages/auth/AuthStart';
 import RegStart from 'pages/auth/RegStart';
 
-// import RegMail from 'pages/auth/RegMail';
-// import RegDate from 'pages/auth/RegDate';
-
-// import RegGoogle from 'pages/auth/RegGoogle';
-
 import AuthMail from 'pages/auth/AuthMail';
 import RegMail from 'pages/auth/RegMail';
-
 import RegEnd from 'pages/auth/RegEnd';
-
-// import CheckStatusVk from 'pages/auth/CheckStatusVk';
 
 
 import UsersCatalog from 'pages/users/UserCatalog';
@@ -71,16 +59,9 @@ import About from 'pages/default/About';
 import Why from 'pages/default/Why';
 
 import MysqlList from 'pages/mysql/List';
-// import MysqlListFire from 'pages/mysql/ListUsers';
-// import MysqlAdd from 'pages/mysql/AddBase';
-// import MysqlDetail from 'pages/mysql/Detail';
-// import MysqlEdit from 'pages/mysql/Edit';
+import RegGoogleEnd from 'pages/auth/RegGoogleEnd';
 
-
-
-// import AuthMailMq from 'pages/auth/AuthMailMq';
-// import RegG from 'pages/auth/RegG';
-import RegGEnd from 'pages/auth/RegGEnd';
+import Temp from 'pages/Temp';
 
 
 const App = ({ account }) => {
@@ -89,24 +70,23 @@ const App = ({ account }) => {
     <>
 
       <BrowserRouter>
-        <CheckAuth />
+        {/* <CheckAuth /> */}
         <ScrollTop />
         <CookiePopup />
 
         <Routes>
           <Route path='/' element={<GlobalRoute />}>
+            <Route path='/temp' element={<Temp />} ></Route>
             <Route index element={<Main />} ></Route>
             <Route path='/auth-start' element={<AuthStart />} ></Route>
             <Route path='/reg-start' element={<RegStart />} ></Route>
             <Route path='/reg-mail' element={<RegMail />} ></Route>
-            {/* <Route path='/reg-google/' element={<RegGoogle />} ></Route> */}
-            {/* <Route path='/reg-date/:regId' element={<RegDate />} ></Route> */}
             <Route path='/auth-mail' element={<AuthMail />} ></Route>
             <Route path='/forgot-pass' element={<ForgotPassword />} ></Route>
             <Route path='/change-forgot-pass' element={<ChangeForgotPassword />} ></Route>
             <Route path='/reg-end' element={<RegEnd />} ></Route>
 
-            <Route path='/reg-g-end' element={<RegGEnd />} ></Route>
+            <Route path='/reg-g-end' element={<RegGoogleEnd />} ></Route>
 
 
 
@@ -160,7 +140,7 @@ const App = ({ account }) => {
 
       </BrowserRouter>
 
-      <ToastContainer
+      {/* <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -170,7 +150,7 @@ const App = ({ account }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
     </>
   );
 }

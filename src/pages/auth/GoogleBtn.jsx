@@ -39,7 +39,7 @@ const RegMail = ({ ActionFn, btnText }) => {
         } else {
           console.log('Авторизация успешна');
           ActionFn('SET_INFO_ACCOUNT', checkUser);
-          localStorage.setItem('account', JSON.stringify(checkUser));
+          // localStorage.setItem('account', JSON.stringify(checkUser));
           navigate('/cabinet');
         }
 

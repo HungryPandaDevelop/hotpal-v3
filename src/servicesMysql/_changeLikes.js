@@ -1,23 +1,23 @@
 import axios from 'axios';
 
 
-export const addLikes = async (props) => {
+// export const addLikes = async (props) => {
 
-  try {
-    const response = await axios.get("https://hotpal.ru/api/base/vendor/create_likes.php", {
-      params: props
-    });
+//   try {
+//     const response = await axios.get("https://hotpal.ru/api/base/vendor/create_likes.php", {
+//       params: props
+//     });
 
-    console.log('Ответ php', response);
-    return true;
-  }
-  catch (err) {
-    console.error('Ошибка при отправке данных:', err);
+//     console.log('Ответ php', response);
+//     return true;
+//   }
+//   catch (err) {
+//     console.error('Ошибка при отправке данных:', err);
 
-    return false;
-  }
+//     return false;
+//   }
 
-};
+// };
 
 export const deleteLikes = async (id_like) => {
 

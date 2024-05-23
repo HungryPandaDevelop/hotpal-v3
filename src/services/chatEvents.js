@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 // import { Timestamp } from '@google-cloud/firestore';
 
-import { updateChat } from 'servicesMysql/changeChats';
+// import { updateChat } from 'servicesMysql/changeChats';
 import { updateUser } from 'servicesMysql/changeUsers';
 import { timestampCustomDayTime } from 'services/timestampCustom';
 
@@ -202,7 +202,7 @@ export const sendMessage = async (roomId, uid, message) => {
     await setDoc(doc(db, 'rooms', roomId), getRoomInfo);
     // console.log('id_chat', roomId, 'messages', getRoomInfo.messages.length, 'lastAdd', timestampCustom())
 
-    updateChat({ id_chat: roomId, messages: getRoomInfo.messages.length, dateLastAddMessage: timestampCustomDayTime() });
+    // updateChat({ id_chat: roomId, messages: getRoomInfo.messages.length, dateLastAddMessage: timestampCustomDayTime() });
 
 
 

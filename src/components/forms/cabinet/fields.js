@@ -19,8 +19,7 @@ export const fields = {
     name: "dateBerth",
     label: "Дата рождения",
     placeholder: "Дата рождения",
-
-    // validate: ['required'],
+    validate: ['minAge'],
   },
   gender: {
     type: "switch",

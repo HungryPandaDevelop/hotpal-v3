@@ -56,7 +56,7 @@ const LikesItem = ({
         <div className="btn-container">
           <div
             className="like-status-btn trash-like-btn"
-            onClick={() => { onDelete(like.id, setLoading) }}
+            onClick={() => { onDelete(like, setLoading) }}
             title="С глаз долой"
           ></div>
         </div>
@@ -108,7 +108,7 @@ const LikesItem = ({
         )}
         <div
           className="like-status-btn trash-like-btn"
-          onClick={() => { onDelete(like.id, setLoading) }}
+          onClick={() => { onDelete(like, setLoading) }}
           title="С глаз долой"
         ></div>
       </div>

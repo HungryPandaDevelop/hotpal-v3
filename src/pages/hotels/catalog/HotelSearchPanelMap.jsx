@@ -5,7 +5,7 @@ import { getMaxListing } from 'components/getMaxListing';
 import { useEffect, useState } from 'react';
 import moment from "moment";
 import { connect } from 'react-redux';
-import { addSearch } from 'servicesMysql/changeSearch';
+// import { addSearch } from 'servicesMysql/changeSearch';
 import { changeActions } from 'servicesMysql/changeActions';
 import { timestampCustomDay, timestampCustomDayTime } from 'services/timestampCustom';
 import Tabs from 'blocks/Tabs';
@@ -40,12 +40,12 @@ const HotelSearchPanelMap = ({
 
     if (firstLoad === false) {
 
-      addSearch({
-        uid: account.uid,
-        dateSearch: timestampCustomDayTime(),
-        type: 'geo-search',
-        dateRange: formData.values?.dateRange, coords: longitude + '-' + latitude
-      });
+      // addSearch({
+      //   uid: account.uid,
+      //   dateSearch: timestampCustomDayTime(),
+      //   type: 'geo-search',
+      //   dateRange: formData.values?.dateRange, coords: longitude + '-' + latitude
+      // });
 
       changeActions({
         ...account,

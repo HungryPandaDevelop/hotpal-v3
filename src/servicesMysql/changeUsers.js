@@ -8,7 +8,7 @@ export const authUsers = async (props) => {
     const response = await axios.get("https://hotpal.ru/api/base/vendor/auth_user.php", {
       params: props
     });
-    console.log('Ответ php auth', response);
+    // console.log('Ответ php auth', response);
     return response.data;
   }
   catch (err) {
@@ -26,7 +26,7 @@ export const addUsers = async (props) => {
     const response = await axios.get("https://hotpal.ru/api/base/vendor/create_user.php", {
       params: props
     });
-    console.log('Ответ php', response);
+    // console.log('Ответ php', response);
     return response.data;
   }
   catch (err) {
@@ -84,11 +84,10 @@ export const updateUser = async (props) => {
 
 
     // console.log("newValue", newValue)
-    console.log('updateUser start:', newValue);
     const response = await axios.get("https://hotpal.ru/api/base/vendor/update_userss.php", {
       params: newValue
     });
-    console.log('response user:', response);
+    // console.log('response user:', response);
     return true;
   }
   catch (err) {

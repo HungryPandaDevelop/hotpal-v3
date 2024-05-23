@@ -17,13 +17,11 @@ const RoomItem = ({
   roomUrl,
   uid,
   onDeleteRoom,
-  // setChoiseRoom,
-  // setCurrentUser,
   type,
   ActionFn
 }) => {
 
-  const invite = room.data.connectUsersUid[0] === uid ? room.data.connectUsersUid[1] : room.data.connectUsersUid[0];
+  const invite = room.connectUsersUid[0] === uid ? room.connectUsersUid[1] : room.connectUsersUid[0];
 
   const [roomUserInfo, setRoomUserInfo] = useState({});
   const [countUnread, setCountUnread] = useState(0);
@@ -36,9 +34,8 @@ const RoomItem = ({
 
       setLoading(false);
       setRoomUserInfo(res);
-
+      console.log('res user', res);
       if (type !== 'popup') {
-
         ActionFn('SET_CURRENT_ROOM', { roomUserInfo: res });
       }
 
@@ -46,7 +43,7 @@ const RoomItem = ({
 
     let count = 0;
 
-    room.data.messages.map(undread => {
+    room.messages.map(undread => {
       if (!undread.read && undread.uid !== uid) {
         count++;
       }
@@ -54,13 +51,12 @@ const RoomItem = ({
 
     setCountUnread(count);
 
-  }, [room]);
+  }, [roomUrl]);
 
   useEffect(() => {
 
     if (roomUrl === room.id) {
 
-      // updateRead(roomUrl, room, uid);
 
       if (type !== 'popup') {
         ActionFn('SET_CURRENT_ROOM', { roomUserInfo: roomUserInfo });
@@ -73,20 +69,15 @@ const RoomItem = ({
 
 
 
-  // console.log(room.data.messages)
-
   let setLastMessage = () => {
-    let myMessages = room.data.messages && room.data.messages;
+    let myMessages = room.messages && room.messages;
     let lastMessage = '';
 
-    // if (room.data.messages) {
-    // myMessages = room.data.messages.filter(el => el.uid !== uid);
-    // }
-    // console.log('myMessages', myMessages)
+
     if (myMessages.length > 0) {
       let tempLastMessage = myMessages[myMessages.length - 1];
-      lastMessage = (tempLastMessage.message.length !== 0) ? tempLastMessage.message : tempLastMessage.invite.message
-      // console.log('lastMessage', myMessages[myMessages.length - 1])
+      lastMessage = (tempLastMessage.message.length !== 0) ? tempLastMessage.message : tempLastMessage.invite.type
+
     }
 
 
@@ -99,10 +90,10 @@ const RoomItem = ({
 
   return (
     <div
-      className={`rooms-item ${roomUrl === room.id ? 'active' : ''}`}
+      className={`rooms-item ${roomUrl === room._id ? 'active' : ''}`}
     >
       <LinkWrap
-        path={`/cabinet/chat/${room.id}`}
+        path={`/cabinet/chat/${room._id}`}
         type={type}
         room={room}
         roomUserInfo={roomUserInfo}
@@ -134,7 +125,7 @@ const RoomItem = ({
 
       <div
         className="btn-trash"
-        onClick={() => { onDeleteRoom(room.id) }}
+        onClick={() => { onDeleteRoom(room._id) }}
       ></div>
     </div>
   )

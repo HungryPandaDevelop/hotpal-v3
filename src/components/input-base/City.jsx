@@ -14,11 +14,11 @@ const TempateInput = (props) => {
   const {
     label,
     labelSecond,
-    placeholder,
+    // placeholder,
     wrapClass,
   } = props.obj;
 
-  const [сhoiseName, setСhoiseName] = useState(placeholder ? placeholder : 'Выбрать город');
+  // const [сhoiseName, setСhoiseName] = useState(placeholder ? placeholder : 'Выбрать город');
 
   const [filterVal, setFilterVal] = useState('');
 
@@ -33,9 +33,9 @@ const TempateInput = (props) => {
   useEffect(() => {
 
 
-    if (!input.value) {
-      setСhoiseName(placeholder ? placeholder : 'Выбрать город')
-    }
+    // if (!input.value) {
+    //   setСhoiseName(placeholder ? placeholder : 'Выбрать город')
+    // }
 
 
     inputRef.current.addEventListener("focus", selectOpen);
@@ -60,13 +60,14 @@ const TempateInput = (props) => {
     }
 
     function selectOpen() {
-      console.log('ch')
+      // console.log('ch')
       setOpen(true)
     }
-    function selectClose() {
-      console.log('ch')
-      setOpen(false)
-    }
+
+    // function selectClose() {
+    //   console.log('ch')
+    //   setOpen(false)
+    // }
 
 
   }, [input]);
@@ -80,7 +81,7 @@ const TempateInput = (props) => {
     setFilterVal(e.currentTarget.getAttribute('namecity'));
     setOpen(false);
 
-    setСhoiseName(e.currentTarget.getAttribute('namecity'));
+    // setСhoiseName(e.currentTarget.getAttribute('namecity'));
     input.onChange(e.currentTarget.getAttribute('namecity'));
   }
 
@@ -96,7 +97,7 @@ const TempateInput = (props) => {
 
   const clearFilterVal = () => {
     setFilterVal('');
-    setСhoiseName(placeholder ? placeholder : 'Выбрать город');
+    // setСhoiseName(placeholder ? placeholder : 'Выбрать город');
     setRussianCities(russianCities);
     // setOpen(false);
   }

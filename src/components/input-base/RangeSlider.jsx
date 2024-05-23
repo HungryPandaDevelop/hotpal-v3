@@ -42,19 +42,19 @@ const TempateInput = (props) => {
         trackClassName="range-track"
         defaultValue={[range[0], range[1]]}
         ariaLabel={['Upper thumb']}
-        // ariaValuetext={state => `Thumb value ${state.valueNow}`}
-        renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+        renderThumb={(props, state) => {
+          const { key, ...restProps } = props;
+          return (<div key={key} {...restProps}>{state.valueNow}</div>)
+        }}
         pearling
         minDistance={2}
         value={[startValue[0], startValue[1]]}
         min={range[0]}
         max={range[1]}
         onAfterChange={(value) => {
-          // console.log(`onAfterChange: ${JSON.stringify(value[0])}`)
           setStartValue(value)
           input.onChange(value)
-        }
-        }
+        }}
       />
     </div>
   );

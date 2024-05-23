@@ -11,20 +11,20 @@ let globalState = {
   showDark: false
 };
 
-export const globalReducer = (state=globalState, action) => {
+export const globalReducer = (state = globalState, action) => {
 
-  switch(action.type){
+  switch (action.type) {
     case 'SET_LIKES':
-      return {...state, ...action.payload,}
+      return { ...state, ...action.payload, }
     case 'SET_ROOMS':
-      return {...state, ...action.payload,}
+      return { ...state, ...action.payload, }
     case 'SET_CURRENT_ROOM':
-      return {...state, ...action.payload,}
+      return { ...state, ...action.payload, }
     case 'STATE_PANEL':
-      return {...state, ...action.payload,}
+      return { ...state, ...action.payload, }
     case 'DARK':
-      return {...state, ...action.payload,}
-    default: 
+      return { ...state, ...action.payload, }
+    default:
       return state
   }
 }

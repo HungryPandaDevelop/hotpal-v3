@@ -1,18 +1,24 @@
-import { saveListing } from 'services/saveListing';
+// import { saveListing } from 'services/saveListing';
+import axios from 'axios';
 
 const RenderUserBtn = ({ like, status, textBtn }) => {
 
   const onSetStatus = () => {
-    let newData;
-    console.log('newData', newData)
+
+
     if (like.status === 'agree') {
-      newData = { ...like, status: 'see' }
+      like.status = 'see'
     }
     else {
-      newData = { ...like, status: 'agree' }
+      like.status = 'agree'
     }
-    saveListing(newData, like.id, 'likes')
+    // saveListing(newData, like._id, 'likes')
 
+    axios.post("http://hotpal.ru:5000/api/like/edit", {
+      ...like,
+    }).then(res => {
+      console.log('ok', res)
+    });
   }
 
   return (

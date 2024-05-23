@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import { addCardsDefault } from 'services/addListing';
-
-import { deleteListing } from 'services/getListings';
+import axios from 'axios';
 
 import { connect } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
-import { addLikes, deleteLikes } from 'servicesMysql/changeLikes';
-
-import { timestampCustom, timestampCustomDay } from 'services/timestampCustom';
+import { timestampCustomDay } from 'services/timestampCustom';
 
 import { changeActions } from 'servicesMysql/changeActions';
 
@@ -25,103 +21,106 @@ const BtnLikes = ({
   searchListing
 }) => {
 
-  const base = 'likes';
-
-  const [status, setStatus] = useState(false);
-  const [invite, setInvite] = useState(false);
-
+  const [activeBtn, setActiveBtn] = useState(false);
+  const [activeSide, setActiveSide] = useState(null);
+  const [activeBtnStatus, setActiveBtnStatus] = useState(false);
+  const [currentLikeId, setCurrentLikeId] = useState(null);
 
 
   useEffect(() => {
-    // console.log('likes', likes)
-    setInvite(false);
-    setStatus(false);
 
-    // if (likes.length > 0) {
-    // console.log('likes', likes, user.uid)
     likes.map((like) => {
 
+      if (like.interlocutors.includes(user.uid)) {
+        setActiveBtn(true);
+        if (like.interlocutors[0] === uid) {
+          // я лайкнул
+          console.log('я лайкнул', like._id)
+          setActiveSide('i_him');
+          setCurrentLikeId(like._id);
+          if (like.status === 'agree') {
+            setActiveBtnStatus(true);
+          }
 
-      // if (user.uid === like.data.userLikes) {
-      //   setStatus(like.data.id);
-      // }
-
-      if (user.uid === like.data.userLikes) {
-        setStatus(like.data.id); // у меня на экране
+        }
+        if (like.interlocutors[0] === user.uid) {
+          // меня лайкнул
+          setActiveSide('he_me');
+          setCurrentLikeId(like._id);
+          if (like.status === 'agree') {
+            setActiveBtnStatus(true);
+          }
+        }
       }
-      // console.log('l', user.uid, like.data.userRef)
-      if (user.uid === like.data.userRef) {
-        //   setStatus(like.data.id); // у него на экране
-        setInvite(true);
-      }
 
+    });
 
-
-    })
-    // }
 
   }, [likes, searchListing]);
 
-  const onAdd = (userInfo) => {
+  const onAdd = async () => {
 
-    addCardsDefault({
-      'interlocutors': [uid, userInfo.uid],
+    // console.log(user)
+    const response = await axios.post("http://hotpal.ru:5000/api/like/", {
+      'interlocutors': [uid, user.uid],
       'status': 'see',
       'read': false,
       'userRef': uid,
-      'userLikes': userInfo.uid,
-    }, base).then(res => {
-
-      // console.log('res', timestampCustom())
-
-      addLikes({
-        'id_like': res,
-        'userRefName': name,
-        'userRef': uid,
-        'userLikesName': userInfo.name,
-        'userLikes': userInfo.uid,
-        'date': timestampCustomDay()
-      });
-
-      changeActions({
-        ...account,
-        'uid': uid,
-        'date': timestampCustomDay(),
-        'action': 'like',
-
-      });
-
-      setIdPoup('likes');
-      showPopup(true);
-
-      setStatus(res);
+      'userLikes': user.uid
     });
+
+    changeActions({
+      ...account,
+      'uid': uid,
+      'date': timestampCustomDay(),
+      'action': 'like',
+    });
+
+    setActiveBtn(true);
+    setCurrentLikeId(response.data._id);
+    showPopup(true);
+    // console.log(response.data);
+
   };
 
-  const onDelete = () => {
-    deleteListing(base, status)
-    deleteLikes(status);
+  const onDelete = async () => {
+
+    const response = await axios.post("http://hotpal.ru:5000/api/like/delete", {
+      _id: currentLikeId,
+    });
+
+    console.log('delete ok', currentLikeId, response)
+    setActiveBtn(false);
+    setCurrentLikeId(null);
     showPopup(false);
+
   };
 
-  const onStatusChange = (userInfo) => {
-    if (status) {
-      onDelete();
-      setStatus(false);
-    } else {
-      onAdd(userInfo);
-    }
+  const onStatusChange = () => {
+    !activeBtn ? onAdd() : onDelete();
   }
 
 
   return (
     <>
-      {invite ? <Link className='btn-ico--like btn-ico active' to='/cabinet/likes'>Перейти</Link> : (
-        <div
-          className={`btn-ico--like btn-ico ${status ? 'active' : ''}`}
-          onClick={() => { onStatusChange(user) }}
-        ></div>
-      )}
+
+
+      {!activeBtn ?
+        (<div
+          className={`btn-ico--like btn-ico`}
+          onClick={() => { onStatusChange() }}>
+        </div>) :
+        (activeSide === 'i_him' ?
+          (<div
+            className={`btn-ico--time btn-ico ${activeBtnStatus ? 'active' : ''}`}
+            onClick={() => { onStatusChange() }}>
+          </div>) :
+          (<Link
+            to="/cabinet/likes"
+            className={`btn-ico--time btn-ico ${activeBtnStatus ? 'active' : ''}`}
+          >
+          </Link>))
+      }
     </>
   )
 }

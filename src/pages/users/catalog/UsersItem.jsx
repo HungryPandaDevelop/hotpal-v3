@@ -34,12 +34,12 @@ const UserItem = ({ user, dateTravel, account, searchListing }) => {
           user={user}
         />
 
-        <Btns
+        {account.uid !== user.uid && (<Btns
           user={user}
           account={account}
           uid={account.uid}
           searchListing={searchListing}
-        />
+        />)}
         {user.entranceDate && (<div className="user-catalog-entrance">
           {getCurrentTime(user)}
         </div>)}

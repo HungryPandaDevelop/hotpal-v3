@@ -44,26 +44,26 @@ const ForgotPassword = ({ formData }) => {
   const submitSuccess = () => {
 
     const email = formData.values.email;
-
+    console.log(email)
     getByMailMysql(email).then((res) => {
 
 
 
       setLoading(false);
 
+      console.log('res email', res)
 
-      if (res.length > 0) {
-        console.log('res ema', res)
+      if (res.uid) {
 
         axios.get("https://hotpal.ru/api/mail-send-pass.php", {
           params: {
-            mail: res[0].email,
-            name: res[0].name,
-            uid: res[0].uid,
+            mail: res.email,
+            name: res.name,
+            uid: res.uid,
             host: window.location.host
           }
         });
-        setMailSend(res[0].email);
+        setMailSend(res.email);
         setPassSend(true)
       } else {
         toast.error('Таких пользователей нет');

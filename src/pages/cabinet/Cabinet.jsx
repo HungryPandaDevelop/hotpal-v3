@@ -26,8 +26,6 @@ const Cabinet = ({ formData, account, ActionFn }) => {
 
 
 
-  if (account.loaded) { return 'Loading...' }
-
   return (
     <>
       <div className="stub"></div>

@@ -4,7 +4,7 @@ import { onUsersSearch } from 'pages/users/hooks/onUsersSearch';
 
 import Form from 'components/forms/usersSearch/InHotels';
 
-import { addSearch } from 'servicesMysql/changeSearch';
+// import { addSearch } from 'servicesMysql/changeSearch';
 
 import { connect } from 'react-redux';
 import { timestampCustomDayTime } from 'services/timestampCustom';
@@ -27,7 +27,7 @@ const UsersSearchPanel = ({
 
     setSearchListing(onUsersSearch(listings, formData.values));
 
-    addSearch({ uid: account.uid, dateSearch: timestampCustomDayTime(), type: 'user-search', ...formData.values });
+    // addSearch({ uid: account.uid, dateSearch: timestampCustomDayTime(), type: 'user-search', ...formData.values });
 
     changeActions({
       ...account,

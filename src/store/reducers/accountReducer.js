@@ -10,10 +10,12 @@ let accounInfo = sessionAccount ? sessionAccount : {
 export const accountReducer = (state = accounInfo, action) => {
   switch (action.type) {
     case 'SET_INFO_ACCOUNT':
-      console.log('a', action.payload)
+      console.log('SET_INFO', action.payload)
+      localStorage.setItem('account', JSON.stringify({ ...action.payload }))
       return { ...state, ...action.payload, }
     case 'EXIT_ACCOUNT':
       // console.log('a', accounInfo)
+      localStorage.removeItem('account');
       return { uid: '', loaded: true }
     default:
       return state

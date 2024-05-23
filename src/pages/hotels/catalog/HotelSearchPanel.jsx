@@ -15,7 +15,7 @@ import Tabs from 'blocks/Tabs';
 
 import { connect } from 'react-redux';
 
-import { addSearch } from 'servicesMysql/changeSearch';
+// import { addSearch } from 'servicesMysql/changeSearch';
 import { timestampCustomDay, timestampCustomDayTime } from 'services/timestampCustom';
 
 import { changeActions } from 'servicesMysql/changeActions';
@@ -45,7 +45,7 @@ const HotelSearchPanelMap = ({
 
 
     if (firstLoad === false) {
-      addSearch({ uid: account.uid, dateSearch: timestampCustomDayTime(), type: 'hotels-search', dateRange: formData.values?.dateRange, hotelFind: formData.values?.hotelFind });
+      // addSearch({ uid: account.uid, dateSearch: timestampCustomDayTime(), type: 'hotels-search', dateRange: formData.values?.dateRange, hotelFind: formData.values?.hotelFind });
 
       changeActions({
         ...account,

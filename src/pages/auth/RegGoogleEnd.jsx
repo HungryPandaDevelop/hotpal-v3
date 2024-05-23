@@ -14,7 +14,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { addUsers } from 'servicesMysql/changeUsers';
 
-const RegGEnd = ({ formData, ActionFn }) => {
+const RegGoogleEnd = ({ formData, ActionFn }) => {
 
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ const RegGEnd = ({ formData, ActionFn }) => {
 
       console.log('Регистрация успешна');
       ActionFn('SET_INFO_ACCOUNT', regValues);
-      localStorage.setItem('account', JSON.stringify(regValues))
+      // localStorage.setItem('account', JSON.stringify(regValues))
 
       navigate('/cabinet');
     });
@@ -90,4 +90,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { ActionFn })(RegGEnd);
+export default connect(mapStateToProps, { ActionFn })(RegGoogleEnd);

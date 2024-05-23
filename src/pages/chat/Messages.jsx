@@ -1,44 +1,62 @@
 import { useEffect, useState, useRef } from 'react';
-
+import axios from 'axios';
 import { connect } from 'react-redux';
-
-import { getMyRoomMessages, stopWatch } from 'services/chatEvents';
 
 import MessagesItem from './MessagesItem';
 import MessagesHead from './MessagesHead';
 
-import { updateRead } from 'services/chatEvents';
 
 import { animateScroll as scroll } from 'react-scroll';
 
 const Messages = ({ uid, roomId, type, rooms }) => {
 
-  const chatRef = useRef(null);
-  const [allMessages, setAllMessages] = useState([]);
-
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  // const [unreadMessages, setUnreadMessages] = useState(0);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
 
-
-    getMyRoomMessages(setAllMessages, roomId);
-
+    if (rooms.length === 0) return;
 
 
-    const currentRoom = rooms.find(el => el.id === roomId);
+    const foundItem = rooms.find(item => item._id === roomId);
+    // console.log('foundItem', foundItem)
+    setMessages(foundItem.messages);
+    console.log(messages)
+  }, [rooms]);
+
+  const chatRef = useRef(null);
+
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+
+  useEffect(() => {
+
+    const currentRoom = rooms.find(el => el._id === roomId);
+
     if (currentRoom) {
-      updateRead(roomId, currentRoom, uid);
+
+      currentRoom.messages.forEach(message => {
+        if (message.uid !== uid) {
+          message.read = true;
+        }
+      });
+      console.log('read', currentRoom)
+
+      axios.post("http://hotpal.ru:5000/api/room/update", {
+        "_id": roomId,
+        "messages": currentRoom.messages
+      }).then(res => {
+
+        console.log('update chat', res.data);
+        // navigate('/cabinet/chat', { replace: true });
+        // ActionFn('SET_ROOMS', { rooms: res.data })
+      });
 
     }
 
 
 
-    return () => {
-      stopWatch();
-    }
-  }, [roomId]);
+
+  }, [roomId, rooms]);
 
   const scrollToBottom = () => {
     console.log('scroll')
@@ -54,13 +72,13 @@ const Messages = ({ uid, roomId, type, rooms }) => {
       scrollToBottom();
     }
 
-  }, [allMessages, imageLoaded])
+  }, [messages, imageLoaded])
 
   const renderMessages = () => {
-    if (allMessages.length <= 0) {
+    if (messages.length <= 0) {
       return 'Список сообщений пуст';
     }
-    return allMessages.map((message, index) => <MessagesItem
+    return messages.map((message, index) => <MessagesItem
       key={index}
       message={message}
       uid={uid}
