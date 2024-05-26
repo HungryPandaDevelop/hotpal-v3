@@ -17,7 +17,8 @@ const RoomItem = ({
   uid,
   onChoiseRoom,
   onDeleteRoom,
-  ActionFn
+  ActionFn,
+  type
 }) => {
 
   const userId = room.connectUsersUid.filter(id => id !== uid)[0];
@@ -26,6 +27,7 @@ const RoomItem = ({
 
   const [loadingUser, setLoadingUser] = useState(false);
 
+  const [choiseUserInRoom, setChoiseUserInRoom] = useState(null);
 
   const calcUnreadCount = () => {
     let count = 0;
@@ -76,13 +78,9 @@ const RoomItem = ({
   //   return lastMessage;
   // }
 
-  if (loadingUser) { return '' }
 
-  return (
-    <Link to={`/cabinet/chat/${room._id}`}
-      className={`rooms-item ${roomUrl === room._id ? 'active' : ''}`}
-      onClick={() => { onChoiseRoom(room) }}
-    >
+  const roomContent = () => {
+    return (<>
       <div
         className="rooms-item-face img-use-bg"
         style={userImg(roomUserInfo)}
@@ -104,8 +102,34 @@ const RoomItem = ({
         className="btn-trash"
         onClick={() => { onDeleteRoom(room._id) }}
       ></div>
-    </Link>
-  )
+    </>)
+  }
+
+
+
+  if (loadingUser) { return '' }
+
+
+  if (type === 'popup') {
+    return (
+      <div
+        className="rooms-item"
+        onClick={() => { onChoiseRoom(room) }}
+      >
+        {roomContent()}
+      </div>
+    );
+  } else {
+    return (
+      <Link to={`/cabinet/chat/${room._id}`}
+        className={`rooms-item ${roomUrl === room._id ? 'active' : ''}`}
+      >
+        {roomContent()}
+      </Link>
+    );
+  }
+
+
 }
 
 

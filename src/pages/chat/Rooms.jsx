@@ -16,10 +16,12 @@ const RoomList = ({
 
   const navigate = useNavigate();
 
-  const onChoiseRoom = (user) => {
-    ActionFn('SET_GLOBAL', {
-      currentUserInRoom: null,
-    });
+  const onChoiseRoom = (room) => {
+    // console.log('currentUserInRoom', room)
+    // ActionFn('SET_GLOBAL', {
+    //   currentUserInRoom: user,
+    //   currentRoom: room
+    // });
   }
 
 
@@ -58,6 +60,11 @@ const RoomList = ({
   )
 };
 
+const mapStateToProps = (state) => {
+  return {
+    rooms: state.globalState.rooms,
+  }
+}
 
 
-export default connect(null, { ActionFn })(RoomList);
+export default connect(mapStateToProps, { ActionFn })(RoomList);

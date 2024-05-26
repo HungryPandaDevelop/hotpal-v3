@@ -3,14 +3,17 @@ import Rooms from 'pages/chat/Rooms';
 import MessagesPopup from "blocks/controls-panel/chat/Messages";
 
 const Chat = ({ uid, currentRoom, currentUserInRoom }) => {
-
+  console.log('currentRoom p', currentRoom)
   return (
     <>
-      {currentRoom === 0 ? (
-        <Rooms
-          uid={uid}
-          type='popup'
-        />
+      {!currentRoom ? (
+        <>
+          <Rooms
+            uid={uid}
+            type='popup'
+            roomId={currentRoom}
+          />
+        </>
       ) :
         (
           <MessagesPopup

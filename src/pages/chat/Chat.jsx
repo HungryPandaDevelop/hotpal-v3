@@ -13,7 +13,7 @@ import Rooms from 'pages/chat/Rooms';
 import Tabs from 'pages/cabinet/parts/Tabs';
 
 
-const Chat = ({ account, rooms, roomUserInfo }) => {
+const Chat = ({ account, roomUserInfo }) => {
 
   const params = useParams();
 
@@ -32,7 +32,6 @@ const Chat = ({ account, rooms, roomUserInfo }) => {
                 uid={account.uid}
                 roomId={params.roomId}
                 type='page'
-                rooms={rooms}
               />
             </div>
             <div className="col-8 col-xs-12">
@@ -65,7 +64,6 @@ const mapStateToProps = (state) => {
   return {
     account: state.account,
     roomUserInfo: state.globalState.roomUserInfo,
-    rooms: state.globalState.rooms,
     currentRoom: state.globalState.currentRoom,
   }
 }
