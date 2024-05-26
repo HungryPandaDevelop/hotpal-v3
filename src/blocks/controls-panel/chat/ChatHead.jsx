@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 const ChatHead = ({
   currentUser,
   roomId,
-  // setChoiseRoom,
   ActionFn
 }) => {
   return (

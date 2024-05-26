@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import Rooms from 'pages/chat/Rooms';
 import MessagesPopup from "blocks/controls-panel/chat/Messages";
 
-const Chat = ({ uid, panelChatRoom, roomUserInfo }) => {
+const Chat = ({ uid, currentRoom, currentUserInRoom }) => {
 
   return (
     <>
-      {panelChatRoom === 0 ? (
+      {currentRoom === 0 ? (
         <Rooms
           uid={uid}
           type='popup'
@@ -15,8 +15,8 @@ const Chat = ({ uid, panelChatRoom, roomUserInfo }) => {
         (
           <MessagesPopup
             uid={uid}
-            roomId={panelChatRoom}
-            currentUser={roomUserInfo}
+            roomId={currentRoom}
+            currentUser={currentUserInRoom}
           />
         )}
 
@@ -27,8 +27,8 @@ const Chat = ({ uid, panelChatRoom, roomUserInfo }) => {
 const mapStateToProps = (state) => {
   return {
     uid: state.account.uid,
-    panelChatRoom: state.globalState.panelChatRoom,
-    roomUserInfo: state.globalState.roomUserInfo,
+    currentRoom: state.globalState.currentRoom,
+    currentUserInRoom: state.globalState.currentUserInRoom,
   }
 }
 

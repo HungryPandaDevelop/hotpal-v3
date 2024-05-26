@@ -5,13 +5,15 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import ChatForm from 'pages/chat/Form';
+
+import MessagesHead from 'pages/chat/MessagesHead';
 import Messages from 'pages/chat/Messages';
 
 import Rooms from 'pages/chat/Rooms';
 import Tabs from 'pages/cabinet/parts/Tabs';
 
 
-const Chat = ({ account, roomUserInfo }) => {
+const Chat = ({ account, rooms, roomUserInfo }) => {
 
   const params = useParams();
 
@@ -30,11 +32,12 @@ const Chat = ({ account, roomUserInfo }) => {
                 uid={account.uid}
                 roomId={params.roomId}
                 type='page'
+                rooms={rooms}
               />
             </div>
             <div className="col-8 col-xs-12">
-
-              {params.roomId ? (<div className="chat-messages">
+              {params.roomId && (<div className="chat-messages">
+                <MessagesHead />
                 <Messages
                   roomId={params.roomId}
                 />
@@ -43,7 +46,7 @@ const Chat = ({ account, roomUserInfo }) => {
                   type='page'
                   roomUserInfo={roomUserInfo}
                 />
-              </div>) : ''}
+              </div>)}
 
             </div>
 
@@ -62,6 +65,8 @@ const mapStateToProps = (state) => {
   return {
     account: state.account,
     roomUserInfo: state.globalState.roomUserInfo,
+    rooms: state.globalState.rooms,
+    currentRoom: state.globalState.currentRoom,
   }
 }
 

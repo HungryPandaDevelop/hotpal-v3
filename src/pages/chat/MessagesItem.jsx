@@ -6,7 +6,7 @@ const MessagesItem = ({ message, uid, roomId, index, setImageLoaded }) => {
 
   const whose = message.uid === uid;
 
-  const dateMessage = moment.unix(message.timestamp).format("DD.MM.YYYY HH:mm");
+  const dateMessage = moment(message.updatedAt).format("DD.MM.YYYY HH:mm");
 
   const changeInvite = (status, index) => {
 
@@ -28,7 +28,7 @@ const MessagesItem = ({ message, uid, roomId, index, setImageLoaded }) => {
       className={`${!message.read ? 'messages--noanswer' : ''} ${whose ? 'messages-item' : 'messages-item--answer'}`}
     >
       <div className={`${whose ? 'messages-box' : 'messages-box--answer'}`}>
-        {console.log('message', message.message)}
+
         {typeof message.message !== 'string' ? (<span dangerouslySetInnerHTML={{ __html: message.invite.text }}></span>) : message.message}
 
         {message.fileMessage.length > 0 ? (<div>

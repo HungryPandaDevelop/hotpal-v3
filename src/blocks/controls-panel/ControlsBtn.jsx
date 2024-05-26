@@ -2,9 +2,6 @@ import totalCountMessage from "./parts/totalCountMessage";
 
 const ControlsBtn = ({
   name,
-  // setPopupActive,
-  // setNameActive,
-  // setIdActive,
   idActive,
   btnRef,
   uid,
@@ -15,12 +12,9 @@ const ControlsBtn = ({
 
   const activeEl = (name) => {
 
-    // setPopupActive(true);
 
     ActionFn('STATE_PANEL', { panelState: true, panelId: name[0], panelName: name[1] })
 
-    // setNameActive(name[1]);
-    // setIdActive(name[0]);
   }
 
   const renderCount = (id, base) => {

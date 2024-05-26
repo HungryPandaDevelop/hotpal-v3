@@ -2,12 +2,13 @@
 let globalState = {
   likes: [],
   rooms: [],
-  roomUserInfo: {},
+  roomUserInfo: null,
   panelState: false,
   panelName: '',
   panelId: '',
   panelChatRoom: 0,
-  currentUser: null,
+  currentRoom: null,
+  currentUserInRoom: null,
   showDark: false
 };
 
@@ -20,9 +21,13 @@ export const globalReducer = (state = globalState, action) => {
       return { ...state, ...action.payload, }
     case 'SET_CURRENT_ROOM':
       return { ...state, ...action.payload, }
+    case 'SET_CURRENT_USER_ROOM':
+      return { ...state, ...action.payload, }
     case 'STATE_PANEL':
       return { ...state, ...action.payload, }
     case 'DARK':
+      return { ...state, ...action.payload, }
+    case 'SET_GLOBAL':
       return { ...state, ...action.payload, }
     default:
       return state

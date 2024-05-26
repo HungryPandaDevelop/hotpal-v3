@@ -34,8 +34,7 @@ const ControlsPanel = ({
 
     function bodyClick(e) {
       if (!$(e.target).is('.link-back, .link-back *, .controls-panel-popup, .controls-panel-popup  *, div.controls-btn, div.controls-btn  *, .rooms-item, .rooms-item  *')) {
-        // setPopupActive(false);
-        // setIdActive('');
+
         ActionFn('STATE_PANEL', { panelState: false, panelId: 0, panelName: '' })
       }
     }
@@ -43,19 +42,12 @@ const ControlsPanel = ({
 
 
 
-  // const [popupActive, setPopupActive] = useState(false);
-
-
-  // const [nameActive, setNameActive] = useState('');
-  // const [idActive, setIdActive] = useState(0);
-
   const countTotalMessage = totalCountMessage('rooms', uid, rooms);
   const countTotalLikes = totalCountMessage('likes', uid, rooms, likes);
 
   const arrNames = [
     ['chat', 'Личные сообщения (' + countTotalMessage + ')'],
     ['like', 'Симпатии (' + countTotalLikes + ')'],
-    // ['invite', 'Приглашения'],
   ];
 
   const arrLinks = [
@@ -66,13 +58,7 @@ const ControlsPanel = ({
     return arrNames.map(name => <ControlsBtn
       name={name}
       key={name[1]}
-
-      // setPopupActive={setPopupActive}
-      // setNameActive={setNameActive}
-
       idActive={panelId}
-      // setIdActive={setIdActive}
-
       btnRef={btnRef}
       uid={uid}
       rooms={rooms}
@@ -86,9 +72,6 @@ const ControlsPanel = ({
       name={name}
       idActive={panelId}
       ActionFn={ActionFn}
-    // setPopupActive={setPopupActive}
-    // setNameActive={setNameActive}
-    // setIdActive={setIdActive}
     />)
   }
 
@@ -99,15 +82,9 @@ const ControlsPanel = ({
         {renderLink(arrLinks)}
       </div>
       {panelState && <Popup
-        // setPopupActive={setPopupActive}
-
         ActionFn={ActionFn}
-
         nameActive={panelName}
         idActive={panelId}
-
-        // setIdActive={setIdActive}
-
         popupRef={popupRef}
 
       />}

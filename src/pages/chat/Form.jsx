@@ -1,23 +1,19 @@
 
 import RenderForm from 'components/forms/chat/Form';
-
+import ActionFn from 'store/actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
-// import { sendMessage } from 'services/chatEvents';
-import { useEffect, useState } from 'react';
 
-const Form = ({ formData, uid, roomId, type, account, roomUserInfo, rooms }) => {
-
-  const [messages, setMessages] = useState(null);
-
-  useEffect(() => {
-
-    if (rooms.length === 0) return;
-
-    const foundItem = rooms.find(item => item._id === roomId);
-
-    setMessages(foundItem.messages);
-  }, [rooms]);
+const Form = ({
+  formData,
+  uid,
+  roomId,
+  type,
+  account,
+  roomUserInfo,
+  currentRoom,
+  ActionFn
+}) => {
 
   const send = (message, invite) => {
 
@@ -30,7 +26,7 @@ const Form = ({ formData, uid, roomId, type, account, roomUserInfo, rooms }) => 
       timestamp: new Date(),
       ...invite
     };
-    const allMessages = [...messages, singleMessage]
+    const allMessages = [...currentRoom.messages, singleMessage];
 
 
     axios.post("http://hotpal.ru:5000/api/room/update", {
@@ -38,9 +34,7 @@ const Form = ({ formData, uid, roomId, type, account, roomUserInfo, rooms }) => 
       "messages": allMessages
     }).then(res => {
 
-      console.log('update chat', res.data);
-      // navigate('/cabinet/chat', { replace: true });
-      // ActionFn('SET_ROOMS', { rooms: res.data })
+      ActionFn('SET_GLOBAL', { currentRoom: res.data })
     });
 
 
@@ -48,13 +42,17 @@ const Form = ({ formData, uid, roomId, type, account, roomUserInfo, rooms }) => 
   }
 
   const submitSuccess = () => {
-    // sendMessage(roomId, uid, formData.values);
-    send(formData.values.message)
+
+    send(formData.values.message);
   }
 
   const submitInvite = (inviteData) => {
-    // sendMessage(roomId, uid, inviteData);
-    send([], inviteData)
+
+    send([], inviteData);
+  }
+
+  if (!currentRoom) {
+    return false;
   }
 
   return (
@@ -80,8 +78,8 @@ const mapStateToProps = (state) => {
     account: state.account,
     uid: state.account.uid,
     formData: state.form.chatForm,
-    rooms: state.globalState.rooms,
+    currentRoom: state.globalState.currentRoom,
   }
 }
 
-export default connect(mapStateToProps)(Form);
+export default connect(mapStateToProps, { ActionFn })(Form);

@@ -1,27 +1,20 @@
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 import MessagesItem from './MessagesItem';
-import MessagesHead from './MessagesHead';
+import ActionFn from 'store/actions';
 
 
 import { animateScroll as scroll } from 'react-scroll';
 
-const Messages = ({ uid, roomId, type, rooms }) => {
-
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-
-    if (rooms.length === 0) return;
-
-
-    const foundItem = rooms.find(item => item._id === roomId);
-    // console.log('foundItem', foundItem)
-    setMessages(foundItem.messages);
-    console.log(messages)
-  }, [rooms]);
+const Messages = ({
+  uid,
+  roomId,
+  type,
+  currentRoom
+}) => {
+  const navigate = useNavigate();
 
   const chatRef = useRef(null);
 
@@ -30,36 +23,27 @@ const Messages = ({ uid, roomId, type, rooms }) => {
 
   useEffect(() => {
 
-    const currentRoom = rooms.find(el => el._id === roomId);
-
     if (currentRoom) {
-
       currentRoom.messages.forEach(message => {
         if (message.uid !== uid) {
           message.read = true;
         }
       });
-      console.log('read', currentRoom)
 
       axios.post("http://hotpal.ru:5000/api/room/update", {
         "_id": roomId,
         "messages": currentRoom.messages
       }).then(res => {
 
-        console.log('update chat', res.data);
-        // navigate('/cabinet/chat', { replace: true });
-        // ActionFn('SET_ROOMS', { rooms: res.data })
+        ActionFn('SET_GLOBAL', { rooms: res.data })
       });
-
+    } else {
+      // navigate('/cabinet/chat/', { replace: true });
     }
 
-
-
-
-  }, [roomId, rooms]);
+  }, [currentRoom]);
 
   const scrollToBottom = () => {
-    console.log('scroll')
     scroll.scrollToBottom({
       containerId: 'messages-container', // Здесь укажите ID вашего контейнера
       duration: 250, // Настройте длительность анимации
@@ -72,13 +56,18 @@ const Messages = ({ uid, roomId, type, rooms }) => {
       scrollToBottom();
     }
 
-  }, [messages, imageLoaded])
+  }, [imageLoaded])
+
+  if (!currentRoom) {
+    return false;
+  }
 
   const renderMessages = () => {
-    if (messages.length <= 0) {
+    console.log('currentRoom', currentRoom)
+    if (currentRoom.messages.length <= 0) {
       return 'Список сообщений пуст';
     }
-    return messages.map((message, index) => <MessagesItem
+    return currentRoom.messages.map((message, index) => <MessagesItem
       key={index}
       message={message}
       uid={uid}
@@ -89,13 +78,9 @@ const Messages = ({ uid, roomId, type, rooms }) => {
   }
 
   return (
-    <>
-      {type !== 'popup' && <MessagesHead />}
-      <div id="messages-container" className="messages-container custom-scroll" ref={chatRef}>
-
-        {renderMessages()}
-      </div>
-    </>
+    <div id="messages-container" className="messages-container custom-scroll" ref={chatRef}>
+      {renderMessages()}
+    </div>
   )
 }
 
@@ -103,7 +88,7 @@ const mapStateToProps = (state) => {
 
   return {
     uid: state.account.uid,
-    rooms: state.globalState.rooms,
+    currentRoom: state.globalState.currentRoom,
   }
 }
 

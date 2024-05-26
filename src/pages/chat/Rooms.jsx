@@ -1,42 +1,43 @@
 
-// import { deleteListing } from 'services/getListings';
-import { useNavigate } from 'react-router-dom';
-import EmptyRoom from 'pages/chat/EmptyRoom';
-
-import RoomItem from 'pages/chat/RoomItem';
 import { connect } from 'react-redux';
-
 import axios from 'axios';
-
-// import { deleteChat } from 'servicesMysql/changeChats';
+import { useNavigate } from 'react-router-dom';
+import ActionFn from 'store/actions';
+import EmptyRoom from 'pages/chat/EmptyRoom';
+import RoomItem from 'pages/chat/RoomItem';
 
 const RoomList = ({
   uid,
   roomId,
-  // setChoiseRoom, 
-  // setCurrentUser, 
   type,
-  rooms
-
+  rooms,
+  ActionFn
 }) => {
-  // console.log('rooms', rooms)
 
   const navigate = useNavigate();
 
+  const onChoiseRoom = (user) => {
+    ActionFn('SET_GLOBAL', {
+      currentUserInRoom: null,
+    });
+  }
+
+
+
   const onDeleteRoom = async (id) => {
-    // deleteListing('rooms', id);
-    // deleteChat(id);
 
-    axios.post("http://hotpal.ru:5000/api/room/delete", {
+    const response = axios.post("http://hotpal.ru:5000/api/room/delete", {
       "_id": id
-    }).then(res => {
-
-      console.log('delete chat', res.data);
-      navigate('/cabinet/chat', { replace: true });
-      // ActionFn('SET_ROOMS', { rooms: res.data })
     });
 
-
+    if (response) {
+      ActionFn('SET_GLOBAL', {
+        rooms: rooms.filter(room => room._id !== id),
+        currentRoom: null,
+        currentUserInRoom: null,
+      });
+      navigate('/cabinet/chat/', { replace: true });
+    }
 
   }
 
@@ -48,20 +49,15 @@ const RoomList = ({
         roomUrl={roomId}
         uid={uid}
         type={type}
+
+        onChoiseRoom={onChoiseRoom}
         onDeleteRoom={onDeleteRoom}
-      // setChoiseRoom={setChoiseRoom}
-      // setCurrentUser={setCurrentUser}
       />) : <EmptyRoom />}
 
     </div>
   )
 };
 
-const mapStateToProps = (state) => {
-  // console.log('state', state)
-  return {
-    rooms: state.globalState.rooms,
-  }
-}
 
-export default connect(mapStateToProps)(RoomList);
+
+export default connect(null, { ActionFn })(RoomList);

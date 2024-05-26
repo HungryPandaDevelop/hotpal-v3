@@ -3,17 +3,13 @@ import Likes from 'blocks/controls-panel/likes/Likes'
 
 
 const Popup = ({
-  // setPopupActive,
   nameActive,
   idActive,
-  // setIdActive,
   popupRef,
   ActionFn,
 }) => {
 
   const closePopup = () => {
-    // setPopupActive(false);
-    // setIdActive('');
     ActionFn('STATE_PANEL', { panelState: false, panelId: 0, panelName: '' })
   }
 
@@ -28,4 +24,4 @@ const Popup = ({
   )
 }
 
-export default Popup
+export default Popup;

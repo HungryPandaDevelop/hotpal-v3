@@ -10,15 +10,15 @@ const InfoAccount = ({ account, ActionFn }) => {
   const [socket, setSocket] = useState(null);
 
 
-  useEffect(() => {
-    axios.post("http://hotpal.ru:5000/api/room/find", {
-      "userId": account.uid
-    }).then(res => {
+  // useEffect(() => {
+  //   axios.post("http://hotpal.ru:5000/api/room/find", {
+  //     "userId": account.uid
+  //   }).then(res => {
 
-      console.log('get chat', res.data);
-      ActionFn('SET_ROOMS', { rooms: res.data })
-    });
-  }, []);
+  //     console.log('get chat', res.data);
+  //     ActionFn('SET_ROOMS', { rooms: res.data })
+  //   });
+  // }, []);
 
   // useEffect(() => {
   //   axios.post("http://hotpal.ru:5000/api/like/find", {
@@ -57,15 +57,15 @@ const InfoAccount = ({ account, ActionFn }) => {
 
 
 
-    // // Отправляем запрос на сервер для начала получения лайков
-    // socket.emit('startShowRooms', account.uid);
+    // Отправляем запрос на сервер для начала получения лайков
+    socket.emit('startShowRooms', account.uid);
 
-    // // Подписываемся на событие getOnlineLikes для получения обновлений лайков
-    // socket.on('getOnlineRooms', (res) => {
-    //   console.log('res socket chat', res);
-    //   // Обновляем состояние компонента с полученными лайками
-    //   ActionFn('SET_ROOMS', { rooms: res })
-    // });
+    // Подписываемся на событие getOnlineLikes для получения обновлений лайков
+    socket.on('getOnlineRooms', (res) => {
+      console.log('res socket chat', res);
+      // Обновляем состояние компонента с полученными лайками
+      ActionFn('SET_ROOMS', { rooms: res })
+    });
 
     // Функция для отписки от события при размонтировании компонента
     return () => {

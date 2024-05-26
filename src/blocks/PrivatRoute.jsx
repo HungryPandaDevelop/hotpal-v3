@@ -31,7 +31,7 @@ const PrivateRoute = ({ account }) => {
 
         <Header />
 
-        {/* <ControlsPanel /> */}
+        <ControlsPanel />
 
         <Outlet />
 
