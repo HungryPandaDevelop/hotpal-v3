@@ -35,7 +35,7 @@ const PrivateRoute = ({ account }) => {
 
         <Outlet />
 
-        {/* <BestPanel /> */}
+        <BestPanel />
 
         <Footer />
       </div>

@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-// import { createRoom } from 'services/chatEvents';
+
 import { connect } from 'react-redux';
 import ActionFn from 'store/actions';
-import { timestampCustomDay } from 'services/timestampCustom';
+
 import axios from 'axios';
 import { changeActions } from 'servicesMysql/changeActions';
+
+import moment from "moment";
 
 
 // import { addChat } from 'servicesMysql/changeChats';
@@ -30,77 +32,30 @@ const BtnChat = ({ user, uid, ActionFn, name, account, rooms, currentRoom }) => 
 
       const response = await axios.post("http://hotpal.ru:5000/api/room/", {
         'connectUsersUid': [uid, user.uid],
+        'author': 'dave',
         'messages': [],
       });
 
       ActionFn('SET_GLOBAL', {
         rooms: [...rooms, response.data],
-        currentRoom: response.data,
       });
       navigate('/cabinet/chat/' + response.data._id, { replace: true });
 
     } else {
 
-      ActionFn('SET_GLOBAL', {
-        currentRoom: currentRoomTemp,
-      });
       navigate('/cabinet/chat/' + currentRoomTemp._id, { replace: true });
     }
 
+      // changeActions({
+      //   ...account,
+      //   'uid': uid,
+      //   'date': moment().format('YYYY-MM-DD hh:mm:ss'),
+      //   'action': 'chat'
+      // });
 
   }
 
   // scroll.scrollTo(0); // Scrolling to 100px from the top of the page.
-  // ActionFn('STATE_PANEL', {
-  //   panelState: true,
-  //   panelId: 'chat',
-  //   panelName: 'Личные сообщения',
-
-
-
-  // createRoom(uid, user.uid).then(res => {
-
-  //   // addChat({
-  //   //   'id_chat': res,
-  //   //   'userRefName': name,
-  //   //   'userRef': uid,
-  //   //   'userLikesName': user.name,
-  //   //   'userLikes': user.uid,
-  //   //   'dateCreate': timestampCustomDay()
-  //   // });
-
-  //   changeActions({
-  //     ...account,
-  //     'uid': uid,
-  //     'date': timestampCustomDay(),
-  //     'action': 'chat'
-  //   });
-
-
-  //   if (window.innerWidth > 576) {
-  //     navigate('/cabinet/chat/' + res, { replace: true });
-  //   } else {
-  //     // scroll.scrollTo(0); // Scrolling to 100px from the top of the page.
-  //     ActionFn('STATE_PANEL', {
-  //       panelState: true,
-  //       panelId: 'chat',
-  //       panelName: 'Личные сообщения',
-  //     });
-
-  //     ActionFn('SET_CURRENT_ROOM', { roomUserInfo: user, panelChatRoom: res })
-
-  //   }
-
-  //   console.log('res', res)
-
-  // });
-
-
-
-  const onInviteChatPopup = async (user) => {
-
-  };
-
 
 
   return (

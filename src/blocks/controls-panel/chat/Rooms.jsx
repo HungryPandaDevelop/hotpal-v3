@@ -1,20 +1,28 @@
 
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
 import ActionFn from 'store/actions';
 import EmptyRoom from 'pages/chat/EmptyRoom';
-import RoomItem from 'pages/chat/RoomItem';
+
+import RoomItem from 'blocks/controls-panel/chat/RoomItem';
 
 const RoomList = ({
   uid,
-  roomId,
   rooms,
   ActionFn,
-  setCurrentUserInRoom
+  currentRoomPanel,
+  setCurrentRoomPanel,
+  setCurrentUserInRoomPanel
 }) => {
 
-  const navigate = useNavigate();
+
+  const onChoiseRoom = (room, user) => {
+    console.log('currentUserInRoom', room)
+    setCurrentRoomPanel(room);
+    setCurrentUserInRoomPanel(user)
+  }
+
 
 
   const onDeleteRoom = async (id) => {
@@ -27,7 +35,6 @@ const RoomList = ({
       ActionFn('SET_GLOBAL', {
         rooms: rooms.filter(room => room._id !== id),
       });
-      navigate('/cabinet/chat/', { replace: true });
     }
 
   }
@@ -37,10 +44,13 @@ const RoomList = ({
       {rooms.length ? rooms.map((room) => <RoomItem
         room={room}
         key={room._id}
-        roomId={roomId}
+        roomId={currentRoomPanel}
+
         uid={uid}
+
+
+        onChoiseRoom={onChoiseRoom}
         onDeleteRoom={onDeleteRoom}
-        setCurrentUserInRoom={setCurrentUserInRoom}
       />) : <EmptyRoom />}
 
     </div>
@@ -49,7 +59,6 @@ const RoomList = ({
 
 const mapStateToProps = (state) => {
   return {
-    uid: state.account.uid,
     rooms: state.globalState.rooms,
   }
 }

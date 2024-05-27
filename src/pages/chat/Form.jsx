@@ -3,17 +3,72 @@ import RenderForm from 'components/forms/chat/Form';
 import ActionFn from 'store/actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 const Form = ({
   formData,
   uid,
   roomId,
   type,
-  account,
-  roomUserInfo,
-  currentRoom,
-  ActionFn
+  rooms,
+  ActionFn,
+  inviteData
 }) => {
+
+  const currentRoom = rooms.filter(room => room._id === roomId)[0];
+
+  useEffect(() => {
+
+    if (currentRoom) {
+      currentRoom.messages.forEach(message => {
+        if (message.uid !== uid) {
+          message.read = true;
+        }
+      });
+
+      axios.post("http://hotpal.ru:5000/api/room/update", {
+        "_id": roomId,
+        "messages": currentRoom.messages
+      }).then(res => {
+        const updatedRoom = res.data;
+
+        const updatedRooms = rooms.map(room =>
+          room._id === updatedRoom._id ? updatedRoom : room
+        );
+
+        ActionFn('SET_GLOBAL', {
+          rooms: updatedRooms,
+          currentRoom: res.data,
+        });
+      });
+    }
+
+  }, []);
+
+
+  useEffect(() => {
+    if (inviteData) {
+
+      currentRoom.messages[inviteData[1]].invite.status = inviteData[0];
+
+      axios.post("http://hotpal.ru:5000/api/room/update", {
+        "_id": roomId,
+        "messages": currentRoom.messages
+      }).then(res => {
+
+        const updatedRoom = res.data;
+
+        const updatedRooms = rooms.map(room =>
+          room._id === updatedRoom._id ? updatedRoom : room
+        );
+
+        ActionFn('SET_GLOBAL', {
+          rooms: updatedRooms,
+          currentRoom: res.data,
+        });
+      });
+    }
+  }, [inviteData])
 
   const send = (message, invite) => {
 
@@ -34,7 +89,18 @@ const Form = ({
       "messages": allMessages
     }).then(res => {
 
-      ActionFn('SET_GLOBAL', { currentRoom: res.data })
+
+      const updatedRoom = res.data;
+
+      const updatedRooms = rooms.map(room =>
+        room._id === updatedRoom._id ? updatedRoom : room
+      );
+
+      ActionFn('SET_GLOBAL', {
+        rooms: updatedRooms,
+        currentRoom: res.data,
+      });
+
     });
 
 
@@ -63,8 +129,6 @@ const Form = ({
         submitInvite={submitInvite}
         colText={type === 'page' ? "col-8 " : "col-7"}
         colBtn={type === 'page' ? "col-4 " : "col-5"}
-        account={account}
-        roomUserInfo={roomUserInfo}
       />
 
 
@@ -75,10 +139,9 @@ const Form = ({
 const mapStateToProps = (state) => {
 
   return {
-    account: state.account,
     uid: state.account.uid,
     formData: state.form.chatForm,
-    currentRoom: state.globalState.currentRoom,
+    rooms: state.globalState.rooms,
   }
 }
 

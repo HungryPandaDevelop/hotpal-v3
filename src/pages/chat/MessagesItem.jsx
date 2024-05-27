@@ -1,8 +1,15 @@
 import moment from "moment";
-import { updateInvite } from 'services/chatEvents';
 
 
-const MessagesItem = ({ message, uid, roomId, index, setImageLoaded }) => {
+
+const MessagesItem = ({
+  message,
+  uid,
+  roomId,
+  index,
+  setImageLoaded,
+  updataInvite
+}) => {
 
   const whose = message.uid === uid;
 
@@ -10,7 +17,8 @@ const MessagesItem = ({ message, uid, roomId, index, setImageLoaded }) => {
 
   const changeInvite = (status, index) => {
 
-    updateInvite(roomId, status, index)
+    updataInvite(status, index)
+
   }
 
 
@@ -54,4 +62,4 @@ const MessagesItem = ({ message, uid, roomId, index, setImageLoaded }) => {
   )
 }
 
-export default MessagesItem
+export default MessagesItem;

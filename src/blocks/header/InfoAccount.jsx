@@ -52,7 +52,7 @@ const InfoAccount = ({ account, ActionFn }) => {
     socket.on('getOnlineLikes', (res) => {
       console.log('res socket', res);
       // Обновляем состояние компонента с полученными лайками
-      ActionFn('SET_LIKES', { likes: res })
+      ActionFn('SET_GLOBAL', { likes: res })
     });
 
 
@@ -64,7 +64,7 @@ const InfoAccount = ({ account, ActionFn }) => {
     socket.on('getOnlineRooms', (res) => {
       console.log('res socket chat', res);
       // Обновляем состояние компонента с полученными лайками
-      ActionFn('SET_ROOMS', { rooms: res })
+      ActionFn('SET_GLOBAL', { rooms: res })
     });
 
     // Функция для отписки от события при размонтировании компонента

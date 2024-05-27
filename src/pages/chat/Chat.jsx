@@ -1,8 +1,6 @@
 
 import { useParams } from 'react-router-dom';
-
-
-import { connect } from 'react-redux';
+import { useState } from "react";
 
 import ChatForm from 'pages/chat/Form';
 
@@ -13,9 +11,16 @@ import Rooms from 'pages/chat/Rooms';
 import Tabs from 'pages/cabinet/parts/Tabs';
 
 
-const Chat = ({ account, roomUserInfo }) => {
+const Chat = () => {
 
   const params = useParams();
+  const [inviteData, setInviteData] = useState(null);
+  const [currentUserInRoom, setCurrentUserInRoom] = useState(null);
+
+  const updataInvite = (status, index) => {
+    console.log('update invite', status, index)
+    setInviteData([status, index])
+  }
 
   return (
     <>
@@ -29,21 +34,20 @@ const Chat = ({ account, roomUserInfo }) => {
           <div className='main-grid'>
             <div className="col-4 col-xs-12">
               <Rooms
-                uid={account.uid}
                 roomId={params.roomId}
-                type='page'
+                setCurrentUserInRoom={setCurrentUserInRoom}
               />
             </div>
             <div className="col-8 col-xs-12">
               {params.roomId && (<div className="chat-messages">
-                <MessagesHead />
+                <MessagesHead currentUserInRoom={currentUserInRoom} />
                 <Messages
                   roomId={params.roomId}
+                  updataInvite={updataInvite}
                 />
                 <ChatForm
                   roomId={params.roomId}
-                  type='page'
-                  roomUserInfo={roomUserInfo}
+                  inviteData={inviteData}
                 />
               </div>)}
 
@@ -60,12 +64,5 @@ const Chat = ({ account, roomUserInfo }) => {
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    account: state.account,
-    roomUserInfo: state.globalState.roomUserInfo,
-    currentRoom: state.globalState.currentRoom,
-  }
-}
 
-export default connect(mapStateToProps)(Chat);
+export default Chat;

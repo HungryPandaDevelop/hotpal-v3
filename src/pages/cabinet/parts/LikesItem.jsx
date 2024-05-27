@@ -1,7 +1,7 @@
 // import { getSingleListing } from 'services/getSingleListing';
 import { getUserSingle } from 'servicesMysql/getUserSingle';
 import { useState, useEffect } from 'react'
-import { renderStatus } from 'pages/cabinet/parts/LikesItem/renderStatus';
+
 
 import RenderUserBtn from 'pages/cabinet/parts/LikesItem/RenderUserBtn';
 import RenderRead from 'pages/cabinet/parts/LikesItem/RenderRead';
@@ -83,17 +83,23 @@ const LikesItem = ({
       </Link>
 
       <div className="btn-container">
-        {userSide ? renderStatus(like) : (
+        {userSide ? (<>
+
+          <div className="like-hint">
+            Симпатия взаимна
+          </div>
+          <div className="like-status-btn agree-like-btn active"></div>
+        </>) : (
           <>
             {like.status === 'agree' && (<div className="like-hint">
               Симпатия взаимна
             </div>)}
-
             {/* <RenderUserBtn
               like={like}
               status="see"
               textBtn="Оцениваю"
             /> */}
+
             <RenderUserBtn
               like={like}
               status="agree"
@@ -116,4 +122,4 @@ const LikesItem = ({
   )
 }
 
-export default LikesItem
+export default LikesItem;

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { connect } from 'react-redux';
+import ActionFn from 'store/actions';
 
 import { Link } from 'react-router-dom';
 
@@ -18,7 +19,8 @@ const BtnLikes = ({
   showPopup,
   setIdPoup,
   account,
-  searchListing
+  searchListing,
+  ActionFn
 }) => {
 
   const [activeBtn, setActiveBtn] = useState(false);
@@ -28,14 +30,14 @@ const BtnLikes = ({
 
 
   useEffect(() => {
-
+    // console.log('likes effect')
     likes.map((like) => {
 
       if (like.interlocutors.includes(user.uid)) {
         setActiveBtn(true);
         if (like.interlocutors[0] === uid) {
           // я лайкнул
-          console.log('я лайкнул', like._id)
+          // console.log('я лайкнул', like._id)
           setActiveSide('i_him');
           setCurrentLikeId(like._id);
           if (like.status === 'agree') {
@@ -69,6 +71,10 @@ const BtnLikes = ({
       'userLikes': user.uid
     });
 
+    ActionFn('SET_GLOBAL', {
+      likes: [...likes, response.data],
+    });
+
     changeActions({
       ...account,
       'uid': uid,
@@ -88,7 +94,9 @@ const BtnLikes = ({
     const response = await axios.post("http://hotpal.ru:5000/api/like/delete", {
       _id: currentLikeId,
     });
-
+    ActionFn('SET_GLOBAL', {
+      likes: likes.filter(like => like._id !== currentLikeId),
+    });
     console.log('delete ok', currentLikeId, response)
     setActiveBtn(false);
     setCurrentLikeId(null);
@@ -135,4 +143,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(BtnLikes);
+export default connect(mapStateToProps, { ActionFn })(BtnLikes);

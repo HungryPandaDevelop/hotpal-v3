@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+
 import { getCurrentTime } from 'pages/chat/RoomItem/getCurrentTime';
 import { userImg } from 'pages/users/catalog/UsersItem/userImg';
 
@@ -24,12 +24,7 @@ const MessagesHead = ({ currentUserInRoom }) => {
 }
 
 
-const mapStateToProps = (state) => {
-
-  return {
-    currentUserInRoom: state.globalState.currentUserInRoom,
-  }
-}
 
 
-export default connect(mapStateToProps)(MessagesHead);
+
+export default MessagesHead;

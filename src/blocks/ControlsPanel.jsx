@@ -35,15 +35,21 @@ const ControlsPanel = ({
     function bodyClick(e) {
       if (!$(e.target).is('.link-back, .link-back *, .controls-panel-popup, .controls-panel-popup  *, div.controls-btn, div.controls-btn  *, .rooms-item, .rooms-item  *')) {
 
-        ActionFn('STATE_PANEL', { panelState: false, panelId: 0, panelName: '' })
+        ActionFn('STATE_PANEL', {
+          panelState: false,
+          panelId: 0,
+          panelName: ''
+        });
       }
     }
   }, []);
 
-
+  const filterLikes = likes.filter(like =>
+    (like.userRef !== uid && like.status === 'see') || like.status === 'agree'
+  );
 
   const countTotalMessage = totalCountMessage('rooms', uid, rooms);
-  const countTotalLikes = totalCountMessage('likes', uid, rooms, likes);
+  const countTotalLikes = totalCountMessage('likes', uid, rooms, filterLikes);
 
   const arrNames = [
     ['chat', 'Личные сообщения (' + countTotalMessage + ')'],

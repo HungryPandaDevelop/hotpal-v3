@@ -6,7 +6,9 @@ const Sympathy = ({ uid, likes }) => {
 
   console.log('likes', likes)
 
-
+  const filterLikes = likes.filter(like =>
+    (like.userRef !== uid && like.status === 'see') || like.status === 'agree'
+  );
   return (
     <>
       <div className="stub"></div>
@@ -16,12 +18,12 @@ const Sympathy = ({ uid, likes }) => {
         />
         <div className="border-container border-null-top account-main" >
           <div className="likes-all">
-            {likes.length === 0 ? (<>
+            {filterLikes.length === 0 ? (<>
               <h3>Делайте больше поисков, ищите, вступайте в диалоги и Вас заметят!</h3>
               <Link to="/users-catalog" className="btn btn--blue">Начать поиск</Link>
             </>) : (<>
 
-              {likes.map((like, index) => {
+              {filterLikes.map((like, index) => {
 
                 // if (like) {
                 return (

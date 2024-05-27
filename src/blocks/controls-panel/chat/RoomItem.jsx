@@ -1,4 +1,4 @@
-
+import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 import { getCurrentTime } from 'pages/chat/RoomItem/getCurrentTime';
@@ -7,15 +7,12 @@ import { getCurrentTime } from 'pages/chat/RoomItem/getCurrentTime';
 import { userImg } from 'pages/users/catalog/UsersItem/userImg';
 import { getUserSingle } from 'servicesMysql/getUserSingle';
 
-import { Link } from "react-router-dom";
-
 
 const RoomItem = ({
   room,
-  roomId,
   uid,
+  onChoiseRoom,
   onDeleteRoom,
-  setCurrentUserInRoom
 }) => {
 
   const userId = room.connectUsersUid.filter(id => id !== uid)[0];
@@ -45,13 +42,7 @@ const RoomItem = ({
 
   }, []);
 
-  useEffect(() => {
-    if (roomId === room._id) {
-      getUserSingle(userId).then(res => {
-        setCurrentUserInRoom(res);
-      });
-    };
-  }, [roomId]);
+
 
 
 
@@ -101,11 +92,12 @@ const RoomItem = ({
 
 
   return (
-    <Link to={`/cabinet/chat/${room._id}`}
-      className={`rooms-item ${roomId === room._id ? 'active' : ''}`}
+    <div
+      className="rooms-item"
+      onClick={() => { onChoiseRoom(room._id, roomUserInfo) }}
     >
       {roomContent()}
-    </Link>
+    </div>
   );
 
 

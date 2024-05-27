@@ -21,7 +21,7 @@ const Likes = ({ uid, likes }) => {
                   <LikesItem
                     key={index}
                     uid={uid}
-                    like={like.data}
+                    like={like}
                     likes={likes}
                   // typeLike="in"
                   />

@@ -1,7 +1,7 @@
 import { getMaxListing } from 'components/getMaxListing';
 import { useEffect, useState } from 'react'
 
-import { getListing } from 'services/getListings';
+import axios from 'axios';
 import { getByArrMysql } from 'pages/mysql/getByArrMysql'
 
 import { userImg } from 'pages/users/catalog/UsersItem/userImg';
@@ -12,33 +12,33 @@ const BestUsers = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getListing('likes').then((res) => {
-      // 
-      // getMaxListing(res, 'userRef').slice(0, 9)
-      // console.log('res', res)
-      if (res.length > 0) {
-        let usersArr = [];
-        let loadLikes = getMaxListing(res, 'userLikes')//.slice(0, 28)
 
-        // console.log('loadLikes', loadLikes)
+    axios.post("http://hotpal.ru:5000/api/like/find").then(res => {
+
+      if (res.data && res.data.length > 0) {
+        let usersArr = [];
+        let loadLikes = getMaxListing(res.data, 'userLikes')//.slice(0, 28)
+        console.log('loadLikes', res.data, loadLikes);
+
         loadLikes.map(item => {
           usersArr.push(item.userLikes)
         });
-        // console.log('usersArr', usersArr)
-        usersArr = usersArr.slice(0, 28)
-        // console.log('usersArr 2', usersArr)
-        setLoading(false);
-        // console.log(getMaxListing(res, 'userRef').slice(0, 9))
 
-        // console.log('usersArr', usersArr)
+        usersArr = usersArr.slice(0, 28)
+
+
+
         getByArrMysql(usersArr).then((res) => {
-          // console.log('usersArr', res)
+          setLoading(false);
           setListings(res.data)
 
         })
       }
-
     });
+
+
+
+
   }, [])
 
   return (
@@ -53,4 +53,5 @@ const BestUsers = () => {
   )
 }
 
-export default BestUsers
+
+export default BestUsers;
