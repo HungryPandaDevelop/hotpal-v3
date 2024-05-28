@@ -4,11 +4,7 @@ import moment from "moment";
 
 import RenderForm from 'components/forms/travel/Form';
 
-
-import { addCardsDefault } from 'services/addListing';
-import { getListing } from 'services/getListings';
-import { deleteListing } from 'services/getListings';
-
+import axios from 'axios';
 
 const RoomsSearchPanel = ({
   formData,
@@ -21,24 +17,34 @@ const RoomsSearchPanel = ({
   const [myTravel, setMyTravel] = useState(null);
 
   useEffect(() => {
-    console.log('hotel.id', hotel);
-    getListing('travel', 'travel', hotel.id).then((res) => {
-      const foundTravel = res.find(el => el.userRef === uid && el.idHotel === hotel.id);
-      if (foundTravel) {
-        setTravelStateForm(false);
-        setMyTravel(foundTravel);
-      }
-    });
-  }, [hotel, uid]);
 
-  const onDelete = (id) => {
-    deleteListing('travel', id).then(res => {
-      setTravelStateForm(true)
-    })
+    axios.post("http://hotpal.ru:5000/api/hotel/findMy",
+      {
+        idHotel: hotel.id,
+        uid: uid
+      }).then(res => {
+        console.log('res hotels', res)
+        if (res.data.length > 0) {
+          setTravelStateForm(false);
+          setMyTravel(res.data[0]);
+        }
+      });
+
+  }, []);
+
+  const onDelete = async (id) => {
+
+
+    const response = await axios.post("http://hotpal.ru:5000/api/hotel/delete",
+      {
+        _id: id
+      });
+    console.log(response);
+    setTravelStateForm(true);
 
   };
 
-  const submitSuccess = () => {
+  const submitSuccess = async () => {
     // console.log(formData.values, uid, hotel.id, hotel.images[0])
 
     const travelObj = {
@@ -50,10 +56,12 @@ const RoomsSearchPanel = ({
       'imgHotel': hotel.images[0]
     }
 
-    addCardsDefault(travelObj, 'travel').then(res => {
-      setMyTravel(travelObj)
-      setTravelStateForm(false)
-    });
+    const response = await axios.post("http://hotpal.ru:5000/api/hotel/", travelObj);
+    console.log('res hotels', response)
+    setTravelStateForm(false);
+    setMyTravel(response.data);
+
+
   }
 
 
@@ -76,7 +84,7 @@ const RoomsSearchPanel = ({
             <div className="btn-container">
               <div
                 className="btn btn--white"
-                onClick={() => { onDelete(myTravel.id) }}
+                onClick={() => { onDelete(myTravel._id) }}
               >Изменить даты</div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { getMaxListing } from 'components/getMaxListing';
-import { getListing } from 'services/getListings';
 
+import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { toCaseCount } from 'pages/hotels/hooks/toCaseCount'
@@ -11,11 +11,11 @@ const BestHotels = () => {
 
   useEffect(() => {
 
-    getListing('travel', 'travelAll').then((res) => {
-      setListings(getMaxListing(res, 'idHotel').slice(0, 10));
+
+    axios.post("http://hotpal.ru:5000/api/hotel/find").then(res => {
+      setListings(getMaxListing(res.data, 'idHotel').slice(0, 10));
       setLoading(false)
     });
-
   }, []);
 
 
@@ -32,4 +32,4 @@ const BestHotels = () => {
   )
 }
 
-export default BestHotels
+export default BestHotels;

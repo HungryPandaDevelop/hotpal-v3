@@ -18,8 +18,6 @@ const TemplateForm = (props) => {
     user,
     dirty,
     invalid,
-    newValue,
-
   } = props;
 
 
@@ -69,9 +67,8 @@ const TemplateForm = (props) => {
             <div className="user-top-info--view">
               <h2>
                 {user.name}
-                {user.verificationCheck ? (<div className="verification-ico"></div>) : <div className="verification-hint">Вы не верифицированы</div>}
                 {user.dateBerth && ', ' + calculateAge(user.dateBerth)}
-
+                {user.verificationCheck ? (<div className="verification-ico"></div>) : <div className="verification-hint">Вы не верифицированы</div>}
               </h2>
 
               <div className='input-box'>

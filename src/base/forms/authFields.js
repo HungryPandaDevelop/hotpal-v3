@@ -46,7 +46,7 @@ export const checkDate = {
     placeholder: "Дата рождения",
     type: "date",
     wrapClass: "input-box col-12",
-    validate: ['required'],
+    validate: ['minAge'],
   },
 };
 

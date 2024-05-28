@@ -1,17 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-
 import { connect } from 'react-redux';
 import ActionFn from 'store/actions';
-
 import axios from 'axios';
-import { changeActions } from 'servicesMysql/changeActions';
-
 import moment from "moment";
 
+import { changeActions } from 'servicesMysql/changeActions';
 
-// import { addChat } from 'servicesMysql/changeChats';
-
-const BtnChat = ({ user, uid, ActionFn, name, account, rooms, currentRoom }) => {
+const BtnChat = ({ user, ActionFn, account, rooms }) => {
 
   const navigate = useNavigate();
 
@@ -31,7 +26,7 @@ const BtnChat = ({ user, uid, ActionFn, name, account, rooms, currentRoom }) => 
     if (!checkUser) {
 
       const response = await axios.post("http://hotpal.ru:5000/api/room/", {
-        'connectUsersUid': [uid, user.uid],
+        'connectUsersUid': [account.uid, user.uid],
         'author': 'dave',
         'messages': [],
       });
@@ -46,12 +41,12 @@ const BtnChat = ({ user, uid, ActionFn, name, account, rooms, currentRoom }) => 
       navigate('/cabinet/chat/' + currentRoomTemp._id, { replace: true });
     }
 
-      // changeActions({
-      //   ...account,
-      //   'uid': uid,
-      //   'date': moment().format('YYYY-MM-DD hh:mm:ss'),
-      //   'action': 'chat'
-      // });
+    changeActions({
+      ...account,
+      'uid': account.uid,
+      'date': moment().format('YYYY-MM-DD hh:mm:ss'),
+      'action': 'chat'
+    });
 
   }
 
@@ -75,11 +70,8 @@ const BtnChat = ({ user, uid, ActionFn, name, account, rooms, currentRoom }) => 
 
 const mapStateToProps = (state) => {
   return {
-    uid: state.account.uid,
     account: state.account,
-    name: state.account.name,
-    rooms: state.globalState.rooms,
-    currentRoom: state.globalState.currentRoom,
+    rooms: state.globalState.rooms
   }
 }
 

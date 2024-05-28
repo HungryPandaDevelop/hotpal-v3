@@ -13,11 +13,8 @@ import { changeActions } from 'servicesMysql/changeActions';
 
 const BtnLikes = ({
   user,
-  uid,
-  name,
   likes,
   showPopup,
-  setIdPoup,
   account,
   searchListing,
   ActionFn
@@ -35,7 +32,7 @@ const BtnLikes = ({
 
       if (like.interlocutors.includes(user.uid)) {
         setActiveBtn(true);
-        if (like.interlocutors[0] === uid) {
+        if (like.interlocutors[0] === account.uid) {
           // я лайкнул
           // console.log('я лайкнул', like._id)
           setActiveSide('i_him');
@@ -64,10 +61,10 @@ const BtnLikes = ({
 
     // console.log(user)
     const response = await axios.post("http://hotpal.ru:5000/api/like/", {
-      'interlocutors': [uid, user.uid],
+      'interlocutors': [account.uid, user.uid],
       'status': 'see',
       'read': false,
-      'userRef': uid,
+      'userRef': account.uid,
       'userLikes': user.uid
     });
 
@@ -77,7 +74,7 @@ const BtnLikes = ({
 
     changeActions({
       ...account,
-      'uid': uid,
+      'uid': account.uid,
       'date': timestampCustomDay(),
       'action': 'like',
     });
@@ -136,9 +133,7 @@ const BtnLikes = ({
 
 const mapStateToProps = (state) => {
   return {
-    uid: state.account.uid,
     account: state.account,
-    name: state.account.name,
     likes: state.globalState.likes,
   }
 }

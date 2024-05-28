@@ -1,10 +1,13 @@
-import axios from "axios";
+// import axios from "axios";
+import moment from "moment";
 import { useEffect, useState } from "react"
 import { connect } from 'react-redux';
 import ActionFn from 'store/actions';
 import { Link } from 'react-router-dom';
-
 import { io } from "socket.io-client"
+
+import { changeActions } from 'servicesMysql/changeActions';
+import { updateUser } from 'servicesMysql/changeUsers';
 
 const InfoAccount = ({ account, ActionFn }) => {
   const [socket, setSocket] = useState(null);
@@ -32,13 +35,26 @@ const InfoAccount = ({ account, ActionFn }) => {
 
 
   useEffect(() => {
-    console.log('in')
+    // console.log('in')
     const newSocket = io('http://hotpal.ru:3001');
     setSocket(newSocket);
+
+    if (account) {
+      updateUser({ ...account, entranceDate: moment().format('YYYY-MM-DD hh:mm:ss') });
+
+
+      changeActions({
+        ...account,
+        'uid': account.uid,
+        'date': moment().format('YYYY-MM-DD'),
+        'action': 'entrance',
+      });
+    }
 
     return () => {
       newSocket.disconnect();
     }
+
   }, []);
 
 
@@ -50,7 +66,7 @@ const InfoAccount = ({ account, ActionFn }) => {
 
     // Подписываемся на событие getOnlineLikes для получения обновлений лайков
     socket.on('getOnlineLikes', (res) => {
-      console.log('res socket', res);
+      // console.log('res socket', res);
       // Обновляем состояние компонента с полученными лайками
       ActionFn('SET_GLOBAL', { likes: res })
     });
@@ -62,7 +78,7 @@ const InfoAccount = ({ account, ActionFn }) => {
 
     // Подписываемся на событие getOnlineLikes для получения обновлений лайков
     socket.on('getOnlineRooms', (res) => {
-      console.log('res socket chat', res);
+      // console.log('res socket chat', res);
       // Обновляем состояние компонента с полученными лайками
       ActionFn('SET_GLOBAL', { rooms: res })
     });

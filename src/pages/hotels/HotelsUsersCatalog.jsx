@@ -3,6 +3,8 @@ import { useParams, useSearchParams, useLocation } from "react-router-dom";
 import moment from "moment";
 import { connect } from 'react-redux';
 
+import axios from 'axios';
+
 import { getListing } from 'services/getListings';
 import { getByArrMysql } from 'pages/mysql/getByArrMysql'
 
@@ -13,6 +15,7 @@ import HotelsItem from 'pages/hotels/catalog/HotelsItem';
 import TravelAddPanel from "pages/hotels/detail/TravelAddPanel";
 import UserItem from 'pages/users/catalog/UsersItem';
 import UsersSearchPanel from 'pages/hotels/detail/UsersSearchPanel';
+
 
 const HotelsUsersCatalog = ({ account }) => {
   const { uid } = account;
@@ -36,20 +39,14 @@ const HotelsUsersCatalog = ({ account }) => {
 
   useEffect(() => {
 
-    // load HOTEL 
-    // console.log('searchParams', searchParams.get('from'), searchParams.get('from'))
 
     let dateFrom = searchParams.get('from') ? searchParams.get('from') : moment().format('YYYY-MM-DD');
     let dateTo = searchParams.get('to') ? searchParams.get('to') : moment().add(2, 'days').format('YYYY-MM-DD');
-    // console.log(dateFrom, dateTo)
 
 
     hotelsDataSingle([{ id: pageId }]).then(response => {
 
-
-
       hotelPage(pageId, dateFrom, dateTo, 1).then(res => {
-
 
         if (res) {
           var renderArrHotels = [];
@@ -68,39 +65,29 @@ const HotelsUsersCatalog = ({ account }) => {
 
     });
 
-    const usersArray = [];
-    getListing('travel', 'travel', pageId).then((res) => {
-      let users = res;
-      // console.log('trave', res)
-      res.map(el => {
-        if (el.userRef !== uid) {
+    // let usersArray = [];
 
-          usersArray.push(el.userRef)
+    axios.post("http://hotpal.ru:5000/api/hotel/findMy",
+      {
+        idHotel: pageId,
+      }).then(res => {
+
+        const usersArray = res.data.map(travel => travel.userRef)
+
+        if (usersArray.length > 0) {
+          getByArrMysql(usersArray).then((users) => {
+
+            setLoading(false);
+            setSearchListing(users.data);
+            setListings(users.data);
+          });
+        } else {
+          setUserTravel(true);
+          setLoading(false);
         }
       });
-      // console.log('usersArray', usersArray)
-      if (usersArray.length > 0) {
-        getByArrMysql(usersArray).then((res) => {
 
-
-          let tempUsers = [];
-          res.data.forEach(el => {
-            tempUsers.push({ ...users.find(e => e.uid === el.uid), ...el })
-          });
-
-          setLoading(false);
-          setSearchListing(tempUsers);
-          setListings(tempUsers);
-          setUserTravel(false);
-        });
-      } else {
-        setUserTravel(true);
-        setLoading(false);
-      }
-
-    });
-
-  }, [pathname]);
+  }, []);
 
 
   const renderEmptyHotelsUsers = (userTravel) => {

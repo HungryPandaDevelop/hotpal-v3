@@ -24,12 +24,14 @@ import Likes from 'pages/cabinet/Likes';
 import ForgotPassword from 'pages/auth/ForgotPassword';
 import ChangeForgotPassword from 'pages/auth/ChangeForgotPassword';
 import AuthStart from 'pages/auth/AuthStart';
-import RegStart from 'pages/auth/RegStart';
-
 import AuthMail from 'pages/auth/AuthMail';
+
+import RegStart from 'pages/auth/RegStart';
 import RegMail from 'pages/auth/RegMail';
 import RegEnd from 'pages/auth/RegEnd';
 
+import RegVk from 'pages/auth/RegVk';
+import CheckVk from 'pages/auth/CheckVk';
 
 import UsersCatalog from 'pages/users/UserCatalog';
 import UsersDetail from 'pages/users/UserDetail';
@@ -84,8 +86,11 @@ const App = ({ account }) => {
             <Route path='/auth-mail' element={<AuthMail />} ></Route>
             <Route path='/forgot-pass' element={<ForgotPassword />} ></Route>
             <Route path='/change-forgot-pass' element={<ChangeForgotPassword />} ></Route>
-            <Route path='/reg-end' element={<RegEnd />} ></Route>
 
+            <Route path='/check-vk' element={<CheckVk />} ></Route>
+            <Route path='/reg-vk' element={<RegVk />} ></Route>
+
+            <Route path='/reg-end' element={<RegEnd />} ></Route>
             <Route path='/reg-g-end' element={<RegGoogleEnd />} ></Route>
 
 

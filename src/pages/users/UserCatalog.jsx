@@ -34,7 +34,7 @@ const UserCatalog = ({ account }) => {
 
       });
 
-      setSearchListing(allUsers.slice(0, 10));
+      setSearchListing(allUsers);
 
       setListings(allUsers);
 

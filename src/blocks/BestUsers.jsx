@@ -29,11 +29,12 @@ const BestUsers = () => {
 
 
         getByArrMysql(usersArr).then((res) => {
-          setLoading(false);
+          setLoading(true);
           setListings(res.data)
 
-        })
+        });
       }
+      setLoading(false);
     });
 
 
