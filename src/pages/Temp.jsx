@@ -1,33 +1,32 @@
 import { io } from "socket.io-client"
-
-import { useEffect, useState } from "react"
+import axios from "axios";
+import { useEffect } from "react"
 
 const Temp = () => {
 
-  const [socket, setSocket] = useState(null);
-  const [user, setUser] = useState({ id: '123' });
-  const [onlineUser, setOnlineUser] = useState(null);
+
 
   useEffect(() => {
-    console.log('in')
-    const newSocket = io('http://hotpal.ru:3001');
-    setSocket(newSocket);
+    console.log('in uf')
+    const newSocket = io('https://hotpal.ru:7000');
+
+    console.log('newSocket', newSocket);
 
     return () => {
       newSocket.disconnect();
     }
+
+    //   axios.get('https://hotpal.ru:7000')
+    //     .then(res => {
+    //       console.log('res', res.data);
+    //     })
+    //     .catch(err => {
+    //       console.error('Error:', err);
+    //     });
+
   }, []);
 
-  useEffect(() => {
-    if (socket === null) { return; }
 
-    socket.emit('addNewUser', user?.id);
-
-    socket.on('getOnlineUsers', (res) => {
-      console.log('res socket', res)
-      setOnlineUser(res)
-    })
-  }, [socket]);
 
 
   return (

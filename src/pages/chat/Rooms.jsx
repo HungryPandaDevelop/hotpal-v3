@@ -19,7 +19,7 @@ const RoomList = ({
 
   const onDeleteRoom = async (id) => {
 
-    const response = axios.post("http://hotpal.ru:5000/api/room/delete", {
+    const response = axios.post("https://hotpal.ru:5000/room/delete", {
       "_id": id
     });
 

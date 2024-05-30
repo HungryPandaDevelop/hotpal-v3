@@ -12,7 +12,7 @@ const BestHotels = () => {
   useEffect(() => {
 
 
-    axios.post("http://hotpal.ru:5000/api/hotel/find").then(res => {
+    axios.post("https://hotpal.ru:5000/hotel/find").then(res => {
       setListings(getMaxListing(res.data, 'idHotel').slice(0, 10));
       setLoading(false)
     });

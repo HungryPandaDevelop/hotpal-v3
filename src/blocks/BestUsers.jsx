@@ -13,12 +13,12 @@ const BestUsers = () => {
 
   useEffect(() => {
 
-    axios.post("http://hotpal.ru:5000/api/like/find").then(res => {
+    axios.post("https://hotpal.ru:5000/like/find").then(res => {
 
       if (res.data && res.data.length > 0) {
         let usersArr = [];
         let loadLikes = getMaxListing(res.data, 'userLikes')//.slice(0, 28)
-        console.log('loadLikes', res.data, loadLikes);
+        // console.log('loadLikes', res.data, loadLikes);
 
         loadLikes.map(item => {
           usersArr.push(item.userLikes)

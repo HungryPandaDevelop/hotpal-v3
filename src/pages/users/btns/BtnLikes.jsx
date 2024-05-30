@@ -60,7 +60,7 @@ const BtnLikes = ({
   const onAdd = async () => {
 
     // console.log(user)
-    const response = await axios.post("http://hotpal.ru:5000/api/like/", {
+    const response = await axios.post("https://hotpal.ru:5000/like/", {
       'interlocutors': [account.uid, user.uid],
       'status': 'see',
       'read': false,
@@ -88,7 +88,7 @@ const BtnLikes = ({
 
   const onDelete = async () => {
 
-    const response = await axios.post("http://hotpal.ru:5000/api/like/delete", {
+    const response = await axios.post("https://hotpal.ru:5000/like/delete", {
       _id: currentLikeId,
     });
     ActionFn('SET_GLOBAL', {

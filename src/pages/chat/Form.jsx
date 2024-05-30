@@ -26,7 +26,7 @@ const Form = ({
         }
       });
 
-      axios.post("http://hotpal.ru:5000/api/room/update", {
+      axios.post("https://hotpal.ru:5000/room/update", {
         "_id": roomId,
         "messages": currentRoom.messages
       }).then(res => {
@@ -51,7 +51,7 @@ const Form = ({
 
       currentRoom.messages[inviteData[1]].invite.status = inviteData[0];
 
-      axios.post("http://hotpal.ru:5000/api/room/update", {
+      axios.post("https://hotpal.ru:5000/room/update", {
         "_id": roomId,
         "messages": currentRoom.messages
       }).then(res => {
@@ -84,7 +84,7 @@ const Form = ({
     const allMessages = [...currentRoom.messages, singleMessage];
 
 
-    axios.post("http://hotpal.ru:5000/api/room/update", {
+    axios.post("https://hotpal.ru:5000/room/update", {
       "_id": roomId,
       "messages": allMessages
     }).then(res => {

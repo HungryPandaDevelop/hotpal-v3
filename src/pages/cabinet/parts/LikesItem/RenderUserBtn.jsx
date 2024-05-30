@@ -14,7 +14,7 @@ const RenderUserBtn = ({ like, status, textBtn }) => {
     }
     // saveListing(newData, like._id, 'likes')
 
-    axios.post("http://hotpal.ru:5000/api/like/edit", {
+    axios.post("https://hotpal.ru/node/like/edit", {
       ...like,
     }).then(res => {
       console.log('ok', res)

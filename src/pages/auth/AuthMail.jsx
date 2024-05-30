@@ -43,7 +43,7 @@ const AuthMail = ({ formData, ActionFn }) => {
 
         <RenderForm
           fields={regMail}
-          btnSubmitText="Регистрация"
+          btnSubmitText="Войти"
           submitSuccess={submitSuccess}
 
         />

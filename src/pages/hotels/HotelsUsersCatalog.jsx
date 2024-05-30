@@ -67,7 +67,7 @@ const HotelsUsersCatalog = ({ account }) => {
 
     // let usersArray = [];
 
-    axios.post("http://hotpal.ru:5000/api/hotel/findMy",
+    axios.post("https://hotpal.ru:5000/hotel/findMy",
       {
         idHotel: pageId,
       }).then(res => {

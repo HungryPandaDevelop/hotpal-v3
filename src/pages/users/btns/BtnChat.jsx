@@ -25,7 +25,7 @@ const BtnChat = ({ user, ActionFn, account, rooms }) => {
 
     if (!checkUser) {
 
-      const response = await axios.post("http://hotpal.ru:5000/api/room/", {
+      const response = await axios.post("https://hotpal.ru:5000/room/", {
         'connectUsersUid': [account.uid, user.uid],
         'author': 'dave',
         'messages': [],

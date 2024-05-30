@@ -18,7 +18,7 @@ const RoomsSearchPanel = ({
 
   useEffect(() => {
 
-    axios.post("http://hotpal.ru:5000/api/hotel/findMy",
+    axios.post("https://hotpal.ru:5000/hotel/findMy",
       {
         idHotel: hotel.id,
         uid: uid
@@ -35,7 +35,7 @@ const RoomsSearchPanel = ({
   const onDelete = async (id) => {
 
 
-    const response = await axios.post("http://hotpal.ru:5000/api/hotel/delete",
+    const response = await axios.post("https://hotpal.ru:5000/hotel/delete",
       {
         _id: id
       });
@@ -56,7 +56,7 @@ const RoomsSearchPanel = ({
       'imgHotel': hotel.images[0]
     }
 
-    const response = await axios.post("http://hotpal.ru:5000/api/hotel/", travelObj);
+    const response = await axios.post("https://hotpal.ru:5000/hotel/", travelObj);
     console.log('res hotels', response)
     setTravelStateForm(false);
     setMyTravel(response.data);
