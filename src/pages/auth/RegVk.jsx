@@ -44,7 +44,7 @@ const RegDate = ({ formData, ActionFn }) => {
   return (
     <>
       <Popup
-        showStart={true}
+        statusPopup={true}
         linkBack={true}
       >
         {!dateAgree ? (

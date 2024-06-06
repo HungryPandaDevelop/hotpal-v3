@@ -18,14 +18,11 @@ const Popup = ({
       <div className="popup-overlay"></div>
       <div className="popup-container">
 
-         {linkBack ? (
+        {linkBack ? (
           <Link to="/" className="btn-close close-btn--popup" ></Link>
         ) : (
           <i className="btn-close close-btn--popup" onClick={closePopup}></i>
-        )} 
-
-
-
+        )}
 
         {children}
       </div>

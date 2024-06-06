@@ -21,8 +21,11 @@ const BtnLikes = ({
 }) => {
 
   const [activeBtn, setActiveBtn] = useState(false);
+
   const [activeSide, setActiveSide] = useState(null);
+
   const [activeBtnStatus, setActiveBtnStatus] = useState(false);
+
   const [currentLikeId, setCurrentLikeId] = useState(null);
 
 
@@ -55,7 +58,10 @@ const BtnLikes = ({
     });
 
 
-  }, [likes, searchListing]);
+  }, [
+    likes,
+    // searchListing
+  ]);
 
   const onAdd = async () => {
 
@@ -80,7 +86,9 @@ const BtnLikes = ({
     });
 
     setActiveBtn(true);
+
     setCurrentLikeId(response.data._id);
+
     showPopup(true);
     // console.log(response.data);
 

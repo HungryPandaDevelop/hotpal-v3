@@ -6,58 +6,81 @@ import { useState } from 'react'
 
 import Popup from 'components/Popup';
 import BtnPopupLikes from 'pages/users/btns/BtnPopupLikes';
-import BtnPopupBlacklist from 'pages/users/btns/BtnPopupBlacklist';
+// import BtnPopupBlacklist from 'pages/users/btns/BtnPopupBlacklist';
 
 
-const Btns = ({ user, account, searchListing }) => {
+const Btns = ({
+  user,
+  // account,
+  // searchListing 
+}) => {
 
-  const [showStart, setShowStart] = useState(false);
-  const [idPopup, setIdPoup] = useState('');
-  const showPopup = (status) => {
-    setShowStart(status);
+  const [statusPopup, setStatusPopup] = useState(false);
+
+  // const [idPopup, setIdPoup] = useState('');
+
+  const onShowPopup = (status) => {
+    setStatusPopup(status);
   }
 
-  const getLike = () => {
-    return <BtnLikes
-      user={user}
-      showPopup={showPopup}
-      setIdPoup={setIdPoup}
-      searchListing={searchListing}
-    />;
-  }
-  const getChat = () => {
-    return <BtnChat user={user} />;
-  }
+  // const getLike = () => {
+  //   return <BtnLikes
+  //     user={user}
+  //     showPopup={showPopup}
+  //     setIdPoup={setIdPoup}
+  //   // searchListing={searchListing}
+  //   />;
+  // }
+  // const getChat = () => {
+  //   return <BtnChat user={user} />;
+  // }
 
-  const renderBtn = (param, type) => {
+  // const renderBtn = (param, type) => {
 
 
-    if (user[param]) {
-      if (user[param] !== account.orientation) {
-        return false;
-      }
-    }
+  //   if (user[param]) {
+  //     if (user[param] !== account.orientation) {
+  //       return false;
+  //     }
+  //   }
 
-    return type === 'chat' ? getChat() : getLike();
+  //   return type === 'chat' ? (
+  //     <BtnChat user={user} />
+  //   )
+  //     :
+  //     (
+  //       <BtnLikes
+  //         user={user}
+  //         showPopup={showPopup}
+  //         setIdPoup={setIdPoup}
+  //       // searchListing={searchListing}
+  //       />
+  //     );
 
-  }
+  // }
 
   return (
     <div className="btn-container">
       <Popup
-        showStart={showStart} // дома доделать
-        setShowStart={setShowStart} // дома доделать
-        showPopup={showPopup}
+        statusPopup={statusPopup}
+        onShowPopup={onShowPopup}
+      // setShowStart={setShowStart}
+
       >
-        {idPopup === 'likes' ? (<BtnPopupLikes />) : (<BtnPopupBlacklist />)}
+        <BtnPopupLikes />
 
       </Popup>
 
       <div className="btn-container-inner">
 
-        {renderBtn('setting_likes', 'like')}
+        <BtnLikes
+          user={user}
+          onShowPopup={onShowPopup}
+        // setIdPoup={setIdPoup}
+        // searchListing={searchListing}
+        />
 
-        {renderBtn('setting_messages', 'chat')}
+        <BtnChat user={user} />
       </div>
     </div>
   )

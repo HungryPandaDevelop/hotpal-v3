@@ -1,6 +1,5 @@
 
-import { calcUnreadMessage } from 'pages/chat/hooks/calcUnread';
-import { calcUnread } from 'pages/chat/hooks/calcUnread';
+import { calcUnreadMessage, calcUnread } from 'pages/chat/hooks/calcUnread';
 
 const totalCountMessage = (type, uid, rooms, likes) => {
 

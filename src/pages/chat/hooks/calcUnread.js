@@ -17,7 +17,7 @@ export const calcUnread = (listing, uid) => {
   let count = 0;
   listing && listing.map(list => {
     // console.log('uid', list)
-    if (!list.read && list.ownId !== uid) {
+    if (!list.read && list.userRef !== uid) {
       count++;
     }
   })

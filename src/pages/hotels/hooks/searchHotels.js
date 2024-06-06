@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // https://8124-37-204-10-198.ngrok-free.app
-const url = 'https://3aea-37-204-10-198.ngrok-free.app';
+const url = 'https://a0ff-37-204-10-198.ngrok-free.app';
 export const autocompleteSearch = (term) => {
 
   // console.log('search start')

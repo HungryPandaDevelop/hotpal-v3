@@ -8,7 +8,7 @@ import GoalsUsers from "./detail/GoalsUsers";
 import InterestsUsers from "./detail/InterestsUsers";
 import Photos from "./detail/Photos";
 import PersonalInfo from "./detail/PersonalInfo";
-import Btns from "./detail/Btns";
+import Btns from "pages/users/catalog/UsersItem/Btns";
 
 import Travel from 'pages/cabinet/Travel';
 import { getUserSingle } from 'servicesMysql/getUserSingle';

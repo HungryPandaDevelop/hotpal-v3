@@ -12,7 +12,12 @@ import Btns from 'pages/users/catalog/UsersItem/Btns';
 import { getCurrentTime } from 'pages/chat/RoomItem/getCurrentTime';
 
 
-const UserItem = ({ user, dateTravel, account, searchListing }) => {
+const UserItem = ({
+  user,
+  dateTravel,
+  account,
+  searchListing
+}) => {
 
 
 
@@ -37,9 +42,10 @@ const UserItem = ({ user, dateTravel, account, searchListing }) => {
         {account.uid !== user.uid && (<Btns
           user={user}
           account={account}
-          uid={account.uid}
-          searchListing={searchListing}
+        // uid={account.uid}
+        // searchListing={searchListing}
         />)}
+
         {user.entranceDate && (<div className="user-catalog-entrance">
           {getCurrentTime(user)}
         </div>)}

@@ -9,32 +9,34 @@ import { Link } from 'react-router-dom';
 const BestUsers = () => {
 
   const [listings, setListings] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
 
     axios.post("https://hotpal.ru:5000/like/find").then(res => {
-
+      setLoading(false);
+      console.log('res best like', res.data)
       if (res.data && res.data.length > 0) {
         let usersArr = [];
         let loadLikes = getMaxListing(res.data, 'userLikes')//.slice(0, 28)
-        // console.log('loadLikes', res.data, loadLikes);
+
 
         loadLikes.map(item => {
           usersArr.push(item.userLikes)
         });
 
         usersArr = usersArr.slice(0, 28)
-
+        console.log('loadLikes', usersArr);
 
 
         getByArrMysql(usersArr).then((res) => {
-          setLoading(true);
-          setListings(res.data)
 
+          setListings(res.data)
+          setLoading(false);
         });
       }
-      setLoading(false);
+
+
     });
 
 
