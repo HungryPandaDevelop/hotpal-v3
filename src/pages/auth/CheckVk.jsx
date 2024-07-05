@@ -106,7 +106,7 @@ const CheckVk = ({ ActionFn }) => {
   return (
     <>
       <Popup
-        showStart={true}
+        statusPopup={true}
         linkBack={true}
       >
         <h3>Добро пожаловать, {currentName}</h3>

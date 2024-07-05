@@ -22,7 +22,7 @@ const RegEnd = () => {
   return (
     <>
       <Popup
-        showStart={true}
+        statusPopup={true}
         linkBack={true}
       >
         <h3>С возвращением!</h3>
@@ -41,9 +41,7 @@ const RegEnd = () => {
 
 
 
-          <div className="simle-link">
-            <Link className="link" to="/forgot-pass">Проблемы со входом?</Link>
-          </div>
+
         </div>
       </Popup>
       <Section />

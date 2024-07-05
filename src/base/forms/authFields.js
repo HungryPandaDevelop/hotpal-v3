@@ -51,14 +51,6 @@ export const checkDate = {
 };
 
 export const settingsPassword = {
-
-  checkPassword: {
-    name: "checkPassword",
-    label: "Введите пароль",
-    type: "password",
-    wrapClass: "col-12 input-box",
-    validate: ['required', 'minLength'],
-  },
   changePassword: {
     name: "changePassword",
     type: "password",
@@ -66,13 +58,7 @@ export const settingsPassword = {
     wrapClass: "col-12 input-box",
     validate: ['required', 'minLength'],
   },
-  checkChangePassword: {
-    name: "checkChangePassword",
-    type: "password",
-    label: "Подтвердить пароль",
-    wrapClass: "col-12 input-box",
-    validate: ['required', 'minLength'],
-  },
+
 }
 
 

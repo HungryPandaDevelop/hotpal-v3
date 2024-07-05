@@ -63,7 +63,7 @@ const RegGoogleEnd = ({ formData, ActionFn }) => {
   return (
     <>
       <Popup
-        showStart={true}
+        statusPopup={true}
         linkBack={true}
       >
         <h3>Регистрация</h3>

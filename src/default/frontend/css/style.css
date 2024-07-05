@@ -331,7 +331,7 @@ section {
 }
 @media (max-width: 576px) {
   .main-grid {
-    gap: 0;
+    gap: 0 5px;
   }
   .content {
     padding-right: 0px;
@@ -2260,6 +2260,7 @@ input:disabled {
   width: 100%;
   position: relative;
   height: auto;
+  padding-right: 30px;
 }
 .search-field-container em {
   width: 24px;
@@ -3791,6 +3792,9 @@ button[data-controls=next]:hover {
   .popup h3 {
     font-size: 24px;
     line-height: 29px;
+  }
+  .popup .input-box {
+    margin-bottom: 15px;
   }
 }
 .gender-btns {
@@ -7129,6 +7133,7 @@ button[data-controls=next]:hover {
   .chat-rooms {
     min-height: 180px;
     margin-bottom: 15px;
+    padding: 0;
   }
 }
 .chat-messages {
@@ -7324,7 +7329,13 @@ button[data-controls=next]:hover {
 
 @media (max-width: 576px) {
   .chat-messages {
-    margin-top: 15px;
+    margin: 15px;
+  }
+  .chat-form {
+    padding: 0;
+  }
+  .chat-form .btn {
+    width: 100%;
   }
 }
 /*-----chat-end----*/

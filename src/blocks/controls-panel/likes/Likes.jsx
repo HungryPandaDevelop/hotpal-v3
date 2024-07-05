@@ -10,7 +10,7 @@ const Likes = ({ uid, likes }) => {
         <div className='empty-room'>
           <div className='empty-room-container'>
             <h3>Делайте больше поисков, ищите, вступайте в диалоги и Вас заметят!</h3>
-            <Link to="/users-catalog" className="btn btn--blue">Начать поиск</Link>
+            <a href="/users-catalog" className="btn btn--blue">Начать поиск</a>
           </div>
         </div>) :
         (<>

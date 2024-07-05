@@ -18,7 +18,7 @@ const RegStart = () => {
   return (
     <>
       <Popup
-        showStart={true}
+        statusPopup={true}
         linkBack={true}
       >
         <h3>Знакомься в отелях и бронируй номера с кем тебе по душе!</h3>

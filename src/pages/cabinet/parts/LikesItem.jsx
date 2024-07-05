@@ -49,6 +49,7 @@ const LikesItem = ({
         onMouseEnter={() => { onRead(like, uid) }}
       >
         <RenderRead like={like} uid={uid} />
+
         <div>
           Пользователь удален
         </div>

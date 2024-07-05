@@ -58,7 +58,7 @@ const RegMail = ({ formData, ActionFn }) => {
   return (
     <>
       <Popup
-        showStart={true}
+        statusPopup={true}
         linkBack={true}
       >
         <h3>Заполните анкету</h3>

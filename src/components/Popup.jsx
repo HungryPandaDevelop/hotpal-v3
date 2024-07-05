@@ -2,19 +2,19 @@ import { Link } from "react-router-dom"
 
 const Popup = ({
   children,
-  showStart,
-  showPopup,
+  statusPopup,
+  onShowPopup,
   linkBack
 }) => {
 
 
 
   const closePopup = () => {
-    showPopup(false)
+    onShowPopup(false)
   }
 
   return (
-    <div className={`popup element-show ${(showStart) ? 'show' : ''}`} >
+    <div className={`popup element-show ${(statusPopup) ? 'show' : ''}`} >
       <div className="popup-overlay"></div>
       <div className="popup-container">
 

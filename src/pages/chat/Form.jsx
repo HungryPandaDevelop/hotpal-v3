@@ -7,12 +7,13 @@ import { useEffect } from 'react';
 
 const Form = ({
   formData,
-  uid,
+  account,
   roomId,
   type,
   rooms,
   ActionFn,
-  inviteData
+  inviteData,
+  currentUserInRoom
 }) => {
 
   const currentRoom = rooms.filter(room => room._id === roomId)[0];
@@ -21,7 +22,7 @@ const Form = ({
 
     if (currentRoom) {
       currentRoom.messages.forEach(message => {
-        if (message.uid !== uid) {
+        if (message.uid !== account.uid) {
           message.read = true;
         }
       });
@@ -74,7 +75,7 @@ const Form = ({
 
 
     const singleMessage = {
-      uid: uid,
+      uid: account.uid,
       read: false,
       message: message,
       fileMessage: [],
@@ -89,6 +90,16 @@ const Form = ({
       "messages": allMessages
     }).then(res => {
 
+      console.log('send messages', currentUserInRoom.email, currentUserInRoom.name)
+
+      axios.get("https://hotpal.ru/api/new-messages.php", {
+        params: {
+          "myName": account.name,
+          "email": currentUserInRoom.email,
+          "name": currentUserInRoom.name,
+          "chatId": roomId,
+        }
+      });
 
       const updatedRoom = res.data;
 
@@ -139,7 +150,7 @@ const Form = ({
 const mapStateToProps = (state) => {
 
   return {
-    uid: state.account.uid,
+    account: state.account,
     formData: state.form.chatForm,
     rooms: state.globalState.rooms,
   }

@@ -14,9 +14,8 @@ import { changeActions } from 'servicesMysql/changeActions';
 const BtnLikes = ({
   user,
   likes,
-  showPopup,
+  onShowPopup,
   account,
-  searchListing,
   ActionFn
 }) => {
 
@@ -59,13 +58,11 @@ const BtnLikes = ({
 
 
   }, [
-    likes,
-    // searchListing
+    likes
   ]);
 
   const onAdd = async () => {
 
-    // console.log(user)
     const response = await axios.post("https://hotpal.ru:5000/like/", {
       'interlocutors': [account.uid, user.uid],
       'status': 'see',
@@ -89,8 +86,17 @@ const BtnLikes = ({
 
     setCurrentLikeId(response.data._id);
 
-    showPopup(true);
-    // console.log(response.data);
+    onShowPopup(true);
+
+    const responseLike = await axios.get("https://hotpal.ru/api/new-like.php", {
+      params: {
+        "myName": account.name,
+        "email": user.email,
+        "name": user.name,
+      }
+    });
+
+    console.log('responseLike', responseLike)
 
   };
 
@@ -99,13 +105,17 @@ const BtnLikes = ({
     const response = await axios.post("https://hotpal.ru:5000/like/delete", {
       _id: currentLikeId,
     });
+
     ActionFn('SET_GLOBAL', {
       likes: likes.filter(like => like._id !== currentLikeId),
     });
-    console.log('delete ok', currentLikeId, response)
+
+    console.log('delete ok', currentLikeId, response);
+
     setActiveBtn(false);
     setCurrentLikeId(null);
-    showPopup(false);
+
+    onShowPopup(false);
 
   };
 

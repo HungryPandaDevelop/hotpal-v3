@@ -50,16 +50,16 @@ const ChangeForgotPassword = ({ formData, ActionFn }) => {
 
 
   const submitSuccess = async () => {
-    const { checkPassword, changePassword, checkChangePassword } = formData.values;
+    const { changePassword } = formData.values;
 
 
-    if (checkPassword !== user.password) {
-      setErrPassword('Старый пароль не верный');
-    } else if (changePassword !== checkChangePassword) {
-      setErrPassword('Пароли не совпадают');
+    console.log(searchParams.get('key'), user.key)
+
+    if (searchParams.get('key') !== user.key) {
+      setErrPassword('Данные не совпадают');
     } else {
       setErrPassword(null);
-      // console.log('test', { ...user, 'password': changePassword })
+      console.log('test', { ...user, 'password': changePassword })
       updateUser({ ...user, 'password': changePassword }).then(() => {
 
         ActionFn('SET_INFO_ACCOUNT', { ...user, 'password': changePassword });
@@ -78,7 +78,7 @@ const ChangeForgotPassword = ({ formData, ActionFn }) => {
   return (
     <>
       <Popup
-        showStart={true}
+        statusPopup={true}
         linkBack={true}
       >
         <RenderForm
@@ -86,7 +86,7 @@ const ChangeForgotPassword = ({ formData, ActionFn }) => {
           btnSubmitText={loading ? 'Loading..' : "Поменять пароль"}
           submitSuccess={submitSuccess}
         />
-        {errPassword ? 'Пароль не правильный' : ''}
+        {errPassword ? errPassword : ''}
       </Popup>
       <Section />
     </>

@@ -12,7 +12,7 @@ const RegMail = ({ ActionFn, btnText }) => {
   const navigate = useNavigate();
 
 
-  const apiGoogleKey = '808585706330-65li2a9972uhshmmoi53n5k1nrdbmcfi.apps.googleusercontent.com';
+  const apiGoogleKey = '1068069425762-3i1b7c4asfqf3q9bld8cpr5t0lev38u1.apps.googleusercontent.com';
 
 
 

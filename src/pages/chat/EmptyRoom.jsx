@@ -9,7 +9,7 @@ const EmptyRoom = () => {
           Выберите себе собеседника
         </h3>
         <div className="btn-container">
-          <Link to='/users-catalog' className="btn btn--blue">Перейти к поиску</Link>
+          <a href='/users-catalog' className="btn btn--blue">Перейти к поиску</a>
         </div>
       </div>
     </div>

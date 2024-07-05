@@ -102,7 +102,7 @@ const RegEnd = ({ account, ActionFn }) => {
   return (
     <>
       <Popup
-        showStart={true}
+        statusPopup={true}
         linkBack={true}
       >
         {renderPopup()}

@@ -10,11 +10,18 @@ import RenderForm from 'components/forms/RenderForm';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
+import { updateUser } from 'servicesMysql/changeUsers';
+import { v4 as uuidv4 } from 'uuid';
+
 const ForgotPassword = ({ formData }) => {
+
+  const generateId = uuidv4();
 
   const [loading, setLoading] = useState(false);
   const [passSend, setPassSend] = useState(false);
   const [mailSend, setMailSend] = useState('');
+
+  const [errUser, setErrUser] = useState(null);
 
   const renderMailSend = () => {
     console.log('formData', formData)
@@ -55,19 +62,31 @@ const ForgotPassword = ({ formData }) => {
 
       if (res.uid) {
 
+        updateUser({ ...res, 'key': generateId });
+
+
         axios.get("https://hotpal.ru/api/mail-send-pass.php", {
           params: {
             mail: res.email,
             name: res.name,
             uid: res.uid,
+            key: generateId,
             host: window.location.host
           }
         });
         setMailSend(res.email);
         setPassSend(true)
       } else {
-        toast.error('Таких пользователей нет');
+        // toast.error('Таких пользователей нет');
         console.log('таких нет')
+        setErrUser('E-mail не найден. Вам необходимо пройти регистрацию.')
+        let idTimeUser;
+
+        clearTimeout(idTimeUser);
+
+        idTimeUser = setTimeout(() => {
+          setErrUser(null)
+        }, 2000);
       }
     });
 
@@ -80,10 +99,12 @@ const ForgotPassword = ({ formData }) => {
   return (
     <>
       <Popup
-        showStart={true}
+        statusPopup={true}
         linkBack={true}
       >
+
         {passSend ? renderMailSend() : renderMailForm()}
+        {errUser && errUser}
       </Popup>
       <Section />
     </>

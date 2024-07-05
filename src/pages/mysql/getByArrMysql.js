@@ -8,7 +8,7 @@ export const getByArrMysql = async (arr_uid) => {
         arr_uid: arr_uid,
       }
     });
-    console.log('response ARRA', response)
+    // console.log('response ARRA', response)
     return response;
   } catch (err) {
     console.error('Ошибка при выполнении запроса:', err);

@@ -12,33 +12,11 @@ import { updateUser } from 'servicesMysql/changeUsers';
 const InfoAccount = ({ account, ActionFn }) => {
   const [socket, setSocket] = useState(null);
 
-
-  // useEffect(() => {
-  //   axios.post("http://hotpal.ru:5000/api/room/find", {
-  //     "userId": account.uid
-  //   }).then(res => {
-
-  //     console.log('get chat', res.data);
-  //     ActionFn('SET_ROOMS', { rooms: res.data })
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   axios.post("http://hotpal.ru:5000/api/like/find", {
-  //     "userId": account.uid
-  //   }).then(res => {
-
-  //     console.log('get likes', res.data);
-  //     ActionFn('SET_LIKES', { likes: res.data })
-  //   });
-  // }, [])
-
-
   useEffect(() => {
     // console.log('in')
     const newSocket = io('https://hotpal.ru:5000');
     // const newSocket = io('http://hotpal.ru:3001');
-    console.log('ns', newSocket)
+    // console.log('ns', newSocket)
     setSocket(newSocket);
 
     if (account) {
@@ -68,7 +46,7 @@ const InfoAccount = ({ account, ActionFn }) => {
 
     // Подписываемся на событие getOnlineLikes для получения обновлений лайков
     socket.on('getOnlineLikes', (res) => {
-      console.log('res socket', res);
+      // console.log('res socket', res);
       // Обновляем состояние компонента с полученными лайками
       ActionFn('SET_GLOBAL', { likes: res })
     });
@@ -80,7 +58,7 @@ const InfoAccount = ({ account, ActionFn }) => {
 
     // Подписываемся на событие getOnlineLikes для получения обновлений лайков
     socket.on('getOnlineRooms', (res) => {
-      console.log('res socket chat', res);
+      // console.log('res socket chat', res);
       // Обновляем состояние компонента с полученными лайками
       ActionFn('SET_GLOBAL', { rooms: res })
     });

@@ -48,6 +48,7 @@ const Chat = () => {
                 <ChatForm
                   roomId={params.roomId}
                   inviteData={inviteData}
+                  currentUserInRoom={currentUserInRoom}
                 />
               </div>)}
 

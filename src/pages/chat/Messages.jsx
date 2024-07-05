@@ -42,7 +42,7 @@ const Messages = ({
 
 
   const renderMessages = () => {
-    console.log('currentRoom', currentRoom)
+    // console.log('currentRoom', currentRoom)
     if (!currentRoom) {
       return false;
     }

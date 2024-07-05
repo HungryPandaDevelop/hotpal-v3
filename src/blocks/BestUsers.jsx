@@ -15,7 +15,7 @@ const BestUsers = () => {
 
     axios.post("https://hotpal.ru:5000/like/find").then(res => {
       setLoading(false);
-      console.log('res best like', res.data)
+      // console.log('res best like', res.data)
       if (res.data && res.data.length > 0) {
         let usersArr = [];
         let loadLikes = getMaxListing(res.data, 'userLikes')//.slice(0, 28)
@@ -26,7 +26,7 @@ const BestUsers = () => {
         });
 
         usersArr = usersArr.slice(0, 28)
-        console.log('loadLikes', usersArr);
+        // console.log('loadLikes', usersArr);
 
 
         getByArrMysql(usersArr).then((res) => {
