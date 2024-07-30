@@ -71,17 +71,19 @@ const Form = ({
     }
   }, [inviteData])
 
-  const send = (message, invite) => {
+  const send = (message, invite, fileMessage) => {
 
+    console.log('currentUserInRoom', currentUserInRoom)
 
     const singleMessage = {
       uid: account.uid,
       read: false,
       message: message,
-      fileMessage: [],
+      fileMessage: fileMessage ? fileMessage : [],
       timestamp: new Date(),
       ...invite
     };
+
     const allMessages = [...currentRoom.messages, singleMessage];
 
 
@@ -90,7 +92,7 @@ const Form = ({
       "messages": allMessages
     }).then(res => {
 
-      console.log('send messages', currentUserInRoom.email, currentUserInRoom.name)
+
 
       axios.get("https://hotpal.ru/api/new-messages.php", {
         params: {
@@ -119,8 +121,8 @@ const Form = ({
   }
 
   const submitSuccess = () => {
-
-    send(formData.values.message);
+    // console.log('send messages', formData.values)
+    send(formData.values.message, {}, formData.values.fileMessage);
   }
 
   const submitInvite = (inviteData) => {

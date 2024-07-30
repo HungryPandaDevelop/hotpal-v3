@@ -7,7 +7,7 @@ export const inputs = {
     validate: ['required'],
   },
   fileMessage: {
-    type: "file",
+    type: "fileChat",
     name: "fileMessage",
     typeUpload: ".png, .jpg, .jpeg",
     maxSize: 5242880,

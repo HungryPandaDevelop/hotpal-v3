@@ -21,6 +21,7 @@ const MessagesItem = ({
 
   }
 
+  // console.log('mes', message)
 
   const loadImg = () => {
     let loadImgId;

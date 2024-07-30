@@ -25,6 +25,8 @@ import AutocompleteHotel from 'components/input-base/AutocompleteHotel'; // вы
 import GeoHotels from 'components/input-base/GeoHotels'; // выбор точки
 import YaString from 'components/input-base/SearchYaString'; // выбор точки
 
+import FileChat from 'components/input-base/FileChat'; // выбор точки
+
 import { createValidateArr } from './validator';
 
 
@@ -56,6 +58,8 @@ const RenderFields = ({ fields, checkErrorSubmit, type }) => {
       case 'choiseTags': return <ChoiseTags obj={obj} />
       case 'tags': return <EditionTags obj={obj} />
       case 'invite': return <Invite obj={obj} />
+
+      case 'fileChat': return <FileChat obj={obj} />
 
       case 'editor': return <Editor obj={obj} />
       case 'message': return <Message obj={obj} />
