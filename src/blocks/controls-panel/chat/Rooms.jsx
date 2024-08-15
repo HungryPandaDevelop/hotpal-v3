@@ -11,16 +11,19 @@ const RoomList = ({
   uid,
   rooms,
   ActionFn,
-  currentRoomPanel,
-  setCurrentRoomPanel,
-  setCurrentUserInRoomPanel
+  // currentRoomPanel,
+  // currentUserInRoomPanel,
+  // setCurrentRoomPanel,
+  // setCurrentUserInRoomPanel
 }) => {
 
 
   const onChoiseRoom = (room, user) => {
     console.log('currentUserInRoom', room)
-    setCurrentRoomPanel(room);
-    setCurrentUserInRoomPanel(user)
+    // setCurrentRoomPanel(room);
+    // setCurrentUserInRoomPanel(user)
+
+    ActionFn('SET_GLOBAL', { currentRoomPanel: room, currentUserInRoomPanel: user });
   }
 
 
@@ -44,7 +47,7 @@ const RoomList = ({
       {rooms.length ? rooms.map((room) => <RoomItem
         room={room}
         key={room._id}
-        roomId={currentRoomPanel}
+        // roomId={currentRoomPanel}
 
         uid={uid}
 

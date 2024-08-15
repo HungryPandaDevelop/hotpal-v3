@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // https://8124-37-204-10-198.ngrok-free.app
-const url = 'https://b7c3-37-204-10-198.ngrok-free.app';
+const url = 'https://hotpal.ru:5000';
 export const autocompleteSearch = (term) => {
 
   // console.log('search start')
@@ -41,7 +41,7 @@ export const hotelsDataSingle = (hotelPrices) => {
 }
 
 export const hotelsData = (hotelPrices, type) => {
-  // console.log('start hotelsData', hotelPrices)
+
 
   let tempArrayHotels = hotelPrices;
 
@@ -53,7 +53,7 @@ export const hotelsData = (hotelPrices, type) => {
     return el.id
   });
 
-
+  // console.log('start hotelsData', tempArrayHotels)
   return axios.get(url + "/hotels-data", {
     headers: {
       'ngrok-skip-browser-warning': true
@@ -62,7 +62,7 @@ export const hotelsData = (hotelPrices, type) => {
       arrayHotels: tempArrayHotels
     }
   }).then(res => {
-    // console.log('res hotelsData', res)
+    console.log('res hotelsData', res)
 
     var renderArrHotels = [];
 

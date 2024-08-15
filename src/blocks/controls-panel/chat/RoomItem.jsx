@@ -65,10 +65,14 @@ const RoomItem = ({
       <div
         className="rooms-item-face img-use-bg"
         style={userImg(roomUserInfo)}
+        onClick={() => { onChoiseRoom(room._id, roomUserInfo) }}
       >
         {calcUnreadCount() !== 0 && (<div className="rooms-item-count">{calcUnreadCount()}</div>)}
       </div>
-      <div className="rooms-item-info">
+      <div
+        className="rooms-item-info"
+        onClick={() => { onChoiseRoom(room._id, roomUserInfo) }}
+      >
         <div className="rooms-item-name">
           {roomUserInfo.name}
         </div>
@@ -94,7 +98,7 @@ const RoomItem = ({
   return (
     <div
       className="rooms-item"
-      onClick={() => { onChoiseRoom(room._id, roomUserInfo) }}
+
     >
       {roomContent()}
     </div>

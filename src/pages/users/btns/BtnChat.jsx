@@ -6,11 +6,22 @@ import moment from "moment";
 
 import { changeActions } from 'servicesMysql/changeActions';
 
-const BtnChat = ({ user, ActionFn, account, rooms }) => {
+const BtnChat = ({ user, ActionFn, account, rooms, panelState }) => {
 
   const navigate = useNavigate();
 
-  const onInviteChat = async (user) => {
+  const activeEl = (room) => {
+    console.log('in')
+    ActionFn('SET_GLOBAL', {
+      panelState: true,
+      panelId: 'chat',
+      panelName: 'Личные сообщения',
+      currentRoomPanel: room,
+      currentUserInRoomPanel: user
+    });
+  }
+
+  const onInviteChat = async (user, device) => {
     let checkUser;
     let currentRoomTemp;
 
@@ -34,11 +45,22 @@ const BtnChat = ({ user, ActionFn, account, rooms }) => {
       ActionFn('SET_GLOBAL', {
         rooms: [...rooms, response.data],
       });
-      navigate('/cabinet/chat/' + response.data._id, { replace: true });
 
+
+      if (device === 'desk') {
+        navigate('/cabinet/chat/' + response.data._id, { replace: true });
+      } else {
+        // console.log('mob 1');
+        activeEl(response.data._id);
+      }
     } else {
+      if (device === 'desk') {
+        navigate('/cabinet/chat/' + currentRoomTemp._id, { replace: true });
+      } else {
 
-      navigate('/cabinet/chat/' + currentRoomTemp._id, { replace: true });
+        activeEl(currentRoomTemp._id);
+        // console.log('mob 2', panelState);
+      }
     }
 
     changeActions({
@@ -56,22 +78,24 @@ const BtnChat = ({ user, ActionFn, account, rooms }) => {
   return (
     <>
       <div
-        className="btn-ico--chat btn-ico"
-        onClick={() => { onInviteChat(user) }}
+        className="btn-ico--chat btn-chat-desk btn-ico"
+        onClick={() => { onInviteChat(user, 'desk') }}
       ></div>
-      {/* <div
-        className="btn-ico--chat btn-ico--chat-popup btn-ico"
-        onClick={() => { onInviteChat(user) }}
-      ></div> */}
+      <div
+        className="btn-ico--chat btn-chat-mob btn-ico"
+        onClick={() => { onInviteChat(user, 'mob') }}
+      ></div>
     </>
   )
 }
 
 
 const mapStateToProps = (state) => {
+
   return {
     account: state.account,
-    rooms: state.globalState.rooms
+    rooms: state.globalState.rooms,
+    panelState: state.globalState.panelState
   }
 }
 

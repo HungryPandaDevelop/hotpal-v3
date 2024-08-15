@@ -11,10 +11,7 @@ const ControlsBtn = ({
 }) => {
 
   const activeEl = (name) => {
-
-
-    ActionFn('STATE_PANEL', { panelState: true, panelId: name[0], panelName: name[1] })
-
+    ActionFn('STATE_PANEL', { panelState: true, panelId: name[0], panelName: name[1] });
   }
 
   const renderCount = (id, base) => {

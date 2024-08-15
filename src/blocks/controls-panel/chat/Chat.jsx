@@ -3,11 +3,15 @@ import Rooms from 'blocks/controls-panel/chat/Rooms';
 import MessagesPopup from "blocks/controls-panel/chat/Messages";
 import { useState } from 'react';
 
-const Chat = ({ uid }) => {
+const Chat = ({
+  uid,
+  currentRoomPanel,
+  currentUserInRoomPanel
+}) => {
 
-  const [currentRoomPanel, setCurrentRoomPanel] = useState(false);
-  const [currentUserInRoomPanel, setCurrentUserInRoomPanel] = useState(false);
-
+  // const [currentRoomPanel, setCurrentRoomPanel] = useState(false);
+  // const [currentUserInRoomPanel, setCurrentUserInRoomPanel] = useState(false);
+  console.log(currentRoomPanel, currentUserInRoomPanel)
   return (
     <>
       {!currentRoomPanel ? (
@@ -15,9 +19,9 @@ const Chat = ({ uid }) => {
           <Rooms
             uid={uid}
             type='popup'
-            roomId={currentRoomPanel}
-            setCurrentRoomPanel={setCurrentRoomPanel}
-            setCurrentUserInRoomPanel={setCurrentUserInRoomPanel}
+          // roomId={currentRoomPanel}
+          // setCurrentRoomPanel={setCurrentRoomPanel}
+          // setCurrentUserInRoomPanel={setCurrentUserInRoomPanel}
           />
         </>
       ) :
@@ -27,7 +31,7 @@ const Chat = ({ uid }) => {
               uid={uid}
               roomId={currentRoomPanel}
               currentUser={currentUserInRoomPanel}
-              setCurrentRoomPanel={setCurrentRoomPanel}
+            // setCurrentRoomPanel={setCurrentRoomPanel}
             />
           </>
         )}
@@ -39,6 +43,8 @@ const Chat = ({ uid }) => {
 const mapStateToProps = (state) => {
   return {
     uid: state.account.uid,
+    currentRoomPanel: state.globalState.currentRoomPanel,
+    currentUserInRoomPanel: state.globalState.currentUserInRoomPanel,
   }
 }
 

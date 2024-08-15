@@ -7,6 +7,7 @@
   position: relative
   border-radius: 30px
   overflow: hidden
+
 .users-item-img
   @include positionElement(100%,100%,0,0)
 
@@ -75,7 +76,7 @@
       width: 100%
     .btn-ico
       margin-left: 15px
-      display: inline-block
+      // display: inline-block
 .users-item-img--empty
   @include positionElement(100%,100%,0,0)
   background-color: $blueColor
@@ -94,6 +95,8 @@
   font-size: 12px
   font-weight: 700
   margin: 15px
+.btn-chat-mob
+  display: none
 @media (max-width: 1240px)
   .users-item-info
     padding: 15px
@@ -101,3 +104,8 @@
       margin-left: 8px
     .name-users h3
       font-size: 16px
+@media (max-width: 576px)
+  .btn-chat-desk
+    display: none
+  .btn-chat-mob
+    display: inline-block

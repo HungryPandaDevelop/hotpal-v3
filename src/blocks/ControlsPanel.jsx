@@ -33,7 +33,7 @@ const ControlsPanel = ({
 
 
     function bodyClick(e) {
-      if (!$(e.target).is('.link-back, .link-back *, .controls-panel-popup, .controls-panel-popup  *, div.controls-btn, div.controls-btn  *, .rooms-item, .rooms-item  *')) {
+      if (!$(e.target).is('.btn-ico--chat, .link-back, .link-back *, .controls-panel-popup, .controls-panel-popup  *, div.controls-btn, div.controls-btn  *, .rooms-item, .rooms-item  *')) {
 
         ActionFn('STATE_PANEL', {
           panelState: false,

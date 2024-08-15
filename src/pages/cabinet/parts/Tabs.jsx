@@ -16,7 +16,7 @@ const Tabs = ({ active, account, rooms, likes }) => {
   ];
 
   return (
-    <div className="border-tabs-container-outer">
+    <div className="border-tabs-container-outer border-tabs-container-cabinet">
       <div className="border-tabs-container">
         {allTabs.map((item, index) => (<Link
           key={index}

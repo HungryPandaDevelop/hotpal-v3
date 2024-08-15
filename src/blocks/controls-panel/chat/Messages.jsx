@@ -6,7 +6,7 @@ const MessagesPopup = ({
   uid,
   roomId,
   currentUser,
-  setCurrentRoomPanel
+  // setCurrentRoomPanel
 }) => {
 
 
@@ -15,7 +15,7 @@ const MessagesPopup = ({
       <ChatHead
         currentUser={currentUser}
         roomId={roomId}
-        setCurrentRoomPanel={setCurrentRoomPanel}
+      // setCurrentRoomPanel={setCurrentRoomPanel}
       />
       <Messages uid={uid} roomId={roomId} type='popup' />
       <ChatForm roomId={roomId} type='popup' currentUserInRoom={currentUser} />

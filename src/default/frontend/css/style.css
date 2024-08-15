@@ -4654,6 +4654,9 @@ button[data-controls=next]:hover {
   .cabinet-page .hit-img-null {
     margin: 0px auto 0px;
   }
+  .border-tabs-container-cabinet {
+    display: none;
+  }
 }
 .tiny-account {
   position: relative;
@@ -5729,7 +5732,6 @@ button[data-controls=next]:hover {
 }
 .users-item-info .btn-container .btn-ico {
   margin-left: 15px;
-  display: inline-block;
 }
 
 .users-item-img--empty {
@@ -5767,6 +5769,10 @@ button[data-controls=next]:hover {
   margin: 15px;
 }
 
+.btn-chat-mob {
+  display: none;
+}
+
 @media (max-width: 1240px) {
   .users-item-info {
     padding: 15px;
@@ -5776,6 +5782,14 @@ button[data-controls=next]:hover {
   }
   .users-item-info .name-users h3 {
     font-size: 16px;
+  }
+}
+@media (max-width: 576px) {
+  .btn-chat-desk {
+    display: none;
+  }
+  .btn-chat-mob {
+    display: inline-block;
   }
 }
 .btn-filter-user {
