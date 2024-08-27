@@ -1144,43 +1144,64 @@ section {
     background-size: 18px;
   }
 }
-.spinner-container {
+.preloader-container {
   position: relative;
-  height: 30px;
+  height: 60px;
 }
 
-.spinner {
-  position: absolute;
-  top: calc(50% - 15px);
-  left: calc(50% - 15px);
-  width: 30px;
-  height: 30px;
-  -webkit-animation: spinner 0.75s linear infinite;
-          animation: spinner 0.75s linear infinite;
+.preloader-catalog {
+  text-align: center;
+  max-width: 540px;
 }
-.spinner span {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+.preloader-catalog h2 {
+  color: #0B132B;
+  font-size: 20px;
+}
+
+.preloader {
+  overflow: hidden;
   border-radius: 50%;
+  background: #00AEEF;
+  background: -webkit-gradient(linear, left top, right top, color-stop(10%, #00AEEF), color-stop(42%, rgba(101, 171, 248, 0)));
+  background: linear-gradient(to right, #00AEEF 10%, rgba(101, 171, 248, 0) 42%);
+  -webkit-animation: loadAnimate 1.4s infinite linear;
+          animation: loadAnimate 1.4s infinite linear;
+  width: 40px;
+  position: absolute;
+  height: 40px;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+  -webkit-transform: translateX(0%) translateY(0%) translateZ(0);
+          transform: translateX(0%) translateY(0%) translateZ(0);
 }
-.spinner .spinner-inner-1 {
-  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 174, 239, 0)), color-stop(50%, rgba(0, 174, 239, 0)), color-stop(51%, #00AEEF));
-  background: linear-gradient(to right, rgba(0, 174, 239, 0) 0%, rgba(0, 174, 239, 0) 50%, #00AEEF 51%);
+.preloader:before {
+  width: 50%;
+  height: 50%;
+  background: #00AEEF;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
 }
-.spinner .spinner-inner-2 {
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(#ffffff));
-  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
-}
-.spinner .spinner-inner-3 {
-  top: 3px;
-  left: 3px;
-  width: 24px;
-  height: 24px;
+.preloader:after {
   background: #ffffff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: "";
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
-@-webkit-keyframes spinner {
+@-webkit-keyframes loadAnimate {
   0% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -1191,7 +1212,7 @@ section {
   }
 }
 
-@keyframes spinner {
+@keyframes loadAnimate {
   0% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
@@ -2650,84 +2671,6 @@ input:disabled {
   height: auto;
 }
 
-.preloader-container {
-  position: relative;
-  height: 60px;
-}
-
-.preloader-catalog {
-  text-align: center;
-  max-width: 540px;
-}
-.preloader-catalog h2 {
-  color: #0B132B;
-  font-size: 20px;
-}
-
-.preloader {
-  overflow: hidden;
-  border-radius: 50%;
-  background: #00AEEF;
-  background: -webkit-gradient(linear, left top, right top, color-stop(10%, #00AEEF), color-stop(42%, rgba(101, 171, 248, 0)));
-  background: linear-gradient(to right, #00AEEF 10%, rgba(101, 171, 248, 0) 42%);
-  -webkit-animation: loadAnimate 1.4s infinite linear;
-          animation: loadAnimate 1.4s infinite linear;
-  width: 40px;
-  position: absolute;
-  height: 40px;
-  z-index: 2;
-  left: 50%;
-  top: 50%;
-  margin-top: -20px;
-  margin-left: -20px;
-  -webkit-transform: translateX(0%) translateY(0%) translateZ(0);
-          transform: translateX(0%) translateY(0%) translateZ(0);
-}
-.preloader:before {
-  width: 50%;
-  height: 50%;
-  background: #00AEEF;
-  border-radius: 100% 0 0 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "";
-}
-.preloader:after {
-  background: #ffffff;
-  width: 75%;
-  height: 75%;
-  border-radius: 50%;
-  content: "";
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-@-webkit-keyframes loadAnimate {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
-@keyframes loadAnimate {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
 /*-dragdrop-upload-*/
 .dragdrop-container {
   position: relative;
@@ -5929,6 +5872,9 @@ button[data-controls=next]:hover {
   overflow: hidden;
   border-radius: 15px;
   font-size: 0;
+}
+.user-photo .tns-item {
+  position: relative;
 }
 .user-photo img {
   width: 100%;

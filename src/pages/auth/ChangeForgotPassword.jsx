@@ -41,10 +41,10 @@ const ChangeForgotPassword = ({ formData, ActionFn }) => {
 
   useEffect(() => {
     if (errPassword) {
-      const id = setTimeout(() => {
+      const idTimePass = setTimeout(() => {
         setErrPassword(null);
       }, 1000);
-      return () => clearTimeout(id);
+      return () => { clearTimeout(idTimePass) };
     }
   }, [errPassword]);
 
