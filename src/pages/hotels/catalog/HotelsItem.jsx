@@ -3,6 +3,11 @@ import HotelsStars from 'pages/hotels/catalog/HotelsStars'
 import { renderImg } from 'pages/hotels/hooks/renderImg';
 import { renderCountTravel } from 'pages/hotels/hooks/renderCountTravel';
 import { toCaseCount } from 'pages/hotels/hooks/toCaseCount'
+
+import { useEffect, useState } from "react";
+import axios from 'axios';
+import { getByArrMysql } from 'pages/mysql/getByArrMysql'
+
 const UserItem = ({
   hotel,
   travelList,
@@ -11,8 +16,37 @@ const UserItem = ({
   itemInner
 }) => {
 
+  const [listings, setListings] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    //hotel.id
+    axios.post("https://hotpal.ru:5000/hotel/findMy",
+      {
+        idHotel: hotel.id,
+      }).then(res => {
+
+        const usersArray = res.data.map(travel => travel.userRef)
+
+        if (usersArray.length > 0) {
+          getByArrMysql(usersArray).then((users) => {
+
+            setLoading(false);
+            setListings(users.data);
+          });
+        } else {
+
+          setLoading(false);
+        }
+      });
+
+
+  }, []);
 
   const slug = '93941.affiliate.0af1';
+
+
 
   return (
     <div className="hotels-item">
@@ -43,7 +77,8 @@ const UserItem = ({
           </div> */}
         </div>
         <div className="hotels-price-container">
-          {travelList && (<div className="hotels-guest"><span>{renderCountTravel(travelList, hotel.id, uid)}</span>  {toCaseCount(renderCountTravel(travelList, hotel.id, uid))}</div>)}
+          {/* {travelList && (<div className="hotels-guest"><span>{renderCountTravel(travelList, hotel.id, uid)}</span>  {toCaseCount(renderCountTravel(travelList, hotel.id, uid))}</div>)} */}
+          {travelList && (<div className="hotels-guest"><span>{listings.length}</span>  {toCaseCount(listings.length)}</div>)}
           {!itemInner && (<Link to={`/hotels-users/${hotel.id}${searchDate ? `?from=${searchDate[0]}&to=${searchDate[1]}` : ''}`} className="btn btn--blue-border">просмотреть всех</Link>)}
 
 

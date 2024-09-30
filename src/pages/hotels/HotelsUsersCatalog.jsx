@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import axios from 'axios';
 
-import { getListing } from 'services/getListings';
+// import { getListing } from 'services/getListings';
 import { getByArrMysql } from 'pages/mysql/getByArrMysql'
 
 import { hotelPage, hotelsDataSingle } from 'pages/hotels/hooks/searchHotels';
